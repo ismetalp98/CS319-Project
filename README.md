@@ -2,5 +2,5 @@
 Berk Yıldız
 Eylül Çağlar
 İsmet Alp Eren
-Kaan Ataşel
+Kaan Ateşel
 Kerem Alemdar
