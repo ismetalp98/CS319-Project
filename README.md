@@ -30,10 +30,6 @@ Application will facilitate teachers' classroom management and students' project
 ## Other features:
 - Assignment deadline reminder and notifications
 - Users will have advanced profiles. (His/Her past reviews can be seen)
--Groups will have an advanced profile which will include all the required information. 
-
-## Meeting Hours:
-Wednesday 21:00-23:00  <br />
-Friday 21:00-23:00 <br />
+- Groups will have an advanced profile which will include all the required information. 
 
 
