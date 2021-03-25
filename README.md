@@ -29,7 +29,7 @@ Application will facilitate teachers' classroom management and students' project
 
 ## Other features:
 - Assignment deadline reminder and notifications
-- Users will have advanced profiles. (His/Her past reviews can be seen)
+- Users will have advanced profiles.(His/Her past reviews can be seen)
 - Groups will have an advanced profile which will include all the required information. 
 
 
