@@ -1,0 +1,14 @@
+
+
+http://localhost:8080/swagger-ui/
+
+
+
+/* register  */
+{
+  "email": "kaanatesel99@gmail.com",
+  "studentid": 21703694,
+  "name": "kaan",
+  "surname": "atesel",
+  "password": "kaankaan"
+}
