@@ -2,8 +2,6 @@
 
 http://localhost:8080/swagger-ui/
 
-
-
 /* register  */
 {
   "email": "kaanatesel99@gmail.com",
@@ -11,4 +9,10 @@ http://localhost:8080/swagger-ui/
   "name": "kaan",
   "surname": "atesel",
   "password": "kaankaan"
+}
+
+{
+  "studentEmail": "kaanatesel99@gmail.com",
+  "deliverableId": 3,
+  "review": "Non deserunt sed dolores dolorem delectus. Quo consequatur vel repudiandae ex qui blanditiis totam ipsam. Cumque omnis officiis voluptates atque. Aut dolorum rerum dolorem qui atque."
 }
