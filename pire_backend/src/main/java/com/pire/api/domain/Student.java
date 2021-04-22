@@ -1,8 +1,13 @@
 package com.pire.api.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
@@ -36,6 +41,20 @@ public class Student extends AbstractBaseObj{
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Group group;
+	
+	@OneToMany(
+			mappedBy = "student",
+	        cascade = CascadeType.ALL,
+	        orphanRemoval = true
+	)
+	private List<Review> reviews = new ArrayList<>();
+	
+	
+	public void addReview(Review review)
+	{
+		reviews.add(review);
+		review.setStudent(this);
+	}
 	
     @Override
     public boolean equals(Object o) {

@@ -1,17 +1,14 @@
 package com.pire.api.dto.account;
 
-import java.util.List;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
-import com.pire.api.dto.review.ReviewStringDto;
 import com.sun.istack.NotNull;
 
 import lombok.Data;
 
 @Data
-public class StudentView {
+public class StudentReviewViewDto {
 	@NotBlank
 	@Email
 	private String email;
@@ -25,7 +22,4 @@ public class StudentView {
 	@NotBlank
 	private String surname;
 	
-	private GroupView group;
-	
-	private List<ReviewStringDto> reviews;
 }

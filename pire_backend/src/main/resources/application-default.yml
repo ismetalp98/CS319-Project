@@ -3,7 +3,7 @@ server:
   
 spring:
   datasource:
-    url: jdbc:postgresql://4.tcp.ngrok.io:18680/pire
+    url: jdbc:postgresql://192.168.1.27:5432/pire
     username: pi
     password: mYmMz3io
     platform: postgresql

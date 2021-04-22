@@ -7,6 +7,7 @@ import com.pire.api.domain.Group;
 import com.pire.api.domain.Student;
 import com.pire.api.dto.account.AddStudentDto;
 import com.pire.api.dto.account.CreateGroupDto;
+import com.pire.api.dto.account.GroupAndDeleverableViewDto;
 import com.pire.api.dto.account.GroupView;
 import com.pire.api.exception.AlreadyExsitException;
 import com.pire.api.exception.NotFoundException;
@@ -51,5 +52,12 @@ public class GroupService {
 		GroupView groupView = mapper.getGroupViewFromGroup(repository.save(group));
 		
 		return groupView;
+	}
+	
+	public GroupAndDeleverableViewDto getGropuAndDeliverable(String groupname)
+	{
+		Group group = repository.findGroupByName(groupname).orElseThrow(() -> new NotFoundException("Grup not found"));
+		
+		return mapper.getGroupAndDeleverableViewDtoFromGroup(group);
 	}
 }
