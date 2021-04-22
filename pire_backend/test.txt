@@ -16,3 +16,11 @@ http://localhost:8080/swagger-ui/
   "deliverableId": 3,
   "review": "Non deserunt sed dolores dolorem delectus. Quo consequatur vel repudiandae ex qui blanditiis totam ipsam. Cumque omnis officiis voluptates atque. Aut dolorum rerum dolorem qui atque."
 }
+
+
+{
+  "email": "eray@gmail.com",
+  "name": "eray",
+  "surname": "baba",
+  "password": "baba"
+}
