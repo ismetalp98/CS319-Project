@@ -23,6 +23,14 @@ CREATE TABLE account.group(
 	UNIQUE (name)
 );
 
+CREATE TABLE account.instructor(
+	id serial PRIMARY KEY,
+	email text NOT NULL UNIQUE,
+	name text NOT NULL,
+	surname text NOT NULL,
+	password text NOT NULL
+);
+
 /* Review */
 CREATE TABLE review.deliverable(
 	id serial PRIMARY KEY,
@@ -48,6 +56,4 @@ CREATE UNIQUE INDEX ON account.group USING btree (name);
 CREATE UNIQUE INDEX ON review.deliverable USING btree (id);
 CREATE INDEX ON review.review USING btree (student_id);
 CREATE INDEX ON review.review USING btree (deliverable_id);
-
-
-
+CREATE UNIQUE INDEX ON account.instructor USING btree (email);
