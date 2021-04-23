@@ -1,5 +1,7 @@
 package com.pire.api.servise;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,6 +10,7 @@ import com.pire.api.domain.Student;
 import com.pire.api.dto.account.AddStudentDto;
 import com.pire.api.dto.account.CreateGroupDto;
 import com.pire.api.dto.account.GroupAndDeleverableViewDto;
+import com.pire.api.dto.account.GroupListViewDto;
 import com.pire.api.dto.account.GroupView;
 import com.pire.api.exception.AlreadyExsitException;
 import com.pire.api.exception.NotFoundException;
@@ -59,5 +62,13 @@ public class GroupService {
 		Group group = repository.findGroupByName(groupname).orElseThrow(() -> new NotFoundException("Grup not found"));
 		
 		return mapper.getGroupAndDeleverableViewDtoFromGroup(group);
+	}
+	
+	public List<GroupListViewDto> getAll(){
+		List<Group> groups = repository.findAll();
+		
+		List<GroupListViewDto> viewDto = mapper.getGroupListViewDtoFromGroup(groups);
+		
+		return viewDto;
 	}
 }

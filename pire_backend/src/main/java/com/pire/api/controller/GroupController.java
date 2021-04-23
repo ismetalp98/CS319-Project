@@ -1,5 +1,7 @@
 package com.pire.api.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pire.api.dto.account.AddStudentDto;
 import com.pire.api.dto.account.CreateGroupDto;
 import com.pire.api.dto.account.GroupAndDeleverableViewDto;
+import com.pire.api.dto.account.GroupListViewDto;
 import com.pire.api.dto.account.GroupView;
 import com.pire.api.servise.GroupService;
 
@@ -39,6 +42,12 @@ public class GroupController {
 			@PathVariable(name = "groupname", required = true) String groupname)
 	{
 		return ResponseEntity.ok(service.getGropuAndDeliverable(groupname));
+	}
+	
+	@GetMapping("/getAll")
+	public ResponseEntity<List<GroupListViewDto> > getAll()
+	{
+		return ResponseEntity.ok(service.getAll());
 	}
 	
 }
