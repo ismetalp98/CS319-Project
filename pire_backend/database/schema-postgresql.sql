@@ -79,3 +79,4 @@ CREATE INDEX ON review.review USING btree (student_id);
 CREATE INDEX ON review.review USING btree (deliverable_id);
 CREATE UNIQUE INDEX ON account.instructor USING btree (email);
 CREATE UNIQUE INDEX ON poll.poll USING btree (id);
+
