@@ -1,5 +1,7 @@
 package com.pire.api.servise;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,7 @@ import com.pire.api.dto.poll.CreatePollAnswerDto;
 import com.pire.api.dto.poll.CreatePollDto;
 import com.pire.api.dto.poll.CreatePollQuestionDto;
 import com.pire.api.dto.poll.PollAnswerView;
+import com.pire.api.dto.poll.PollListView;
 import com.pire.api.dto.poll.PollQuestionView;
 import com.pire.api.dto.poll.PollView;
 import com.pire.api.exception.NotFoundException;
@@ -33,7 +36,6 @@ public class PollService {
 	
 	@Autowired 
 	PollAnswerRepository pollAnswerRepository;
-	
 	
 	@Autowired
 	PollMapper pollMapper;
@@ -84,8 +86,7 @@ public class PollService {
 		pollQuesiton.addAnswer(pollAnswer);
 		student.addAnswer(pollAnswer);
 		
-		studentRepository.save(student);
-		pollQuestionRepository.save(pollQuesiton);
+		pollAnswerRepository.save(pollAnswer);
 		
 		return pollAnswerMapper.getPollAnswerViewFrom(pollAnswer);
 	}
@@ -97,6 +98,21 @@ public class PollService {
 		} catch (Exception e) {
 			throw new NotFoundException("Poll not found");
 		}
+	}
+	
+	public List<PollView> getAll(){
+		List<Poll> polls = pollRepository.findAll();
+		
+		List<PollView> pollViews = pollMapper.getPollViewListFromPollList(polls);
+		
+		return pollViews;
+	}
+	
+	public List<PollListView> getAllList(){
+		List<Poll> polls = pollRepository.findAll();
+		
+		List<PollListView> pollListViews = pollMapper.getPollListViewFromPollList(polls);		
+		return pollListViews ;
 	}
 	
 }
