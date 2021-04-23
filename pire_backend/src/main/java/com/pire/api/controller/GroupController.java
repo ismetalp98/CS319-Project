@@ -15,7 +15,6 @@ import com.pire.api.dto.account.AddStudentDto;
 import com.pire.api.dto.account.CreateGroupDto;
 import com.pire.api.dto.account.GroupAndDeleverableViewDto;
 import com.pire.api.dto.account.GroupView;
-import com.pire.api.servise.DeliverableService;
 import com.pire.api.servise.GroupService;
 
 @RestController
@@ -41,6 +40,5 @@ public class GroupController {
 	{
 		return ResponseEntity.ok(service.getGropuAndDeliverable(groupname));
 	}
-	
 	
 }

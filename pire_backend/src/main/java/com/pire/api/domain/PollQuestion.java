@@ -9,62 +9,31 @@ import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-
-import com.sun.istack.NotNull;
 
 import lombok.Data;
 
 @Data
 @Entity
-@Table(schema = "account", name = "student")
-public class Student extends AbstractBaseObj{
-	
-	@NotBlank
-	@Email
-	private String email;
-	
-	@NotNull
-	@Min(100)
-	private Integer studentid;
-	
-	@NotBlank
-	private String name;
-	
-	@NotBlank
-	private String surname;
-	
-	@NotBlank
-	private String password;
-	
+@Table(schema = "poll", name = "poll_question")
+public class PollQuestion extends AbstractBaseObj{
+
 	@ManyToOne(fetch = FetchType.LAZY)
-	private Group group;
+	private Poll poll;
+
+	@NotBlank
+	private String question;
 	
 	@OneToMany(
-			mappedBy = "student",
+			mappedBy = "pollQuestion",
 	        cascade = CascadeType.ALL,
 	        orphanRemoval = true
 	)
-	private List<Review> reviews = new ArrayList<>();
-	
-	@OneToMany(
-			mappedBy = "student",
-	        cascade = CascadeType.ALL,
-	        orphanRemoval = true
-	)
-	private List<PollAnswer> answers = new ArrayList<>();
+	private List<PollAnswer> answers =  new ArrayList<>();
 	
 	public void addAnswer(PollAnswer answer) {
 		answers.add(answer);
-		answer.setStudent(this);
-	}
-	
-	public void addReview(Review review)
-	{
-		reviews.add(review);
-		review.setStudent(this);
+		answer.setPollQuestion(this);
 	}
 	
     @Override
