@@ -1,17 +1,10 @@
-import React, { Component } from "react";
-
 import "../csss/header.css";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
-import { makeStyles } from "@material-ui/core/styles";
 import PersonIcon from "@material-ui/icons/Person";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
-const useStyles = makeStyles(theme => ({
-  button: {
-    margin: theme.spacing(1)
-  }
-}));
+
 
 let button = (
   <Button variant="contained" color="primary" startIcon={<PersonIcon />}>
@@ -32,7 +25,6 @@ let button2 = (
 );
 
 export default function Header() {
-  const classes = useStyles();
   return (
     <header className="nav">
       <ul className="nav_buttons_ul">

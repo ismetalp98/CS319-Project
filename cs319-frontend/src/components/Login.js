@@ -1,13 +1,11 @@
-import React, { Component } from "react";
 import Button from "react-bootstrap/Button";
 import "../csss/auth.css";
-import React from "react";
 import bg from "./../bg.svg";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Link } from "react-router-dom";
 
 function login() {
-  let email = document.getElementById("email").value;
-  let pss = document.getElementById("pss").value;
+  //let email = document.getElementById("email").value;
+  //let pss = document.getElementById("pss").value;
 
   <Link to="/mainPage" />;
 }

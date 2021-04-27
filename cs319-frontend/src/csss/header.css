@@ -21,6 +21,7 @@
 }
 
 #logoutbtn {
+  list-style: none;
   margin-right: 30px;
   text-decoration: none;
 }

@@ -1,4 +1,3 @@
-import React, { Component } from "react";
 import "../csss/groupPage.css";
 import Member from "../items/Member";
 import AddIcon from "@material-ui/icons/Add";

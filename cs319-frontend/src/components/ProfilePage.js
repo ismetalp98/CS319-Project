@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ProfilePage from "./ProfilePage";
 import Button from "@material-ui/core/Button";
 import "../csss/profilePage.css";
 import FaceIcon from "@material-ui/icons/Face";

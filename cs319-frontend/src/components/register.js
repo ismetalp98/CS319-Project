@@ -1,12 +1,11 @@
 import React, { Component } from "react";
-import Button from "react-bootstrap/Button";
+import Button from "@material-ui/core/Button";
 import "../csss/auth.css";
-import "../style.css";
 import bg from "./../bg.svg";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Link } from "react-router-dom";
 
-function register() {
-  let firstname = document.getElementById("firstname").value;
+/*function register() {
+  /*let firstname = document.getElementById("firstname").value;
   let lastname = document.getElementById("lastname").value;
   let email = document.getElementById("email").value;
   let studentId = document.getElementById("studentId").value;
@@ -17,7 +16,7 @@ function register() {
   if (pss.length < 6) {
   }
 }
-
+*/
 class Register extends Component {
   render() {
     return (

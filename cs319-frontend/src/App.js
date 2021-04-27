@@ -1,10 +1,5 @@
-import React from "react";
-import "./style.css";
+import './App.css';
 import MainPage from "./components/MainPage";
-import Login from "./components/Login";
-import Register from "./components/register";
-import GroupPage from "./components/GroupPage";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function App() {
   return (

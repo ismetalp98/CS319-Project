@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 
 export default function PollItem(props) {
   const name =
-    props.color % 4 == 0
+    props.color % 4 === 0
       ? "poll_item"
-      : props.color % 4 == 1
+      : props.color % 4 === 1
       ? "poll_item1"
-      : props.color % 4 == 2
+      : props.color % 4 === 2
       ? "poll_item2"
       : "poll_item1";
   return (
