@@ -1,0 +1,31 @@
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  box-shadow: var(--boxshadow);
+  background-color: white;
+}
+
+.nav_buttons_ul {
+  padding-top: 15px;
+  list-style: none;
+  display: flex;
+}
+
+.nav_buttons_ul > .nav_button {
+  padding: 0px 20px;
+}
+
+#title {
+}
+
+#logoutbtn {
+  margin-right: 30px;
+  text-decoration: none;
+}
+
+#btn1 {
+  border-radius: 20px;
+  background-color: rgb(255, 63, 85);
+}

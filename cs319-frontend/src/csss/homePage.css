@@ -1,0 +1,39 @@
+.home_page {
+  height: inherit;
+}
+
+.three_part_div {
+  display: flex;
+  flex-direction: row;
+  height: inherit;
+  margin-top: 40px;
+}
+
+.user_info_div {
+  margin-top: 0px;
+  background-color: white;
+  height: 80vh;
+  width: 100%;
+  border-right: 2px;
+}
+
+.group_list_div {
+  padding-top: 20px;
+  background-color: white;
+  overflow-y: scroll;
+  width: 100%;
+  border-right: 2px;
+  border-right-color: darkgray;
+  border-right-style: dashed;
+  border-left-color: darkgray;
+  border-left-style: dashed;
+  height: 80vh;
+}
+
+.poll_list_div {
+  padding-top: 20px;
+  background-color: white;
+  width: 100%;
+  height: 80vh;
+  overflow-y: scroll;
+}
