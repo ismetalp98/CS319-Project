@@ -19,6 +19,7 @@ class Login extends Component {
         console.log("Logged in succesfully");
         this.setState({loggedIn : true});
         localStorage.setItem('currentUserMail', email);
+        localStorage.setItem('userLogedIn', true);
       } else {
 
       }

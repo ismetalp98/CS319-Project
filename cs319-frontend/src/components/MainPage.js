@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from "./Header";
 import ProfilePage from "./ProfilePage";
-import Register from "./register";
+import Login from "./Login";
 import GroupPage from "./GroupPage";
 import HomePage from "./HomePage";
 import "../csss/mainPage.css";
@@ -19,8 +19,8 @@ export default function MainPage() {
             <Route exact path="/profilePage">
               <ProfilePage />
             </Route>
-            <Route exact path="/register">
-              <Register />
+            <Route exact path="/login">
+              <Login />
             </Route>
             <Route exact path="/groupPage">
               <GroupPage />

@@ -1,8 +1,10 @@
+import React, { Component } from "react";
 import "../csss/header.css";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import PersonIcon from "@material-ui/icons/Person";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+
 
 
 
@@ -18,32 +20,47 @@ let button1 = (
   </Button>
 );
 
-let button2 = (
-  <Button variant="contained" startIcon={<ExitToAppIcon />}>
-    Log Out
-  </Button>
-);
 
-export default function Header() {
-  return (
-    <header className="nav">
-      <ul className="nav_buttons_ul">
-        <li className="nav_button">
-          <Link to="/homePage">{button1}</Link>
-        </li>
-        <li className="nav_button">
-          <Link to="/profilePage">{button}</Link>
-        </li>
-      </ul>
+class Header extends Component {
 
-      <h1 id="title">
-        <Link to={{ pathname: "/groupPage", state: { name: "name" } }}>
-          Pire
+  state = {};
+
+  handleLogout = e => {
+    e.preventDefault();
+    this.setState({ loggedOut: true });
+  };
+
+  render() {
+    if (this.state.loggedOut) {
+      localStorage.setItem('userLogedIn', false);
+      localStorage.setItem('currentUserMail', "");
+      return <Redirect to={'/login'} />
+    }
+    return (
+      <header className="nav">
+        <ul className="nav_buttons_ul">
+          <li className="nav_button">
+            <Link to="/homePage">{button1}</Link>
+          </li>
+          <li className="nav_button">
+            <Link to="/profilePage">{button}</Link>
+          </li>
+        </ul>
+
+        <h1 id="title">
+          <Link to={{ pathname: "/groupPage", state: { name: "name" } }}>
+            Pire
         </Link>
-      </h1>
-      <li id="logoutbtn">
-        <Link to="/app">{button2}</Link>
-      </li>
-    </header>
-  );
+        </h1>
+        <li id="logoutbtn">
+          <Button variant="contained" startIcon={<ExitToAppIcon />} onClick={this.handleLogout}>
+            Log Out
+            </Button>
+
+        </li>
+      </header>
+    );
+  }
 }
+
+export default Header;
