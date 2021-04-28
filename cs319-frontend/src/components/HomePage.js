@@ -4,6 +4,7 @@ import PollItem from "../items/PollItem";
 import GroupItem from "../items/GroupItem";
 import "../csss/homePage.css";
 
+console.log(localStorage.getItem('currentUserMail'));
 class HomePage extends Component {
   render() {
     return (

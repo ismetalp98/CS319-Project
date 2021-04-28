@@ -18,6 +18,7 @@ class Login extends Component {
       if (parsed.password === pss) {
         console.log("Logged in succesfully");
         this.setState({loggedIn : true});
+        localStorage.setItem('currentUserMail', email);
       } else {
 
       }
