@@ -1,13 +1,28 @@
+import React, { Component } from "react";
 import Button from "react-bootstrap/Button";
 import "../csss/auth.css";
+import React from "react";
 import bg from "./../bg.svg";
-import { BrowserRouter as Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 function login() {
-  //let email = document.getElementById("email").value;
-  //let pss = document.getElementById("pss").value;
+  let email = document.getElementById("email").value;
+  let pss = document.getElementById("pss").value;
+  var xhr = new XMLHttpRequest();
+  xhr.addEventListener("load", () => {
+    // update the state of the component with the result here
+    var parsed = JSON.parse(xhr.response);
+    if (parsed.password == pss) {
+      console.log("Logged in succesfully");
 
-  <Link to="/mainPage" />;
+      //Insert redirection here
+    } else console.log("Login failed.");
+  });
+
+  // open the request with the verb and the url
+  xhr.open("GET", "https://d7c59928777f.ngrok.io/api/student/login/" + email);
+  // send the request
+  xhr.send();
 }
 
 function Login() {
@@ -43,11 +58,9 @@ function Login() {
               </div>
             </div>
 
-            <Link to="/mainPage">
-              <Button id="logBtn" color="#841584" onClick={login}>
-                Login
-              </Button>
-            </Link>
+            <Button id="logBtn" color="#841584" onClick={login}>
+              Login
+            </Button>
 
             <hr />
 
