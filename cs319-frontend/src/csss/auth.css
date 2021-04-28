@@ -110,6 +110,9 @@
 .forgot_div hr {
   margin-left: 20px;
   margin-right: 20px;
+  border-width: 2px;
+  border-color: black;
+  height: 0px;
 }
 
 #forgotpss {

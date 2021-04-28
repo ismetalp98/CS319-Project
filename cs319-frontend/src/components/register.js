@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 import "../csss/auth.css";
 import bg from "./../bg.svg";
-import { BrowserRouter as Link } from "react-router-dom";
+import {Link } from "react-router-dom";
 
 /*function register() {
   /*let firstname = document.getElementById("firstname").value;
@@ -85,7 +85,7 @@ class Register extends Component {
               </Button>
 
               <hr />
-              <Link to="/login">
+              <Link to={"/login"}>
                 <Button id="regBtn" title="Learn More" color="#841584">
                   Login
                 </Button>

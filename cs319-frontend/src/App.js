@@ -1,21 +1,19 @@
-import React from "react";
-import "./style.css";
+import React from 'react';
+import './App.css';
 import MainPage from "./components/MainPage";
 import Login from "./components/Login";
 import Register from "./components/register";
-import GroupPage from "./components/GroupPage";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 function App() {
   return (
-
-    <Router>
-        <div className="app">
+    <div className="app">
+      <Router>
           <Switch>
-            <Route exact path="/">
+          <Route exact path="/">
               <Login />
             </Route>
-            <Route exact path="/register">
+            <Route exact  path="/register">
               <Register />
             </Route>
             <Route exact path="/mainPage">
@@ -25,8 +23,8 @@ function App() {
               <Login />
             </Route>
           </Switch>
-        </div>
       </Router>
+    </div>
   );
 }
 

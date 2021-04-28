@@ -1,3 +1,4 @@
+import React from 'react';
 import Header from "./Header";
 import ProfilePage from "./ProfilePage";
 import Register from "./register";
