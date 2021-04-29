@@ -4,8 +4,8 @@ import "../csss/auth.css";
 import bg from "./../bg.svg";
 import { Link, Redirect } from "react-router-dom";
 
-
 class Login extends Component {
+
   state = {};
   handleLogin = e => {
     e.preventDefault();
@@ -19,7 +19,8 @@ class Login extends Component {
         console.log("Logged in succesfully");
         this.setState({ loggedIn: true });
         localStorage.setItem('currentUserMail', email);
-        localStorage.setItem('userNotLogedIn', false);   
+        localStorage.setItem('userLogedIn', true);
+        
       } else {
 
       }

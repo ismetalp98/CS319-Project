@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 import "../csss/profilePage.css";
 import FaceIcon from "@material-ui/icons/Face";
+import { PagesRounded } from "@material-ui/icons";
 
 class ProfilePage extends Component {
   constructor(props) {
@@ -12,6 +13,12 @@ class ProfilePage extends Component {
       lastname: "Eren",
       email: "alp.eren@ug.bilkent.edu.tr"
     };
+
+    /*var parsed = JSON.parse(xhr.response);
+    this.setState({studentId : parsed.email});
+    this.setState({firstname : parsed.name});
+    this.setState({lastname : parsed.surname});*/
+
   }
   render() {
     return (
@@ -43,9 +50,6 @@ class ProfilePage extends Component {
               <h3>{this.state.email} </h3>
             </div>
           </div>
-          <Button id="editprofilebtn" variant="contained" color="primary">
-            Edit Profile
-          </Button>
         </div>
       </div>
     );
