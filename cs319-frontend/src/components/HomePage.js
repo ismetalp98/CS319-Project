@@ -7,6 +7,7 @@ import "../csss/homePage.css";
 console.log(localStorage.getItem('currentUserMail'));
 class HomePage extends Component {
   render() {
+    const { history } = this.props;
     return (
       <div className="home_page">
         <div className="three_part_div">

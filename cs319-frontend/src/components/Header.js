@@ -32,7 +32,7 @@ class Header extends Component {
 
   render() {
     if (this.state.loggedOut) {
-      localStorage.setItem('userLogedIn', false);
+      localStorage.setItem('userNotLogedIn', true);
       localStorage.setItem('currentUserMail', "");
       return <Redirect to={'/login'} />
     }

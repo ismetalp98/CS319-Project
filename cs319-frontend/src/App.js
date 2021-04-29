@@ -6,6 +6,9 @@ import Register from "./components/register";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 
 class App extends Component {
+  componentDidMount() {
+    const { history } = this.props;
+  }
   render() {
     return (
       <div className="app">
@@ -18,7 +21,7 @@ class App extends Component {
               <Register />
             </Route>
             <Route exact path="/mainPage">
-              {localStorage.getItem('userLogedIn') ? <MainPage /> : <Redirect to="/" />}
+              {localStorage.getItem('userNotLogedIn') ? <Redirect to="/" /> : <MainPage />}
             </Route>
             <Route exact path="/login">
               <Login />

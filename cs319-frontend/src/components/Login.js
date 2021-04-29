@@ -4,8 +4,8 @@ import "../csss/auth.css";
 import bg from "./../bg.svg";
 import { Link, Redirect } from "react-router-dom";
 
-class Login extends Component {
 
+class Login extends Component {
   state = {};
   handleLogin = e => {
     e.preventDefault();
@@ -17,9 +17,9 @@ class Login extends Component {
       var parsed = JSON.parse(xhr.response);
       if (parsed.password === pss) {
         console.log("Logged in succesfully");
-        this.setState({loggedIn : true});
+        this.setState({ loggedIn: true });
         localStorage.setItem('currentUserMail', email);
-        localStorage.setItem('userLogedIn', true);
+        localStorage.setItem('userNotLogedIn', false);   
       } else {
 
       }
@@ -33,7 +33,7 @@ class Login extends Component {
 
   };
   render() {
-
+    const { history } = this.props;
     if (this.state.loggedIn) {
       return <Redirect to={'/mainPage'} />
     }
