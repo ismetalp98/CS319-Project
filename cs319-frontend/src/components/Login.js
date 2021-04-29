@@ -3,7 +3,7 @@ import Button from "@material-ui/core/Button";
 import "../csss/auth.css";
 import bg from "./../bg.svg";
 import { Link, Redirect } from "react-router-dom";
-
+var url = "https://d7c59928777f.ngrok.io"
 
 class Login extends Component {
   state = {};
@@ -12,6 +12,8 @@ class Login extends Component {
     let email = document.getElementById("email").value;
     let pss = document.getElementById("pss").value;
     var xhr = new XMLHttpRequest();
+    
+    
     xhr.addEventListener("load", () => {
       // update the state of the component with the result here
       var parsed = JSON.parse(xhr.response);
@@ -26,7 +28,7 @@ class Login extends Component {
     });
 
     // open the request with the verb and the url
-    xhr.open("GET", "https://d7c59928777f.ngrok.io/api/student/login/" + email);
+    xhr.open("GET", url +"/api/student/login/" + email);
     // send the request
     xhr.send();
 
