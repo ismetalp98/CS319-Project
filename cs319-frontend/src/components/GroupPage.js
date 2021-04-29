@@ -1,9 +1,22 @@
+import React, { Component } from "react";
 import "../csss/groupPage.css";
 import Member from "../items/Member";
 import AddIcon from "@material-ui/icons/Add";
 import SettingsIcon from "@material-ui/icons/Settings";
 
-export default function GroupPage(props) {
+class GroupPage extends Component{
+
+  componentWillMount() {
+    const { history } = this.props;
+    
+    /*const groups = json.map(memberitem => <Member
+      key={member.id}
+      name={memberitem.name}
+      />)*/
+
+  }
+
+  render(){
   return (
     <div className="group_page">
       <div className="group_page_div">
@@ -46,4 +59,7 @@ export default function GroupPage(props) {
       </div>
     </div>
   );
+  }
 }
+
+export default GroupPage;
