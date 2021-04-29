@@ -3,17 +3,20 @@ import "../csss/groupPage.css";
 import Member from "../items/Member";
 import AddIcon from "@material-ui/icons/Add";
 import SettingsIcon from "@material-ui/icons/Settings";
+import { useLocation } from "react-router-dom";
+
 
 class GroupPage extends Component{
-
-  componentWillMount() {
-    const { history } = this.props;
-    
-    /*const groups = json.map(memberitem => <Member
-      key={member.id}
-      name={memberitem.name}
-      />)*/
-
+  
+  componentDidMount() {
+    var xhrgroups = new XMLHttpRequest();
+    xhrgroups.open("GET", "http://d7c59928777f.ngrok.io/api/group/getdeliverable/asd");
+    xhrgroups.send();   
+    xhrgroups.addEventListener("load", () => {
+      // update the state of the component with the result here
+      var parsed = JSON.parse(xhrgroups.response);
+      //var parsedStudents = parsed.students;
+    });
   }
 
   render(){

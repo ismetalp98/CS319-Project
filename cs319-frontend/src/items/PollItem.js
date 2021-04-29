@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 class PollItem extends Component {
   state = {};
-  componentWillMount() {
+  componentDidMount() {
     const name =
       this.props.color % 4 === 0
         ? "poll_item"

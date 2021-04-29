@@ -3,36 +3,48 @@ import ProfilePage from "./ProfilePage";
 import PollItem from "../items/PollItem";
 import GroupItem from "../items/GroupItem";
 import "../csss/homePage.css";
+import { Link } from "react-router-dom";
 
 console.log(localStorage.getItem('currentUserMail'));
 
 class HomePage extends Component {
-  componentWillMount() {
-    const { history } = this.props;
+  state = {};
+  componentDidMount() {
     var groupid = 0;
-    //tüm grupları ve pollları al
-    /*const groups = json.map(groupitem => <GroupItem
-      key={groupid++}
-      color={groupid}
-      name={groupitem.name}
-      project={'PeerReview'}
-      />)*/
 
-    groupid = 0;
-    /*const polls = json.map(pollitem => <PollItem
-      key={pollitem.id}
-    name={pollitem.name}
-    color={groupid}
-    count={10}
-    />)*/
+    var xhrgroups = new XMLHttpRequest();
+    xhrgroups.open("GET", "http://d7c59928777f.ngrok.io/api/group/getAll");
+    xhrgroups.send();
+    xhrgroups.addEventListener("load", () => {
+      // update the state of the component with the result here
+      var parsed = JSON.parse(xhrgroups.response);
+      const groups = parsed.map(groupitem => <GroupItem
+        key={groupid++}
+        color={groupid}
+        name={groupitem.name}
+        project={'PeerReview'}
+      />)
+      this.setState({ groups: groups });
+    });
 
-    //var parsed = JSON.parse(xhr.response);
-    /*const polls = json.map(profilepage => <ProfilePage
-      key={pollitem.id}
-    name={pollitem.name}
-    color={groupid}
-    count={10}
-    />)*/
+    var pollid = 0;
+    var xhrpolls = new XMLHttpRequest();
+    xhrpolls.open("GET", "https://d7c59928777f.ngrok.io/api/poll/getAll");
+    xhrpolls.send();
+    xhrpolls.addEventListener("load", () => {
+      // update the state of the component with the result here
+      var parsed = JSON.parse(xhrpolls.response);
+
+      const polls = parsed.map(pollitem => <PollItem
+        key={pollitem.id}
+        name={pollitem.name}
+        color={pollid++}
+        count={10}
+      />)
+      this.setState({ polls: polls });
+    });
+
+
 
   }
   render() {
@@ -43,24 +55,10 @@ class HomePage extends Component {
             <ProfilePage />
           </div>
           <div className="group_list_div">
-            <GroupItem name="Group 1-A" color={0} project="Peer Review" />
-            <GroupItem name="Group 1-B" color={1} project="Peer Review" />
-            <GroupItem name="Group 1-C" color={2} project="Peer Review" />
-            <GroupItem name="Group 1-E" color={3} project="Peer Review" />
-            <GroupItem name="Group 1-F" color={4} project="Peer Review" />
-            <GroupItem name="Group 1-E" color={5} project="Peer Review" />
-            <GroupItem name="Group 1-G" color={6} project="Peer Review" />
-            <GroupItem name="Group 1-H" color={7} project="Peer Review" />
+            {this.state.groups}
           </div>
           <div className="poll_list_div">
-            <PollItem name="Kim en iyi" color={0} count={34} />
-            <PollItem name="Bugün ne giysem" color={1} count={24} />
-            <PollItem name="Çantamda ne var" color={2} count={14} />
-            <PollItem name="Bir mi iki mi" color={3} count={0} />
-            <PollItem name="Kerem mi Kerim mi" color={4} count={124} />
-            <PollItem name="İki tane almayalım?" color={5} count={3} />
-            <PollItem name="Hava soğuk mu?" color={6} count={37} />
-            <PollItem name="Bulamadım" color={7} count={34} />
+            {this.state.polls}
           </div>
         </div>
       </div>
