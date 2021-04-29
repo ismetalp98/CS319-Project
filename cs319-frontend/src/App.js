@@ -5,6 +5,8 @@ import Login from "./components/Login";
 import Register from "./components/register";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 
+
+
 class App extends Component {
   render() {
     return (
