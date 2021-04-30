@@ -15,23 +15,34 @@ class Register extends Component {
     let studentId = document.getElementById("studentId").value;
     let pss = document.getElementById("pss").value;
 
+    var data= {
+      "email": email,
+      "studentid": studentId,
+      "name": firstname,
+      "surname": lastname,
+      "password": pss
+    };
+    var json = JSON.stringify(data);
     var xhr = new XMLHttpRequest();
+
     xhr.addEventListener("load", () => {
       // update the state of the component with the result here
       var parsed = JSON.parse(xhr.response);
-      if (parsed.password === pss) {
-        console.log("Logged in succesfully");
 
+      if (xhr.status == 200) {
+        console.log(xhr.status);
+        console.log("Successfully Registered");
         this.setState({ registered: true });
-      } else {
-
       }
     });
 
+
     // open the request with the verb and the url
-    xhr.open("GET", "https://d7c59928777f.ngrok.io/api/student/register/" + email);
+    
+    xhr.open("POST", "https://d7c59928777f.ngrok.io/api/student/create/");
+    xhr.setRequestHeader("Content-Type", "application/json");
     // send the request
-    xhr.send();
+    xhr.send(json);
 
 
   };
@@ -73,7 +84,7 @@ class Register extends Component {
               <div className="search_form_div">
                 <div className="input">
                   <input
-                    id="email"
+                    id="studentId"
                     placeholder="Student ID"
                     autoComplete="off"
                     type="text"
@@ -83,7 +94,7 @@ class Register extends Component {
               <div className="search_form_div">
                 <div className="input">
                   <input
-                    id="studentId"
+                    id="email"
                     placeholder="E-mail"
                     autoComplete="off"
                     type="text"
@@ -101,7 +112,7 @@ class Register extends Component {
                 </div>
               </div>
 
-              <Button id="logBtn" color="primary">
+              <Button id="logBtn" color="primary" onClick={this.handleLogin}>
                 Register
               </Button>
 
