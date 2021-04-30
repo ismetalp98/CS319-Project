@@ -1,16 +1,29 @@
-import React from "react";
+import React, {Component} from "react";
 import "../csss/items.css";
 import FaceIcon from "@material-ui/icons/Face";
+import { Link } from "react-router-dom";
 
-export default function Member(props) {
-  return (
-    <div className="member">
-      <div className="member_image">
-        <FaceIcon id="member_icon" />
+
+
+class Member extends Component {
+  handleLogin = e => {
+    e.preventDefault();
+    localStorage.setItem('selectedMember', this.props.email);
+  };
+  render() {
+    return (
+      <div className="member" onClick={this.handleLogin}>
+        <Link  to="profilePage">
+          <div className="member_image">
+            <FaceIcon id="member_icon" />
+          </div>
+          <div className="member_name">
+            <h3> {this.props.name}</h3>
+          </div>
+        </Link>
       </div>
-      <div className="member_name">
-        <h3> {props.name}</h3>
-      </div>
-    </div>
-  );
+    );
+  }
 }
+
+export default Member

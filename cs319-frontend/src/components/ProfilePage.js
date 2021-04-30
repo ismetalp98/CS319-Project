@@ -1,24 +1,22 @@
 import React, { Component } from "react";
-import Button from "@material-ui/core/Button";
 import "../csss/profilePage.css";
 import FaceIcon from "@material-ui/icons/Face";
-import { PagesRounded } from "@material-ui/icons";
+
 
 class ProfilePage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      studentId: "21703786",
-      firstname: "İsmet Alp",
-      lastname: "Eren",
-      email: "alp.eren@ug.bilkent.edu.tr"
-    };
+  state = {};
 
-    /*var parsed = JSON.parse(xhr.response);
-    this.setState({studentId : parsed.email});
-    this.setState({firstname : parsed.name});
-    this.setState({lastname : parsed.surname});*/
-
+  componentWillMount() {
+    var xhruser = new XMLHttpRequest();
+    
+    xhruser.open("GET", "http://d7c59928777f.ngrok.io/api/student/" + localStorage.getItem('selectedMember'));
+    
+    xhruser.send();
+    xhruser.addEventListener("load", () => {
+      var parsed = JSON.parse(xhruser.response);
+      this.setState({ studentId: parsed.studentid,firstname: parsed.name, lastname: parsed.surname ,email: parsed.email });
+      
+    });
   }
   render() {
     return (

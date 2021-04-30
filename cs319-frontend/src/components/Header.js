@@ -14,11 +14,7 @@ let button = (
   </Button>
 );
 
-let button1 = (
-  <Button id="btn1" variant="contained" color="secondary">
-    Secondary
-  </Button>
-);
+
 
 
 class Header extends Component {
@@ -28,6 +24,11 @@ class Header extends Component {
   handleLogout = e => {
     e.preventDefault();
     this.setState({ loggedOut: true });
+  };
+
+  handleMain = e => {
+    localStorage.setItem("selectedMember", localStorage.getItem('currentUserMail'))
+    console.log(localStorage.getItem('selectedMember'))
   };
 
   render() {
@@ -40,7 +41,12 @@ class Header extends Component {
       <header className="nav">
         <ul className="nav_buttons_ul">
           <li className="nav_button">
-            <Link to="/homePage">{button1}</Link>
+            <Link to="/homePage">
+              <Button id="btn1" variant="contained" color="secondary" onClick={this.handleMain}>
+                Secondary
+            </Button>
+            </Link>
+
           </li>
           <li className="nav_button">
             <Link to="/profilePage">{button}</Link>

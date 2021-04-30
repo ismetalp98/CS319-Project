@@ -7,15 +7,23 @@ import { useLocation } from "react-router-dom";
 
 
 class GroupPage extends Component{
-  
+  state={};
   componentDidMount() {
     var xhrgroups = new XMLHttpRequest();
-    xhrgroups.open("GET", "http://d7c59928777f.ngrok.io/api/group/getdeliverable/asd");
+    xhrgroups.open("GET", "http://d7c59928777f.ngrok.io/api/group/getdeliverable/" + localStorage.getItem('selectedGroup'));
     xhrgroups.send();   
     xhrgroups.addEventListener("load", () => {
       // update the state of the component with the result here
       var parsed = JSON.parse(xhrgroups.response);
-      //var parsedStudents = parsed.students;
+      var parsedStudents = parsed.students;
+      console.log(parsedStudents);
+      const members = parsedStudents.map(memberitem => <Member
+        key={memberitem.studentid}
+        name={memberitem.name}
+        surname={memberitem.surname}
+        email={memberitem.email}
+      />)
+      this.setState({ members: members });
     });
   }
 
@@ -27,14 +35,7 @@ class GroupPage extends Component{
           <h1> Group 1-A </h1>
           <hr />
           <div className="members">
-            <Member name="Eylül Çağlar" />
-            <Member name="Ali" />
-            <Member name="Ali" />
-            <Member name="Ali" />
-            <Member name="Ali" />
-            <Member name="Ali" />
-            <Member name="Ali" />
-            <Member name="Ali" />
+            {this.state.members}
           </div>
         </div>
         <div className="documents_div" />
