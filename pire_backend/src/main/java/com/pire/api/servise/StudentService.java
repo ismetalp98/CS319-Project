@@ -1,10 +1,13 @@
 package com.pire.api.servise;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pire.api.domain.Student;
 import com.pire.api.dto.account.CreateStudentDto;
+import com.pire.api.dto.account.StudentListView;
 import com.pire.api.dto.account.StudentLoginDto;
 import com.pire.api.dto.account.StudentView;
 import com.pire.api.exception.AlreadyExsitException;
@@ -50,4 +53,15 @@ public class StudentService {
 		
 		return mapper.getStudentViewFromStudent(student);
 	}
+	
+	public List<StudentListView> getAllStudentList(){
+		List<Student> studentList = repository.findAll();
+		
+		List<StudentListView> listView = mapper.getStudentListViewFromStudentList(studentList);
+		
+		return listView;
+	}
+	
+	
+	
 }
