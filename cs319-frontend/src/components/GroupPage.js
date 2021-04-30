@@ -65,7 +65,7 @@ class GroupPage extends Component {
     });
   }
 
-  handleSave = e => {
+  handleSaveDocument = e => {
     e.preventDefault();
     let name = document.getElementById("name").value;
     let url = document.getElementById("url").value;
@@ -76,6 +76,11 @@ class GroupPage extends Component {
     xhr.addEventListener("load", () => {
       
     });*/
+  }
+
+  handleSaveReview = e => {
+    e.preventDefault();
+    let review = document.getElementById("review").value;
   }
 
   render() {
@@ -162,6 +167,8 @@ class GroupPage extends Component {
                 </Popup>
               </div> : null}
 
+
+
             {localStorage.getItem('myGroupName') === localStorage.getItem('selectedGroup') ?
               null
               : <Popup
@@ -184,7 +191,7 @@ class GroupPage extends Component {
                 
                           <div className="input">
                             <textarea
-                              id="name"
+                              id="review"
                               placeholder="Review"
                               autoComplete="off"
                               type="text"
@@ -193,7 +200,7 @@ class GroupPage extends Component {
                     
                     <Button
                       id="button_save"
-                      onClick={this.handleClose}
+                      onClick={this.handleSaveReview}
                       variant="contained" color="primary"
                     >
                       Save Review
