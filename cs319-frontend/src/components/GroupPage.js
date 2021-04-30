@@ -18,7 +18,7 @@ class GroupPage extends Component {
       // update the state of the component with the result here
       var parsed = JSON.parse(xhrgroups.response);
       var parsedStudents = parsed.students;
-      this.setState({membersjson : parsedStudents});
+      this.setState({ membersjson: parsedStudents });
       console.log(parsedStudents);
       const members = parsedStudents.map(memberitem => <Member
         key={memberitem.studentid}
@@ -26,9 +26,20 @@ class GroupPage extends Component {
         surname={memberitem.surname}
         email={memberitem.email}
       />)
-      const membersNames = parsedStudents.map(memberitem => <li key={memberitem.studentid}> {memberitem.name} {memberitem.surname}</li>)
+      /*const membersNames = parsedStudents.map(memberitem => <div><li key={memberitem.studentid}> {memberitem.name} {memberitem.surname}</li>
+        <div className="search_form_div">
+          <div className="input">
+            <textarea
+              id="url"
+              placeholder="Review"
+              autoComplete="off"
+              type="text"
+            />
+          </div>
+        </div></div>)
+        this.setState({ membersNames: membersNames });*/
       this.setState({ members: members });
-      this.setState({ membersNames: membersNames });
+      
     });
   }
 
@@ -133,9 +144,10 @@ class GroupPage extends Component {
               </div> : null}
 
             {localStorage.getItem('myGroupName') === localStorage.getItem('selectedGroup') ?
-              <Popup
+              null
+              : <Popup
               trigger={<div id="group_button"><AddIcon id="add_icon" />
-              <span>Add Peer Review</span></div>}
+                <span>Add Review</span></div>}
               modal
               nested
             >
@@ -143,48 +155,34 @@ class GroupPage extends Component {
                 <div className="modal">
                   <button className="close" onClick={close}>
                     &times;
-    </button>
+  </button>
                   <div className="header"> Peer Review </div>
                   <div className="content">
-                    <ul  >{this.state.membersNames}</ul>
-                  
 
-    </div>
+
+                  </div>
                   <div className="actions">
-                    <div className="search_form_div">
-                      <div className="input">
-                        <input
-                          id="name"
-                          placeholder="Name"
-                          autoComplete="off"
-                          type="text"
-                        />
-                      </div>
-                    </div>
-                    <div className="search_form_div">
-                      <div className="input">
-                        <input
-                          id="url"
-                          placeholder="URL"
-                          autoComplete="off"
-                          type="text"
-                        />
-                      </div>
-                    </div>
-
+                
+                          <div className="input">
+                            <textarea
+                              id="name"
+                              placeholder="Review"
+                              autoComplete="off"
+                              type="text"
+                            />
+                          </div>
+                    
                     <Button
                       id="button_save"
                       onClick={this.handleClose}
                       variant="contained" color="primary"
                     >
-                      Save document
-      </Button>
+                      Save Review
+    </Button>
                   </div>
                 </div>
               )}
-            </Popup>
-              : <div id="group_button"><AddIcon id="add_icon" />
-                <span>Add Review</span></div>}
+            </Popup>}
           </div>
 
         </div>

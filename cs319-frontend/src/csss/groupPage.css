@@ -169,3 +169,7 @@
   border-radius: 18px;
   border: 1px solid #cfcece;
 }
+
+#membersnames{
+  list-style: none;
+}
