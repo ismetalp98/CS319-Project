@@ -21,6 +21,10 @@ class Header extends Component {
 
   state = {};
 
+  componentDidMount() {
+    console.log(this.props.hasNoGroup)
+  }
+
   handleLogout = e => {
     e.preventDefault();
     this.setState({ loggedOut: true });
@@ -31,25 +35,12 @@ class Header extends Component {
     console.log(localStorage.getItem('selectedMember'))
   };
 
-  handleGroup = e => {
-    var xhruser = new XMLHttpRequest();
-
-    xhruser.open("GET", "http://d7c59928777f.ngrok.io/api/student/" + localStorage.getItem('currentUserMail'));
-
-    xhruser.send();
-    xhruser.addEventListener("load", () => {
-      var parsed = JSON.parse(xhruser.response);
-      this.setState({ studentId: parsed.studentid, firstname: parsed.name, lastname: parsed.surname, email: parsed.email, group: parsed.group.name });
-
-    });
-    console.log(localStorage.getItem('currentUserMail') + " " + this.state.group)
-    localStorage.setItem("selectedGroup", this.state.group);
-  };
+  
+    
+  
 
   render() {
     if (this.state.loggedOut) {
-      localStorage.setItem('userLogedIn', false);
-      localStorage.setItem('currentUserMail', "");
       return <Redirect to={'/login'} />
     }
     return (
@@ -66,8 +57,16 @@ class Header extends Component {
           <li className="nav_button">
             <Link to="/profilePage">{button}</Link>
           </li>
+          {this.props.hasNoGroup ? <li className="nav_button">
+          <Link to="/createGroup">
+            <Button variant="contained" color="primary" >
+              Create Group
+          </Button>
+          </Link>
+        </li> : <li className="nav_button">
+        </li> }
         </ul>
-
+        
         <h1 id="title">
 
           Pire

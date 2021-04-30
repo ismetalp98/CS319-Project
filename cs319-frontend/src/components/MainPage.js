@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import Header from "./Header";
 import ProfilePage from "./ProfilePage";
 import Login from "./Login";
@@ -7,11 +7,30 @@ import HomePage from "./HomePage";
 import "../csss/mainPage.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-export default function MainPage() {
+class MainPage extends Component {
+  state = {};
+  componentWillMount() {
+    
+    var xhruser = new XMLHttpRequest();
+    xhruser.open("GET", "http://d7c59928777f.ngrok.io/api/student/" + localStorage.getItem('currentUserMail'));
+
+    xhruser.send();
+    xhruser.addEventListener("load", () => {
+      var parsed = JSON.parse(xhruser.response);
+      if (parsed.group === null) {
+        this.setState({hasNoGroup : true})
+       }
+      else {
+        this.setState({hasNoGroup : false})
+      }
+      
+    });
+  }
+  render() {
     return (
       <Router>
         <div className="main_page">
-          <Header />
+          <Header hasNoGroup={this.state.hasNoGroup}/>
           <Switch>
             <Route exact path="/">
               <HomePage />
@@ -33,3 +52,5 @@ export default function MainPage() {
       </Router>
     );
   }
+}
+export default MainPage;

@@ -61,7 +61,6 @@ class HomePage extends Component {
           project={'PeerReview'} />
         this.setState({ myGroup: myGroup });
       }
-
     });
   }
   render() {
