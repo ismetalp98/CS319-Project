@@ -1,30 +1,47 @@
 .nav {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: row;
   position: sticky;
   box-shadow: var(--boxshadow);
   background-color: white;
 }
 
 .nav_buttons_ul {
-  padding-top: 15px;
+  width: 20%;
+  margin-top: auto;
+  margin-bottom: auto;
   list-style: none;
   display: flex;
 }
 
+.logout_buttons_ul{
+  width: 20%;
+  margin-top: auto;
+  margin-bottom: auto;
+  list-style: none;
+  display: flex;
+}
+.logout_buttons_ul li{
+  margin-left: auto;
+}
+
 .nav_buttons_ul > .nav_button {
-  padding: 0px 20px;
+  margin-right: 20px;
+}
+
+.nav h1{
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
 #logoutbtn {
   list-style: none;
   margin-right: 30px;
-  text-decoration: none;
+  border-radius: 10px;
 }
 
 #btn1 {
-  border-radius: 20px;
-  background-color: rgb(255, 63, 85);
+  border-radius: 10px;
+  background-color: rgb(175, 166, 37);
 }

@@ -32,7 +32,7 @@ class MainPage extends Component {
         <div className="main_page">
           <Header hasNoGroup={this.state.hasNoGroup}/>
           <Switch>
-            <Route exact path="/">
+            <Route exact path="/homePage">
               <HomePage />
             </Route>
             <Route exact path="/profilePage">
@@ -43,9 +43,6 @@ class MainPage extends Component {
             </Route>
             <Route exact path="/groupPage">
               <GroupPage />
-            </Route>
-            <Route exact path="/homePage">
-              <HomePage />
             </Route>
           </Switch>
         </div>

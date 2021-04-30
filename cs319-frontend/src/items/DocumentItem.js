@@ -1,6 +1,6 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, {Component} from "react";
 import "../csss/items.css";
-import { Link } from "react-router-dom";
 
 
 
@@ -10,12 +10,14 @@ class DocumentItem extends Component {
   };
   render() {
     return (
-      <div className="member" onClick={this.handleLogin}>
-        <Link id="member_link"  to="profilePage">
-          <div className="member_name">
+      <div  className="member" onClick={this.handleLogin}>
+        <a id="document_link" onClick={()=> window.open(this.props.url)}>
+          <div  className="member_name">
+          
             <h3> {this.props.name}</h3>
+            
           </div>
-        </Link>
+          </a>
       </div>
     );
   }

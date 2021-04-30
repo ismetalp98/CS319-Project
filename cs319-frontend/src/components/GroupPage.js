@@ -5,7 +5,8 @@ import AddIcon from "@material-ui/icons/Add";
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import Button from "@material-ui/core/Button";
-var url = "https://d7c59928777f.ngrok.io"
+import DocumentItem from "../items/DocumentItem";
+
 
 class GroupPage extends Component {
   state = {};
@@ -17,6 +18,7 @@ class GroupPage extends Component {
       // update the state of the component with the result here
       var parsed = JSON.parse(xhrgroups.response);
       var parsedStudents = parsed.students;
+      this.setState({membersjson : parsedStudents});
       console.log(parsedStudents);
       const members = parsedStudents.map(memberitem => <Member
         key={memberitem.studentid}
@@ -24,7 +26,9 @@ class GroupPage extends Component {
         surname={memberitem.surname}
         email={memberitem.email}
       />)
+      const membersNames = parsedStudents.map(memberitem => <li key={memberitem.studentid}> {memberitem.name} {memberitem.surname}</li>)
       this.setState({ members: members });
+      this.setState({ membersNames: membersNames });
     });
   }
 
@@ -53,14 +57,17 @@ class GroupPage extends Component {
             </div>
           </div>
           <div className="documents_div" >
-          <h1> Documents </h1>
+            <h1> Documents </h1>
             <hr />
             <div className="documents">
-              {this.state.members}
+              <DocumentItem name="asd" url="https://github.com/ismetalp98/CS319-Project-PeerReview" />
+              <DocumentItem name="asd" />
+              <DocumentItem name="asd" />
+              <DocumentItem name="asd" />
             </div>
           </div>
           <div className="reviews_div" >
-          <h1> Reviews </h1>
+            <h1> Reviews </h1>
             <hr />
             <div className="reviews">
               {this.state.members}
@@ -70,64 +77,116 @@ class GroupPage extends Component {
         <div className="group_buttons_div">
           <div className="group_buttons_inner_div">
             {localStorage.getItem('myGroupName') === localStorage.getItem('selectedGroup') ?
-            <div >
-              <Popup
-                trigger={<div id="group_button">
-                  <AddIcon id="add_icon" />
-                  <span>Add review</span>
-                </div>}
-                modal
-                nested
-              >
-                {close => (
-                  <div className="modal">
-                    <button className="close" onClick={close}>
-                      &times;
+              <div >
+                <Popup
+                  trigger={<div id="group_button">
+                    <AddIcon id="add_icon" />
+                    <span>Add Document</span>
+                  </div>}
+                  modal
+                  nested
+                >
+                  {close => (
+                    <div className="modal">
+                      <button className="close" onClick={close}>
+                        &times;
         </button>
-                    <div className="header"> Add Document </div>
-                    <div className="content">
-                      {' '}
+                      <div className="header"> Add Document </div>
+                      <div className="content">
+                        {' '}
           Give your Document URL
 
         </div>
-                    <div className="actions">
-                      <div className="search_form_div">
-                        <div className="input">
-                          <input
-                            id="name"
-                            placeholder="Name"
-                            autoComplete="off"
-                            type="text"
-                          />
+                      <div className="actions">
+                        <div className="search_form_div">
+                          <div className="input">
+                            <input
+                              id="name"
+                              placeholder="Name"
+                              autoComplete="off"
+                              type="text"
+                            />
+                          </div>
                         </div>
-                      </div>
-                      <div className="search_form_div">
-                        <div className="input">
-                          <input
-                            id="url"
-                            placeholder="URL"
-                            autoComplete="off"
-                            type="text"
-                          />
+                        <div className="search_form_div">
+                          <div className="input">
+                            <input
+                              id="url"
+                              placeholder="URL"
+                              autoComplete="off"
+                              type="text"
+                            />
+                          </div>
                         </div>
-                      </div>
 
-                      <Button
-                        id="button_save"
-                        onClick={this.handleClose}
-                      >
-                        Save document
+                        <Button
+                          id="button_save"
+                          onClick={this.handleClose}
+                          variant="contained" color="primary"
+                        >
+                          Save document
           </Button>
+                      </div>
                     </div>
+                  )}
+                </Popup>
+              </div> : null}
+
+            {localStorage.getItem('myGroupName') === localStorage.getItem('selectedGroup') ?
+              <Popup
+              trigger={<div id="group_button"><AddIcon id="add_icon" />
+              <span>Add Peer Review</span></div>}
+              modal
+              nested
+            >
+              {close => (
+                <div className="modal">
+                  <button className="close" onClick={close}>
+                    &times;
+    </button>
+                  <div className="header"> Peer Review </div>
+                  <div className="content">
+                    <ul  >{this.state.membersNames}</ul>
+                  
+
+    </div>
+                  <div className="actions">
+                    <div className="search_form_div">
+                      <div className="input">
+                        <input
+                          id="name"
+                          placeholder="Name"
+                          autoComplete="off"
+                          type="text"
+                        />
+                      </div>
+                    </div>
+                    <div className="search_form_div">
+                      <div className="input">
+                        <input
+                          id="url"
+                          placeholder="URL"
+                          autoComplete="off"
+                          type="text"
+                        />
+                      </div>
+                    </div>
+
+                    <Button
+                      id="button_save"
+                      onClick={this.handleClose}
+                      variant="contained" color="primary"
+                    >
+                      Save document
+      </Button>
                   </div>
-                )}
-              </Popup>
-            </div> : null}
-            <div id="group_button">
-              <AddIcon id="add_icon" />
-              <span>Add review</span>
-            </div>
+                </div>
+              )}
+            </Popup>
+              : <div id="group_button"><AddIcon id="add_icon" />
+                <span>Add Review</span></div>}
           </div>
+
         </div>
       </div>
     );
@@ -135,3 +194,4 @@ class GroupPage extends Component {
 }
 
 export default GroupPage;
+

@@ -8,6 +8,7 @@
 
 .profile_div {
   margin: 0 auto;
+  margin-top: 20px;
   background-color: white;
   width: 40%;
   height: 100%;
@@ -43,8 +44,8 @@
 }
 
 #pp {
-  width: 5rem;
-  height: 5rem;
+  width: 8rem;
+  height: 8rem;
   background-color: white;
   margin: 0 auto;
   border-radius: 100%;
@@ -56,12 +57,6 @@
 
 #bgpp {
   margin: auto;
-  width: 4rem;
-  height: 4rem;
-}
-
-.profile_div #editprofilebtn {
-  margin-top: 20px;
-  margin-left: 40px;
-  margin-right: 40px;
+  width: 7rem;
+  height: 7rem;
 }

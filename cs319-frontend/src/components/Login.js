@@ -37,7 +37,6 @@ class Login extends Component {
 
   };
   render() {
-    const { history } = this.props;
     if (this.state.loggedIn) {
       return <Redirect to={'/mainPage'} />
     }
@@ -73,14 +72,14 @@ class Login extends Component {
                 </div>
               </div>
 
-              <Button id="logBtn" color="secondary" onClick={this.handleLogin}>
+              <Button id="logBtn" variant="contained" color="primary" onClick={this.handleLogin}>
                 Login
               </Button>
 
               <hr />
 
               <Link to="/register">
-                <Button id="regBtn" title="Learn More" color="primary" >
+                <Button id="regBtn" title="Learn More" variant="contained" color="primary" >
                   Register
               </Button>
               </Link>

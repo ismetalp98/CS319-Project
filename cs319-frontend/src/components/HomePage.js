@@ -56,7 +56,7 @@ class HomePage extends Component {
       else {
         const myGroup = <GroupItem
           key={groupid++}
-          color={0}
+          color={1}
           name={parsed.group.name}
           project={'PeerReview'} />
         this.setState({ myGroup: myGroup });

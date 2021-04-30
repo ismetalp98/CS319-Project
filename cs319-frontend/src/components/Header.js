@@ -47,7 +47,7 @@ class Header extends Component {
       <header className="nav">
         <ul className="nav_buttons_ul">
           <li className="nav_button">
-            <Link to="/homePage">
+            <Link to="/homePage" style={{ textDecoration: 'none' }}>
               <Button id="btn1" variant="contained" color="secondary" onClick={this.handleMain}>
                 Secondary
             </Button>
@@ -55,10 +55,10 @@ class Header extends Component {
 
           </li>
           <li className="nav_button">
-            <Link to="/profilePage">{button}</Link>
+            <Link to="/profilePage" style={{ textDecoration: 'none' }}>{button}</Link>
           </li>
           {this.props.hasNoGroup ? <li className="nav_button">
-          <Link to="/createGroup">
+          <Link to="/createGroup" style={{ textDecoration: 'none' }}>
             <Button variant="contained" color="primary" >
               Create Group
           </Button>
@@ -71,12 +71,14 @@ class Header extends Component {
 
           Pire
         </h1>
-        <li id="logoutbtn">
-          <Button variant="contained" startIcon={<ExitToAppIcon />} onClick={this.handleLogout}>
+        <ul className="logout_buttons_ul">
+        <li >
+          <Button  id="logoutbtn" variant="contained" color="secondary" startIcon={<ExitToAppIcon />} onClick={this.handleLogout}>
             Log Out
             </Button>
 
         </li>
+        </ul>
       </header>
     );
   }

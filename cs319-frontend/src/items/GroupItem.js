@@ -37,7 +37,6 @@ class GroupItem extends Component {
             <h3 id="group_name"> {this.props.name}</h3>
             <h3 id="group_name"> {this.props.project}</h3>
           </div>
-          <h3 id="memcount"> 5/5 </h3>
         </Link>
       </div>
     );
