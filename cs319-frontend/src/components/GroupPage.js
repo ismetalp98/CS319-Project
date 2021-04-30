@@ -6,6 +6,7 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import Button from "@material-ui/core/Button";
 import DocumentItem from "../items/DocumentItem";
+import ReviewItem from "../items/ReviewItem";
 
 
 class GroupPage extends Component {
@@ -18,14 +19,34 @@ class GroupPage extends Component {
       // update the state of the component with the result here
       var parsed = JSON.parse(xhrgroups.response);
       var parsedStudents = parsed.students;
-      this.setState({ membersjson: parsedStudents });
-      console.log(parsedStudents);
+      var parsedDeliverables = parsed.deliverables;
+      var parsedReviews = parsedDeliverables.reviews;
+
       const members = parsedStudents.map(memberitem => <Member
         key={memberitem.studentid}
         name={memberitem.name}
         surname={memberitem.surname}
         email={memberitem.email}
       />)
+      
+        var i = 0;
+      const deliverables = parsedDeliverables.map(documentitem => <DocumentItem
+        key={i++}
+        name={documentitem.name}
+        url={documentitem.url}
+      />)
+
+      // --------------- Burasııııııııııııııııııı -------------------------
+      /*i = 0;
+      const reviews = parsedReviews.map(reviewitem => <ReviewItem
+        key={i++}
+        name={reviewitem.student.name}
+      />)*/
+
+
+    // --------------- Buraya kadarrrrrrrrrrrrrr -------------------------
+
+
       /*const membersNames = parsedStudents.map(memberitem => <div><li key={memberitem.studentid}> {memberitem.name} {memberitem.surname}</li>
         <div className="search_form_div">
           <div className="input">
@@ -39,11 +60,12 @@ class GroupPage extends Component {
         </div></div>)
         this.setState({ membersNames: membersNames });*/
       this.setState({ members: members });
-      
+      this.setState({ deliverables: deliverables });
+      //this.setState({ reviews: reviews });
     });
   }
 
-  handleClose = e => {
+  handleSave = e => {
     e.preventDefault();
     let name = document.getElementById("name").value;
     let url = document.getElementById("url").value;
@@ -71,17 +93,14 @@ class GroupPage extends Component {
             <h1> Documents </h1>
             <hr />
             <div className="documents">
-              <DocumentItem name="asd" url="https://github.com/ismetalp98/CS319-Project-PeerReview" />
-              <DocumentItem name="asd" />
-              <DocumentItem name="asd" />
-              <DocumentItem name="asd" />
+              {this.state.deliverables}
             </div>
           </div>
           <div className="reviews_div" >
             <h1> Reviews </h1>
             <hr />
             <div className="reviews">
-              {this.state.members}
+              
             </div>
           </div>
         </div>
@@ -132,7 +151,7 @@ class GroupPage extends Component {
 
                         <Button
                           id="button_save"
-                          onClick={this.handleClose}
+                          onClick={this.handleSave}
                           variant="contained" color="primary"
                         >
                           Save document
