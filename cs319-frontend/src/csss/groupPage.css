@@ -16,13 +16,13 @@
   flex-direction: column;
 }
 
-.members_div h1 {
+.group_page h1 {
   margin-left: auto;
   margin-right: auto;
   font-size: 1.8rem;
 }
 
-.members_div hr {
+.group_page hr {
   margin-left: auto;
   margin-right: auto;
   width: 80%;
@@ -40,19 +40,28 @@
 }
 
 .documents_div {
-  margin-top: 0px;
-  background-color: white;
   width: 100%;
-  border-right: 2px;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.documents {
+  padding-top: 20px;
+  background-color: white;
+  overflow-y: scroll;
+  height: 60vh;
 }
 
 .reviews_div {
-  margin-top: 0px;
-  background-color: white;
-
   width: 100%;
-  border-right: 2px;
+  display: flex;
+  flex-direction: column;
+}
+
+.reviews {
+  padding-top: 20px;
+  background-color: white;
+  overflow-y: scroll;
   height: 60vh;
 }
 
@@ -86,7 +95,9 @@
   border-radius: 8px;
   border-color: darkgray;
   border-style: solid;
+  cursor: pointer;
 }
+
 
 #add_icon {
   color: darkcyan;
@@ -98,4 +109,63 @@
 
 #group_button span {
   font-size: 0.8rem;
+}
+
+
+.modal {
+  font-size: 12px;
+}
+.modal > .header {
+  width: 100%;
+  border-bottom: 1px solid gray;
+  font-size: 2rem;
+  text-align: center;
+  padding: 5px;
+  
+}
+
+
+.modal > .content {
+  width: 100%;
+  padding: 10px 5px;
+  margin: auto;
+  background: rgb(255, 255, 255);
+  width: 50%;
+  padding: 5px;
+  font-size: 3rem;
+  text-align: center;
+}
+.modal > .actions {
+  width: 100%;
+  padding: 10px 5px;
+  margin: auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+.actions .search_form_div{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+}
+
+.actions #button_save{  
+  margin-top: 10px;
+}
+.modal > .close {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  padding: 2px 5px;
+  line-height: 20px;
+  right: -10px;
+  top: -10px;
+  font-size: 24px;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #cfcece;
 }

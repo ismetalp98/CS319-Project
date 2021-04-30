@@ -60,6 +60,7 @@ class HomePage extends Component {
           name={parsed.group.name}
           project={'PeerReview'} />
         this.setState({ myGroup: myGroup });
+        localStorage.setItem('myGroupName',parsed.group.name);
       }
     });
   }
