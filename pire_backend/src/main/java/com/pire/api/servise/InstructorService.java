@@ -34,7 +34,7 @@ public class InstructorService {
 		InstructorView instructorView = mapper.getInstructorViewFromInstructor(instructorsaved);
 		return instructorView;
 	}
-	
+
 	public InstructorLoginDto login(String email) {
 		try {
 			Instructor instructor = repository.findByEmail(email).get();
@@ -42,5 +42,13 @@ public class InstructorService {
 		} catch (Exception e) {
 			throw new NotFoundException("Email or password is wrong");
 		}
+	}
+	
+	public InstructorView findByEmail(String email) {
+		Instructor inst = repository.findByEmail(email).orElseThrow( 
+			()-> new NotFoundException("Instructor not found")
+		);
+		
+		return mapper.getInstructorViewFromInstructor(inst);
 	}
 }

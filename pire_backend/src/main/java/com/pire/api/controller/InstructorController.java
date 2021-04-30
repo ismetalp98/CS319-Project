@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pire.api.dto.account.CreateInstructorDto;
 import com.pire.api.dto.account.InstructorLoginDto;
 import com.pire.api.dto.account.InstructorView;
+import com.pire.api.dto.account.StudentView;
 import com.pire.api.servise.InstructorService;
 
 @RestController
@@ -36,5 +37,12 @@ public class InstructorController {
 			@PathVariable(name = "email", required = true) String email)
 	{
 		return ResponseEntity.ok(service.login(email));
+	}
+	
+	@GetMapping("/{email}")
+	public ResponseEntity<InstructorView> findByEmail(
+			@PathVariable(name = "email", required = true) String email)
+	{
+		return ResponseEntity.ok(service.findByEmail(email));
 	}
 }
