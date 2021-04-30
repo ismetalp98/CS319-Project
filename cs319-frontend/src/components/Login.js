@@ -25,7 +25,7 @@ class Login extends Component {
         localStorage.setItem('userLogedIn', true);
         
       } else {
-
+        alert("Wrong password or username");
       }
     });
 

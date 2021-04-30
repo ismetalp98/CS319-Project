@@ -112,6 +112,17 @@ class Register extends Component {
                 </div>
               </div>
 
+              <div className="search_form_div">
+                <div className="input">
+                  <input
+                    id="pss"
+                    placeholder="Password Again"
+                    autoComplete="off"
+                    type="password"
+                  />
+                </div>
+              </div>
+
               <Button id="logBtn" color="primary" onClick={this.handleLogin}>
                 Register
               </Button>
