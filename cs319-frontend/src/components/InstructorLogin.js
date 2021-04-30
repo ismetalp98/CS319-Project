@@ -25,7 +25,7 @@ class InstructorLogin extends Component {
         localStorage.setItem('userLogedIn', true);
         
       } else {
-
+        alert("Wrong password or username");
       }
     });
 
@@ -91,12 +91,12 @@ class InstructorLogin extends Component {
               </div>
 
               <Link to="/Login">
-                <Button id="regBtn" title="Learn More" variant="contained" color="primary" >
+                <Button id="regBtn" title="Learn More" variant="contained" color="secondary" >
                   Student Login
               </Button>
               </Link>
 
-              <h3 id="forgotpss"> Are you a student? </h3>
+              <h3 id="account_type_question"> Are you a student? </h3>
             </form>
           </div>
         </div>
