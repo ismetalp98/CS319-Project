@@ -132,8 +132,8 @@
   height: 0px;
 }
 
-#forgotpss {
-  cursor: pointer;
+#account_type_question {
+  cursor: context-menu;
   margin-top: 20px;
   font-size: 16px;
 }

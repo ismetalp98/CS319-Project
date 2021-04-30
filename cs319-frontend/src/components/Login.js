@@ -96,7 +96,7 @@ class Login extends Component {
               </Button>
               </Link>
 
-              <h3 id="forgotpss"> Are you an instructor? </h3>
+              <h3 id="account_type_question"> Are you an instructor? </h3>
             </form>
           </div>
         </div>
