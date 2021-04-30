@@ -22,7 +22,7 @@ class Header extends Component {
   state = {};
 
   componentDidMount() {
-    console.log(this.props.hasNoGroup)
+    this.setState({hasNoGroup : localStorage.getItem('hasNoGroup')});
   }
 
   handleLogout = e => {
@@ -37,8 +37,6 @@ class Header extends Component {
 
   
     
-  
-
   render() {
     if (this.state.loggedOut) {
       return <Redirect to={'/login'} />
@@ -57,7 +55,7 @@ class Header extends Component {
           <li className="nav_button">
             <Link to="/profilePage" style={{ textDecoration: 'none' }}>{button}</Link>
           </li>
-          {this.props.hasNoGroup ? <li className="nav_button">
+          {this.state.hasNoGroup ? <li className="nav_button">
           <Link to="/createGroup" style={{ textDecoration: 'none' }}>
             <Button variant="contained" color="primary" >
               Create Group
