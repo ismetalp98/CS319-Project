@@ -3,15 +3,14 @@ import ProfilePage from "./ProfilePage";
 import PollItem from "../items/PollItem";
 import GroupItem from "../items/GroupItem";
 import "../csss/homePage.css";
-import { Link } from "react-router-dom";
 
-console.log(localStorage.getItem('currentUserMail'));
+
 
 class HomePage extends Component {
   state = {};
   componentDidMount() {
     var groupid = 0;
-
+    localStorage.setItem("selectedMember",localStorage.getItem('currentUserMail'));
     var xhrgroups = new XMLHttpRequest();
     xhrgroups.open("GET", "http://d7c59928777f.ngrok.io/api/group/getAll");
     xhrgroups.send();
@@ -43,16 +42,13 @@ class HomePage extends Component {
       />)
       this.setState({ polls: polls });
     });
-
-
-
   }
   render() {
     return (
       <div className="home_page">
         <div className="three_part_div">
           <div className="user_info_div">
-            <ProfilePage />
+          <ProfilePage />
           </div>
           <div className="group_list_div">
             {this.state.groups}

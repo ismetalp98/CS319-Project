@@ -8,16 +8,15 @@ import { Link } from "react-router-dom";
 
 
 class GroupItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: "asd",
-      email: "asd",
-      city: "asd",
-      phone: "asd",
-      name: ""
-    };
-  }
+  state={};
+
+  handleLogin = e => {
+    e.preventDefault();
+    console.log(this.props.name)
+    localStorage.setItem('selectedGroup', this.props.name);
+  };
+
+
   componentDidMount() {
     const name =
       this.props.color % 4 === 0
@@ -27,18 +26,14 @@ class GroupItem extends Component {
           : this.props.color % 4 === 2
             ? "poll_item2"
             : "poll_item1";
-    this.setState({ "name": name });
+    this.setState({ "color": name });
   }
 
   render() {
-
     return (
-      <div className={this.state.name}>
-        <Link id="linkGroup" to={{
-          pathname: "/groupPage",
-          state : this.state
-        }}>
-          <div className="poll_item_name">
+      <div className={this.state.color} onClick={this.handleLogin}>
+        <Link id="linkGroup" to="/groupPage" >
+          <div className="poll_item_name" >
             <h3 id="group_name"> {this.props.name}</h3>
             <h3 id="group_name"> {this.props.project}</h3>
           </div>
