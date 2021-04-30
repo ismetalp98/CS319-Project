@@ -48,7 +48,7 @@ class InstructorLogin extends Component {
         <div className="register_form_div">
           <div className="register_form">
             <form className="form">
-              <h1>Login</h1>
+              <h1>Instructor Login</h1>
               <hr />
               <div className="search_form_div">
                 <div className="input">
@@ -78,7 +78,7 @@ class InstructorLogin extends Component {
 
               <hr />
 
-              <Link to="/register">
+              <Link to="/InstructorRegister">
                 <Button id="regBtn" title="Learn More" variant="contained" color="primary" >
                   Register
               </Button>

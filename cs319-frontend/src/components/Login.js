@@ -48,7 +48,7 @@ class Login extends Component {
         <div className="register_form_div">
           <div className="register_form">
             <form className="form">
-              <h1>Login</h1>
+              <h1>Student Login</h1>
               <hr />
               <div className="search_form_div">
                 <div className="input">
@@ -97,6 +97,7 @@ class Login extends Component {
               </Link>
 
               <h3 id="account_type_question"> Are you an instructor? </h3>
+
             </form>
           </div>
         </div>
