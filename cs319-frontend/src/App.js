@@ -20,7 +20,7 @@ class App extends Component {
               <Register />
             </Route>
             <Route exact path="/mainPage">
-              {localStorage.getItem('userLogedIn') ? <MainPage /> : <Redirect to="/" />}
+              <MainPage />
             </Route>
             <Route exact path="/login">
               <Login />

@@ -76,6 +76,12 @@
   border-style:solid;
 }
 
+#member_link{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
 .member .member_image {
   width: 50px;
   background-color: white;

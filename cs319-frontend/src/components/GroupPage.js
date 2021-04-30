@@ -3,12 +3,11 @@ import "../csss/groupPage.css";
 import Member from "../items/Member";
 import AddIcon from "@material-ui/icons/Add";
 import SettingsIcon from "@material-ui/icons/Settings";
-import { useLocation } from "react-router-dom";
 
 
 class GroupPage extends Component{
   state={};
-  componentDidMount() {
+  componentWillMount() {
     var xhrgroups = new XMLHttpRequest();
     xhrgroups.open("GET", "http://d7c59928777f.ngrok.io/api/group/getdeliverable/" + localStorage.getItem('selectedGroup'));
     xhrgroups.send();   

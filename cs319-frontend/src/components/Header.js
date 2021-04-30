@@ -31,6 +31,21 @@ class Header extends Component {
     console.log(localStorage.getItem('selectedMember'))
   };
 
+  handleGroup = e => {
+    var xhruser = new XMLHttpRequest();
+
+    xhruser.open("GET", "http://d7c59928777f.ngrok.io/api/student/" + localStorage.getItem('currentUserMail'));
+
+    xhruser.send();
+    xhruser.addEventListener("load", () => {
+      var parsed = JSON.parse(xhruser.response);
+      this.setState({ studentId: parsed.studentid, firstname: parsed.name, lastname: parsed.surname, email: parsed.email, group: parsed.group.name });
+
+    });
+    console.log(localStorage.getItem('currentUserMail') + " " + this.state.group)
+    localStorage.setItem("selectedGroup", this.state.group);
+  };
+
   render() {
     if (this.state.loggedOut) {
       localStorage.setItem('userLogedIn', false);
@@ -54,9 +69,8 @@ class Header extends Component {
         </ul>
 
         <h1 id="title">
-          <Link to={{ pathname: "/groupPage", state: { name: "name" } }}>
-            Pire
-        </Link>
+
+          Pire
         </h1>
         <li id="logoutbtn">
           <Button variant="contained" startIcon={<ExitToAppIcon />} onClick={this.handleLogout}>

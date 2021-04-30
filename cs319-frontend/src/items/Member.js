@@ -13,7 +13,8 @@ class Member extends Component {
   render() {
     return (
       <div className="member" onClick={this.handleLogin}>
-        <Link  to="profilePage">
+        <Link id="member_link"  to="profilePage">
+          
           <div className="member_image">
             <FaceIcon id="member_icon" />
           </div>

@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 class GroupItem extends Component {
   state={};
 
-  handleLogin = e => {
+  handleGroup = e => {
     e.preventDefault();
     console.log(this.props.name)
     localStorage.setItem('selectedGroup', this.props.name);
@@ -31,7 +31,7 @@ class GroupItem extends Component {
 
   render() {
     return (
-      <div className={this.state.color} onClick={this.handleLogin}>
+      <div className={this.state.color} onClick={this.handleGroup}>
         <Link id="linkGroup" to="/groupPage" >
           <div className="poll_item_name" >
             <h3 id="group_name"> {this.props.name}</h3>
