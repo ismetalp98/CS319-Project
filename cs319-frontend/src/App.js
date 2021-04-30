@@ -17,11 +17,11 @@ class App extends Component {
             <Route exact path="/">
               <Login />
             </Route>
-            <Route exact path="/InstructorLogin">
-              <InstructorLogin />
-            </Route>
             <Route exact path="/register">
               <Register />
+            </Route>
+            <Route exact path="/InstructorLogin">
+              <InstructorLogin />
             </Route>
             <Route exact path="/mainPage">
               <MainPage />

@@ -7,6 +7,7 @@ import 'reactjs-popup/dist/index.css';
 import Button from "@material-ui/core/Button";
 import DocumentItem from "../items/DocumentItem";
 import ReviewItem from "../items/ReviewItem";
+import { Redirect } from "react-router-dom";
 
 
 class GroupPage extends Component {
@@ -28,8 +29,8 @@ class GroupPage extends Component {
         surname={memberitem.surname}
         email={memberitem.email}
       />)
-      
-        var i = 0;
+
+      var i = 0;
       const deliverables = parsedDeliverables.map(documentitem => <DocumentItem
         key={i++}
         name={documentitem.name}
@@ -44,21 +45,20 @@ class GroupPage extends Component {
       />)*/
 
 
-    // --------------- Buraya kadarrrrrrrrrrrrrr -------------------------
+      // --------------- Buraya kadarrrrrrrrrrrrrr -------------------------
 
 
-      /*const membersNames = parsedStudents.map(memberitem => <div><li key={memberitem.studentid}> {memberitem.name} {memberitem.surname}</li>
-        <div className="search_form_div">
-          <div className="input">
-            <textarea
-              id="url"
-              placeholder="Review"
-              autoComplete="off"
-              type="text"
-            />
-          </div>
-        </div></div>)
-        this.setState({ membersNames: membersNames });*/
+      const membersNames = parsedStudents.map(memberitem => <div><li key={memberitem.studentid}> {memberitem.name} {memberitem.surname}</li>
+        <div className="input">
+          <textarea
+            id="url"
+            placeholder="Review"
+            autoComplete="off"
+            type="text"
+          />
+        </div>
+      </div>)
+      this.setState({ membersNames: membersNames });
       this.setState({ members: members });
       this.setState({ deliverables: deliverables });
       //this.setState({ reviews: reviews });
@@ -69,50 +69,69 @@ class GroupPage extends Component {
     e.preventDefault();
     let name = document.getElementById("name").value;
     let url = document.getElementById("url").value;
+    let groupname = localStorage.getItem('selectedGroup');
     var xhr = new XMLHttpRequest();
-    /*xhr.open("GET", url +"/api/student/login/" + email);
-    xhr.send();
-    
+
+    var data = {
+      "url": url,
+      "name": name,
+      "groupname": groupname
+    };
+
+    var json = JSON.stringify(data);
     xhr.addEventListener("load", () => {
-      
-    });*/
+
+      if (xhr.status === 200) {
+        console.log(data)
+      }
+    });
+
+    xhr.open("POST", "http://d7c59928777f.ngrok.io/api/deliverable/create");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(json);
   }
 
   handleSaveReview = e => {
     e.preventDefault();
     let review = document.getElementById("review").value;
   }
+  
   handleJoinGroup = e => {
     e.preventDefault();
     let groupname = localStorage.getItem('selectedGroup');
     let studentEmail = localStorage.getItem('currentUserMail');
 
-    var data= {
+    var data = {
       "groupname": groupname,
       "studentEmail": studentEmail,
     };
     var json = JSON.stringify(data);
     var xhr = new XMLHttpRequest();
     xhr.addEventListener("load", () => {
-      // update the state of the component with the result here
       var parsed = JSON.parse(xhr.response);
 
       if (xhr.status == 200) {
         console.log(xhr.status);
         console.log("Successfully Joined");
-        this.setState({ registered: true });
+        this.setState({ joinedGroup: true });
+        alert("Joined to the group")
       }
     });
 
-
-    // open the request with the verb and the url
-    
     xhr.open("POST", "https://d7c59928777f.ngrok.io/api/group/addStudent");
     xhr.setRequestHeader("Content-Type", "application/json");
     // send the request
     xhr.send(json);
   };
+
+  handleSavePeerReview = e => {
+      
+  }
+
   render() {
+    if (this.state.joinedGroup) {
+      return <Redirect to={'/groupPage'} />
+    }
     return (
       <div className="group_page">
         <div className="group_page_div">
@@ -134,7 +153,7 @@ class GroupPage extends Component {
             <h1> Reviews </h1>
             <hr />
             <div className="reviews">
-              
+
             </div>
           </div>
         </div>
@@ -185,7 +204,7 @@ class GroupPage extends Component {
 
                         <Button
                           id="button_save"
-                          onClick={this.handleSave}
+                          onClick={this.handleSaveDocument}
                           variant="contained" color="primary"
                         >
                           Save document
@@ -197,56 +216,82 @@ class GroupPage extends Component {
               </div> : null}
 
 
-
             {localStorage.getItem('myGroupName') === localStorage.getItem('selectedGroup') ?
-              null
-              : <Popup
-              trigger={<div id="group_button"><AddIcon id="add_icon" />
-                <span>Add Review</span></div>}
-              modal
-              nested
-            >
-              {close => (
-                <div className="modal">
-                  <button className="close" onClick={close}>
-                    &times;
+              <Popup
+                trigger={<div id="group_button"><AddIcon id="add_icon" />
+                  <span>Add Peer Review</span></div>}
+                modal
+                nested
+              >
+                {close => (
+                  <div className="modal">
+                    <button className="close" onClick={close}>
+                      &times;
   </button>
-                  <div className="header"> Peer Review </div>
-                  <div className="content">
+                    <div className="header">Peer Review </div>
+                    <div className="content">
+                      <ul id="peerReviewMembers">
+                        {this.state.membersNames}
+                      </ul>
+                    </div>
+                    <div className="actions">
 
-
-                  </div>
-                  <div className="actions">
-                
-                          <div className="input">
-                            <textarea
-                              id="review"
-                              placeholder="Review"
-                              autoComplete="off"
-                              type="text"
-                            />
-                          </div>
-                    
-                    <Button
-                      id="button_save"
-                      onClick={this.handleSaveReview}
-                      variant="contained" color="primary"
-                    >
-                      Save Review
+                      <Button
+                        id="button_save"
+                        onClick={this.handleSavePeerReview}
+                        variant="contained" color="primary"
+                      >
+                        Save Peer Review
     </Button>
+                    </div>
                   </div>
-                </div>
-              )}
-            </Popup>}
-            {localStorage.getItem('myGroupName') === localStorage.getItem('selectedGroup') ?
+                )}
+              </Popup>
+              : <Popup
+                trigger={<div id="group_button"><AddIcon id="add_icon" />
+                  <span>Add Review</span></div>}
+                modal
+                nested
+              >
+                {close => (
+                  <div className="modal">
+                    <button className="close" onClick={close}>
+                      &times;
+  </button>
+                    <div className="header"> Review </div>
+                    <div className="content">
+
+
+                    </div>
+                    <div className="actions">
+
+                      <div className="input">
+                        <textarea
+                          id="review"
+                          placeholder="Review"
+                          autoComplete="off"
+                          type="text"
+                        />
+                      </div>
+
+                      <Button
+                        id="button_save"
+                        onClick={this.handleSaveReview}
+                        variant="contained" color="primary"
+                      >
+                        Save Review
+    </Button>
+                    </div>
+                  </div>
+                )}
+              </Popup>}
+            {localStorage.getItem('myGroupName') !== "none" ?
               null
-              : <Button id="join_button" title="Learn More" variant="contained" color="primary" onClick ={this.handleJoinGroup}>
-                  <div>
-                  <AddIcon id = "add_icon"/>
-                  <span>Join Group</span>
-                  </div>
-              </Button>
-              }
+              : <div id="group_button" onClick={this.handleJoinGroup}>
+                <AddIcon id="add_icon" />
+                <span>Join the Group</span>
+              </div>
+            }
           </div>
         </div>
       </div>

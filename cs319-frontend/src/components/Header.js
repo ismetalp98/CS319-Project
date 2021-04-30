@@ -11,10 +11,6 @@ class Header extends Component {
 
   state = {};
 
-  componentDidMount() {
-    this.setState({ hasNoGroup: localStorage.getItem('hasNoGroup') });
-  }
-
   handleLogout = e => {
     e.preventDefault();
     this.setState({ loggedOut: true });
@@ -25,30 +21,29 @@ class Header extends Component {
     console.log(localStorage.getItem('selectedMember'))
   };
 
-  handleCreateGroup= e => {
+  handleCreateGroup = e => {
     e.preventDefault();
     let groupName = document.getElementById("groupName").value;
 
-    var data= {
+    var data = {
       "name": groupName
     };
     var json = JSON.stringify(data);
     var xhr = new XMLHttpRequest();
-
+    xhr.open("POST", "https://d7c59928777f.ngrok.io/api/group/create/");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(json);
     xhr.addEventListener("load", () => {
-      // update the state of the component with the result here
-
       if (xhr.status === 200) {
+        xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://d7c59928777f.ngrok.io/api/group/create/");
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(json);
+
       }
     });
 
 
-    // open the request with the verb and the url
-    
-    xhr.open("POST", "https://d7c59928777f.ngrok.io/api/group/create/");
-    xhr.setRequestHeader("Content-Type", "application/json");
-    // send the request
-    xhr.send(json);
   };
 
 
@@ -67,8 +62,8 @@ class Header extends Component {
             </Link>
 
           </li>
-
-          {this.state.hasNoGroup ? <li className="nav_button">
+        {localStorage.getItem('myGroupName') === "none" ?
+          <li className="nav_button">
             <Popup
               trigger={<Button variant="contained" color="primary" >
                 Create Group
@@ -110,7 +105,7 @@ class Header extends Component {
                 </div>
               )}
             </Popup>
-          </li> : null}
+          </li> : null }
         </ul>
 
         <h1 id="title">

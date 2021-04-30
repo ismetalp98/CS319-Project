@@ -15,7 +15,7 @@ class Register extends Component {
     let studentId = document.getElementById("studentId").value;
     let pss = document.getElementById("pss").value;
 
-    var data= {
+    var data = {
       "email": email,
       "studentid": studentId,
       "name": firstname,
@@ -27,7 +27,7 @@ class Register extends Component {
 
     xhr.addEventListener("load", () => {
       // update the state of the component with the result here
-      
+
 
       if (xhr.status === 200) {
         console.log(xhr.status);
@@ -38,7 +38,7 @@ class Register extends Component {
 
 
     // open the request with the verb and the url
-    
+
     xhr.open("POST", "https://d7c59928777f.ngrok.io/api/student/create/");
     xhr.setRequestHeader("Content-Type", "application/json");
     // send the request
@@ -51,93 +51,95 @@ class Register extends Component {
     if (this.state.registered) {
       return <Redirect to={'/login'} />
     }
-    return (
-      <div className="register_class column">
-        <div className="logo_login_register">
-          <img id="bg" src={bg} alt="bg" width="100%" />
-        </div>
-        <div className="register_form_div">
-          <div className="register_form">
-            <form className="form">
-              <h1>Register</h1>
-              <hr />
-              <div className="search_form_div">
-                <div className="input">
-                  <input
-                    id="firstname"
-                    placeholder="First Name"
-                    autoComplete="off"
-                    type="text"
-                  />
+    else {
+      return (
+        <div className="register_class column">
+          <div className="logo_login_register">
+            <img id="bg" src={bg} alt="bg" width="100%" />
+          </div>
+          <div className="register_form_div">
+            <div className="register_form">
+              <form className="form">
+                <h1>Register</h1>
+                <hr />
+                <div className="search_form_div">
+                  <div className="input">
+                    <input
+                      id="firstname"
+                      placeholder="First Name"
+                      autoComplete="off"
+                      type="text"
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="search_form_div">
-                <div className="input">
-                  <input
-                    id="lastname"
-                    placeholder="Last Name"
-                    autoComplete="off"
-                    type="text"
-                  />
+                <div className="search_form_div">
+                  <div className="input">
+                    <input
+                      id="lastname"
+                      placeholder="Last Name"
+                      autoComplete="off"
+                      type="text"
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="search_form_div">
-                <div className="input">
-                  <input
-                    id="studentId"
-                    placeholder="Student ID"
-                    autoComplete="off"
-                    type="text"
-                  />
+                <div className="search_form_div">
+                  <div className="input">
+                    <input
+                      id="studentId"
+                      placeholder="Student ID"
+                      autoComplete="off"
+                      type="text"
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="search_form_div">
-                <div className="input">
-                  <input
-                    id="email"
-                    placeholder="E-mail"
-                    autoComplete="off"
-                    type="text"
-                  />
+                <div className="search_form_div">
+                  <div className="input">
+                    <input
+                      id="email"
+                      placeholder="E-mail"
+                      autoComplete="off"
+                      type="text"
+                    />
+                  </div>
                 </div>
-              </div>
-              <div className="search_form_div">
-                <div className="input">
-                  <input
-                    id="pss"
-                    placeholder="Password"
-                    autoComplete="off"
-                    type="password"
-                  />
+                <div className="search_form_div">
+                  <div className="input">
+                    <input
+                      id="pss"
+                      placeholder="Password"
+                      autoComplete="off"
+                      type="password"
+                    />
+                  </div>
                 </div>
-              </div>
 
-              <div className="search_form_div">
-                <div className="input">
-                  <input
-                    id="pss"
-                    placeholder="Password Again"
-                    autoComplete="off"
-                    type="password"
-                  />
+                <div className="search_form_div">
+                  <div className="input">
+                    <input
+                      id="pss"
+                      placeholder="Password Again"
+                      autoComplete="off"
+                      type="password"
+                    />
+                  </div>
                 </div>
-              </div>
 
-              <Button id="logBtn" color="primary" onClick={this.handleLogin}>
-                Register
+                <Button id="logBtn" variant="contained" color="primary" onClick={this.handleLogin}>
+                  Register
               </Button>
 
-              <hr />
-              <Link to={"/login"}>
-                <Button id="regBtn" title="Learn More" color="primary">
-                  Login
+                <hr />
+                <Link to={"/login"}>
+                  <Button id="regBtn" title="Learn More" variant="contained" color="primary">
+                    Login
                 </Button>
-              </Link>
-            </form>
+                </Link>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 export default Register;
