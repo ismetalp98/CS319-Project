@@ -82,7 +82,36 @@ class GroupPage extends Component {
     e.preventDefault();
     let review = document.getElementById("review").value;
   }
+  handleJoinGroup = e => {
+    e.preventDefault();
+    let groupname = localStorage.getItem('selectedGroup');
+    let studentEmail = localStorage.getItem('currentUserMail');
 
+    var data= {
+      "groupname": groupname,
+      "studentEmail": studentEmail,
+    };
+    var json = JSON.stringify(data);
+    var xhr = new XMLHttpRequest();
+    xhr.addEventListener("load", () => {
+      // update the state of the component with the result here
+      var parsed = JSON.parse(xhr.response);
+
+      if (xhr.status == 200) {
+        console.log(xhr.status);
+        console.log("Successfully Joined");
+        this.setState({ registered: true });
+      }
+    });
+
+
+    // open the request with the verb and the url
+    
+    xhr.open("POST", "https://d7c59928777f.ngrok.io/api/group/addStudent");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    // send the request
+    xhr.send(json);
+  };
   render() {
     return (
       <div className="group_page">
@@ -209,8 +238,16 @@ class GroupPage extends Component {
                 </div>
               )}
             </Popup>}
+            {localStorage.getItem('myGroupName') === localStorage.getItem('selectedGroup') ?
+              null
+              : <Button id="join_button" title="Learn More" variant="contained" color="primary" onClick ={this.handleJoinGroup}>
+                  <div>
+                  <AddIcon id = "add_icon"/>
+                  <span>Join Group</span>
+                  </div>
+              </Button>
+              }
           </div>
-
         </div>
       </div>
     );

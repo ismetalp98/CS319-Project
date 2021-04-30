@@ -98,6 +98,24 @@
   cursor: pointer;
 }
 
+#join_button {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: black;
+  background-color: white;
+  border: double 4px transparent;
+  border-radius: 8px;
+  border-color: darkgray;
+  border-style: solid;
+  cursor: pointer;
+  width: 7em;
+  height: 7em;
+  margin-left: 5%;
+  margin-right: 5%;
+  
+}
+
 
 #add_icon {
   color: darkcyan;
