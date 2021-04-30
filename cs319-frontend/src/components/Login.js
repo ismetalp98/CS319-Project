@@ -91,7 +91,7 @@ class Login extends Component {
               </div>
 
               <Link to="/InstructorLogin">
-                <Button id="regBtn" title="Learn More" variant="contained" color="primary" >
+                <Button id="regBtn" title="Learn More" variant="contained" color="secondary" >
                   Instructor Login
               </Button>
               </Link>
