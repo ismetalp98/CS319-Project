@@ -1,5 +1,8 @@
 package com.pire.api.controller;
 
+import java.util.List;
+
+import javax.validation.ReportAsSingleViolation;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pire.api.dto.account.CreateStudentDto;
+import com.pire.api.dto.account.StudentListView;
 import com.pire.api.dto.account.StudentLoginDto;
 import com.pire.api.dto.account.StudentView;
 import com.pire.api.mapper.StudentMapper;
@@ -44,6 +48,11 @@ public class StudentController {
 			@PathVariable(name = "email", required = true) String email)
 	{
 		return ResponseEntity.ok(service.findByEmail(email));
+	}
+	
+	@GetMapping("/getAllList")
+	public ResponseEntity<List<StudentListView>> getAllList(){
+		return ResponseEntity.ok(service.getAllStudentList());
 	}
 	
 }
