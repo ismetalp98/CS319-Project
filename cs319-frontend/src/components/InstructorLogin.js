@@ -5,7 +5,7 @@ import bg from "./../bg.svg";
 import { Link, Redirect } from "react-router-dom";
 var url = "https://d7c59928777f.ngrok.io"
 
-class Login extends Component {
+class InstructorLogin extends Component {
 
   state = {};
   handleLogin = e => {
@@ -30,7 +30,7 @@ class Login extends Component {
     });
 
     // open the request with the verb and the url
-    xhr.open("GET", url +"/api/student/login/" + email);
+    xhr.open("GET", url +"/api/instructor/login/" + email);
     // send the request
     xhr.send();
 
@@ -90,13 +90,13 @@ class Login extends Component {
                 <hr />
               </div>
 
-              <Link to="/InstructorLogin">
+              <Link to="/Login">
                 <Button id="regBtn" title="Learn More" variant="contained" color="primary" >
-                  Instructor Login
+                  Student Login
               </Button>
               </Link>
 
-              <h3 id="forgotpss"> Are you an instructor? </h3>
+              <h3 id="forgotpss"> Are you a student? </h3>
             </form>
           </div>
         </div>
@@ -104,4 +104,4 @@ class Login extends Component {
     );
   }
 }
-export default Login;
+export default InstructorLogin;
