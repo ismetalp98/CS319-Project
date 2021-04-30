@@ -8,7 +8,8 @@ import "../csss/homePage.css";
 
 class HomePage extends Component {
   state = {};
-  componentDidMount() {
+
+  getGroups = e => {
     var groupid = 0;
     localStorage.setItem("selectedMember", localStorage.getItem('currentUserMail'));
     var xhrgroups = new XMLHttpRequest();
@@ -25,7 +26,9 @@ class HomePage extends Component {
       />)
       this.setState({ groups: groups });
     });
+  };
 
+  getPolls = e => {
     var pollid = 0;
     var xhrpolls = new XMLHttpRequest();
     xhrpolls.open("GET", "https://d7c59928777f.ngrok.io/api/poll/getAll");
@@ -42,10 +45,12 @@ class HomePage extends Component {
       />)
       this.setState({ polls: polls });
     });
+  };
 
+  getMyGroup = e => {
     var xhruser = new XMLHttpRequest();
     xhruser.open("GET", "http://d7c59928777f.ngrok.io/api/student/" + localStorage.getItem('currentUserMail'));
-
+    var groupid = 0;
     xhruser.send();
     xhruser.addEventListener("load", () => {
       var parsed = JSON.parse(xhruser.response);
@@ -62,8 +67,15 @@ class HomePage extends Component {
           project={'PeerReview'} />
         this.setState({ myGroup: myGroup });
         localStorage.setItem('myGroupName',parsed.group.name);
+        localStorage.setItem('hasNoGroup',false);
       }
     });
+  };
+
+  componentDidMount() {
+      this.getGroups();
+      this.getPolls();
+      this.getMyGroup();
   }
   render() {
     return (

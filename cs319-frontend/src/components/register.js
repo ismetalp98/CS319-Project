@@ -27,9 +27,9 @@ class Register extends Component {
 
     xhr.addEventListener("load", () => {
       // update the state of the component with the result here
-      var parsed = JSON.parse(xhr.response);
+      
 
-      if (xhr.status == 200) {
+      if (xhr.status === 200) {
         console.log(xhr.status);
         console.log("Successfully Registered");
         this.setState({ registered: true });
