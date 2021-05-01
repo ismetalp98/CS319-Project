@@ -70,6 +70,20 @@ CREATE TABLE poll.poll_answer(
 	FOREIGN KEY (poll_question_id) REFERENCES poll.poll_question (id),
 	FOREIGN KEY (student_id) REFERENCES account.student (id)
 );
+
+CREATE TABLE poll.peerevaluation(
+	id serial PRIMARY KEY,
+	evaluator_student_id Integer,
+	evaluated_student_id Integer,
+	group_id INTEGER,
+	evaluation text,
+	point integer,
+	FOREIGN KEY (evaluator_student_id) REFERENCES account.student (id),
+	FOREIGN KEY (evaluated_student_id) REFERENCES account.student (id),
+	FOREIGN KEY (group_id) REFERENCES account.group (id)
+);
+
+
 /* Indexes */
 CREATE UNIQUE INDEX ON account.student USING btree (email);
 CREATE UNIQUE INDEX ON account.student USING btree (studentid);
@@ -79,4 +93,6 @@ CREATE INDEX ON review.review USING btree (student_id);
 CREATE INDEX ON review.review USING btree (deliverable_id);
 CREATE UNIQUE INDEX ON account.instructor USING btree (email);
 CREATE UNIQUE INDEX ON poll.poll USING btree (id);
+CREATE INDEX ON poll.peerevaluation USING btree (group_id);
+CREATE INDEX ON poll.peerevaluation USING btree (evaluated_student_id);
 

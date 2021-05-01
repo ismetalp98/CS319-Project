@@ -50,11 +50,35 @@ public class Student extends AbstractBaseObj{
 	private List<Review> reviews = new ArrayList<>();
 	
 	@OneToMany(
+			mappedBy = "evaluatorStudent",
+	        cascade = CascadeType.ALL,
+	        orphanRemoval = true
+	)
+	private List<PeerEvaluation> ownEvaluation = new ArrayList<>();
+
+	@OneToMany(
+			mappedBy = "evaluatedStudent",
+	        cascade = CascadeType.ALL,
+	        orphanRemoval = true
+	)
+	private List<PeerEvaluation> otherEvaluation = new ArrayList<>();
+	
+	@OneToMany(
 			mappedBy = "student",
 	        cascade = CascadeType.ALL,
 	        orphanRemoval = true
 	)
 	private List<PollAnswer> answers = new ArrayList<>();
+	
+	public void addOtherEvaluation(PeerEvaluation evaluation) {
+		otherEvaluation.add(evaluation);
+		evaluation.setEvaluatedStudent(this);
+	}
+	
+	public void addOwnEvaluation(PeerEvaluation evaluation) {
+		ownEvaluation.add(evaluation);
+		evaluation.setEvaluatorStudent(this);
+	}
 	
 	public void addAnswer(PollAnswer answer) {
 		answers.add(answer);
