@@ -5,15 +5,16 @@ import "../csss/PollCreateV2.css";
 import AddIcon from "@material-ui/icons/Add";
 import Icon from "@material-ui/core/Icon";
 import { Link, Redirect } from "react-router-dom";
-import PollItem from "../items/PollItem";
 
-class PollCreateV2 extends Component {
+class PollQuestionCreate extends Component {
   state = {};
-  handlePollCreation = e => {
+  handlePollQuestion = e => {
     e.preventDefault();
-    let name = document.getElementById("question").value;
+    let index = localStorage.get("currentPollIndex");
+    let question = document.getElementById("question").value;
     var data= {
-      "name": name
+      "pollId": index,
+      "question": question
     };
     var json = JSON.stringify(data);
     var xhr = new XMLHttpRequest();
@@ -30,32 +31,10 @@ class PollCreateV2 extends Component {
     });
         // open the request with the verb and the url
     
-        xhr.open("POST", "https://d7c59928777f.ngrok.io/api/poll/createPoll");
+        xhr.open("POST", "https://d7c59928777f.ngrok.io/api/poll/createPollQuestion");
         xhr.setRequestHeader("Content-Type", "application/json");
         // send the request
         xhr.send(json);
-        var xhrpolls = new XMLHttpRequest();
-        xhrpolls.open("GET","https://d7c59928777f.ngrok.io/api/poll/getAllListView");
-        xhrpolls.addEventListener("load", () => {
-          // update the state of the component with the result here
-          var parsed = JSON.parse(xhrpolls.response);
-          var pollid = 0;
-          const polls = parsed.map(pollitem => <PollItem
-            key={pollitem.id}
-            name={pollitem.name}
-            color={pollid++}
-            count={10}
-          />)
-          console.log(polls.key);
-          var i;
-          var index;
-          for(i = 0; i < polls.length; i++){
-            if(polls.name == name) {
-              index = i;
-            }
-          }
-          localStorage.setItem("currentPollIndex",index);
-        });
       };
   render() {
     return (
@@ -75,11 +54,9 @@ class PollCreateV2 extends Component {
             />
         </div> 
         </div>
-        <Link to={"/PollQuestionCreate"}>
         <Button id="submitBtn" color="#841584" onClick={this.handlePollCreation}>
           Create Poll
         </Button>
-        </Link>
         </div>
         
       </form>
@@ -87,4 +64,4 @@ class PollCreateV2 extends Component {
   }
 }
 
-export default PollCreateV2;
+export default PollQuestionCreate;
