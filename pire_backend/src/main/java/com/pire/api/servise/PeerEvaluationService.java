@@ -1,5 +1,7 @@
 package com.pire.api.servise;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,5 +55,11 @@ public class PeerEvaluationService {
 		repository.save(peerEvaluation);
 		
 		return mapper.getPeerEvaluationViewFromPeerEvaluation(peerEvaluation);
+	}
+	
+	public List<PeerEvaluationView> getGroupPeerEvaluation(String groupName){
+		List<PeerEvaluation> evaluations = repository.findAllByGroupName(groupName);
+		
+		return mapper.getPeerEvalutaionViewListFromPeerEvaluationList(evaluations);
 	}
 }
