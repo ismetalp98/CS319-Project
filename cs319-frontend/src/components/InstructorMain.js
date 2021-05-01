@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ProfilePage from "./ProfilePage";
+import InstructorProfile from "./InstructorProfile";
 import PollItem from "../items/PollItem";
 import GroupItem from "../items/GroupItem";
 import Member from "../items/Member";
@@ -83,7 +83,7 @@ class InstructorMain extends Component {
           <div className="user_info_div">
             <h2>Profile</h2>
             <hr />
-            <ProfilePage />
+            <InstructorProfile />
           </div>
           <div className="group_list_div">
             <h2>Class</h2>

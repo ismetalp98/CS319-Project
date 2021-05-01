@@ -33,8 +33,6 @@ class Login extends Component {
     xhr.open("GET", url +"/api/student/login/" + email);
     // send the request
     xhr.send();
-
-
   };
   render() {
     if (this.state.loggedIn) {
