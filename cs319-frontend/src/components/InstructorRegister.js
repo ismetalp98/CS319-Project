@@ -118,7 +118,7 @@ class InstructorRegister extends Component {
 
                 <hr />
                 <Link to={"/InstructorLogin"}>
-                  <Button id="regBtn" title="Learn More" variant="contained" color="primary">
+                  <Button className="regBtn" title="Learn More" variant="contained" color="primary">
                     Login
                 </Button>
                 </Link>

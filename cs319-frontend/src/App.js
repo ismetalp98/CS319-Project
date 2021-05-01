@@ -6,9 +6,12 @@ import Register from "./components/register";
 import InstructorLogin from "./components/InstructorLogin";
 import InstructorRegister from "./components/InstructorRegister";
 import InstructorMain from "./components/InstructorMain";
+<<<<<<< Updated upstream
 import InstructorProfile from "./components/InstructorProfile";
 import PollQuestionCreate from "./components/PollQuestionCreate";
 import PollCreateV2 from "./components/PollCreateV2";
+=======
+>>>>>>> Stashed changes
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 
@@ -42,12 +45,6 @@ class App extends Component {
             </Route>
             <Route exact path="/login">
               <Login />
-            </Route>
-            <Route exact path="/PollQuestionCreate">
-              <PollQuestionCreate />
-            </Route>
-            <Route exact path="/PollCreateV2">
-              <PollCreateV2 />
             </Route>
           </Switch>
         </Router>

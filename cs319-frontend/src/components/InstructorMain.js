@@ -6,8 +6,6 @@ import Member from "../items/Member";
 import "../csss/homePage.css";
 
 
-
-
 class InstructorMain extends Component {
   state = {};
 

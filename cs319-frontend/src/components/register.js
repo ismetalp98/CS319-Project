@@ -124,13 +124,13 @@ class Register extends Component {
                   </div>
                 </div>
 
-                <Button id="logBtn" variant="contained" color="primary" onClick={this.handleLogin}>
+                <Button className="logBtn" variant="contained" color="primary" onClick={this.handleLogin}>
                   Register
               </Button>
 
                 <hr />
                 <Link to={"/login"}>
-                  <Button id="regBtn" title="Learn More" variant="contained" color="primary">
+                  <Button className="regBtn" title="Learn More" variant="contained" color="primary">
                     Login
                 </Button>
                 </Link>

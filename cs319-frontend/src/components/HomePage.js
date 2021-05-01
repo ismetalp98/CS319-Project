@@ -3,6 +3,7 @@ import ProfilePage from "./ProfilePage";
 import PollItem from "../items/PollItem";
 import GroupItem from "../items/GroupItem";
 import "../csss/homePage.css";
+import { withRouter} from "react-router-dom";
 
 
 
@@ -106,4 +107,4 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage;
+export default withRouter(HomePage);

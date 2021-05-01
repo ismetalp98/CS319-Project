@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../csss/header.css";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, withRouter } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import Popup from 'reactjs-popup';
@@ -62,50 +62,57 @@ class Header extends Component {
             </Link>
 
           </li>
-        {localStorage.getItem('myGroupName') === "none" ?
-          <li className="nav_button">
-            <Popup
-              trigger={<Button variant="contained" color="primary" >
-                Create Group
+          {localStorage.getItem('myGroupName') === "none" ?
+            <li className="nav_button">
+              <Popup
+                trigger={<Button variant="contained" color="primary" >
+                  Create Group
           </Button>}
-              modal
-              nested
-            >
-              {close => (
-                <div className="modal">
-                  <button className="close" onClick={close}>
-                    &times;
+                modal
+                nested
+              >
+                {close => (
+                  <div className="modal">
+                    <button className="close" onClick={close}>
+                      &times;
   </button>
-                  <div className="header"> Create Group </div>
-                  <div className="content">
+                    <div className="header"> Create Group </div>
+                    <div className="content">
 
 
-                  </div>
-                  <div className="actions">
-
-                    <div className="search_form_div">
-                      <div className="input">
-                        <input
-                          id="groupName"
-                          placeholder="Group Name"
-                          autoComplete="off"
-                          type="text"
-                        />
-                      </div>
                     </div>
+                    <div className="actions">
 
-                    <Button
-                      id="button_save"
-                      onClick={this.handleCreateGroup}
-                      variant="contained" color="primary"
-                    >
-                      Create Group
+                      <div className="search_form_div">
+                        <div className="input">
+                          <input
+                            id="groupName"
+                            placeholder="Group Name"
+                            autoComplete="off"
+                            type="text"
+                          />
+                        </div>
+                      </div>
+
+                      <Button
+                        id="button_save"
+                        onClick={this.handleCreateGroup}
+                        variant="contained" color="primary"
+                      >
+                        Create Group
     </Button>
+                    </div>
                   </div>
-                </div>
-              )}
-            </Popup>
-          </li> : null }
+                )}
+              </Popup>
+            </li> : null}
+          <li >
+            <Link to="/pollCreateOpenEnded" style={{ textDecoration: 'none' }}>
+              <Button id="createPollBtn" variant="contained" color="primary">
+                Create Poll
+            </Button>
+            </Link>
+          </li>
         </ul>
 
         <h1 id="title">
@@ -120,9 +127,11 @@ class Header extends Component {
 
           </li>
         </ul>
+        <Redirect to={'/homePage'} />
       </header>
+
     );
   }
 }
 
-export default Header;
+export default withRouter(Header);

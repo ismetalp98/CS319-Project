@@ -7,7 +7,7 @@ import 'reactjs-popup/dist/index.css';
 import Button from "@material-ui/core/Button";
 import DocumentItem from "../items/DocumentItem";
 import ReviewItem from "../items/ReviewItem";
-import { Redirect } from "react-router-dom";
+import { Redirect, withRouter } from "react-router-dom";
 
 
 class GroupPage extends Component {
@@ -45,11 +45,11 @@ class GroupPage extends Component {
       }
       console.log(myMap);
       i = 0;
-      var reviews = Array();
+      var reviews = [];
       myMap.forEach(function (value, key) {
         if (value.length !== 0) {
           const curr = <div>
-            <h2 id="document_review_object"> {key}</h2>
+            <h2 style={{ color: '#f50057' }} id="document_review_object"> {key}</h2>
             <hr /></div>;
           const currRevs = value.map(reviewitem =>
             <ReviewItem
@@ -129,9 +129,9 @@ class GroupPage extends Component {
     var json = JSON.stringify(data);
     var xhr = new XMLHttpRequest();
     xhr.addEventListener("load", () => {
-      var parsed = JSON.parse(xhr.response);
+  
 
-      if (xhr.status == 200) {
+      if (xhr.status === 200) {
         console.log(xhr.status);
         console.log("Successfully Joined");
         this.setState({ joinedGroup: true });
@@ -320,5 +320,5 @@ class GroupPage extends Component {
   }
 }
 
-export default GroupPage;
+export default withRouter(GroupPage);
 

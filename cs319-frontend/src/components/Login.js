@@ -77,7 +77,7 @@ class Login extends Component {
               <hr />
 
               <Link to="/register">
-                <Button id="regBtn" title="Learn More" variant="contained" color="primary" >
+                <Button className="regBtn" title="Learn More" variant="contained" color="primary" >
                   Register
               </Button>
               </Link>
@@ -89,7 +89,7 @@ class Login extends Component {
               </div>
 
               <Link to="/InstructorLogin">
-                <Button id="regBtn" title="Learn More" variant="contained" color="secondary" >
+                <Button className="regBtn" title="Learn More" variant="contained" color="secondary" >
                   Instructor Login
               </Button>
               </Link>

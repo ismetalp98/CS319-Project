@@ -1,18 +1,17 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import "../csss/PollCreateV2.css";
-import AddIcon from "@material-ui/icons/Add";
-import Icon from "@material-ui/core/Icon";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
+
+
 
 class PollQuestionCreate extends Component {
   state = {};
   handlePollQuestion = e => {
     e.preventDefault();
-    let index = localStorage.get("currentPollIndex");
+    let index = localStorage.getItem("currentPollIndex");
     let question = document.getElementById("question").value;
-    var data= {
+    var data = {
       "pollId": index,
       "question": question
     };
@@ -21,44 +20,52 @@ class PollQuestionCreate extends Component {
 
     xhr.addEventListener("load", () => {
       // update the state of the component with the result here
-      var parsed = JSON.parse(xhr.response);
-
-      if (xhr.status == 200) {
-        console.log(xhr.status);
-        console.log("Successfully Registered");
-        this.setState({ registered: true });
+      if (xhr.status === 200) {
+        document.getElementById("question").value = "";
       }
     });
-        // open the request with the verb and the url
-    
-        xhr.open("POST", "https://d7c59928777f.ngrok.io/api/poll/createPollQuestion");
-        xhr.setRequestHeader("Content-Type", "application/json");
-        // send the request
-        xhr.send(json);
-      };
+    // open the request with the verb and the url
+
+    xhr.open("POST", "http://d7c59928777f.ngrok.io/api/poll/createPollQuestion");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    // send the request
+    xhr.send(json);
+  };
+
+  handleFinishCreation = e =>{
+    e.preventDefault();
+    this.setState({questionCreationEnded : true});
+  }
+
   render() {
+    if (this.state.questionCreationEnded) {
+      return <Redirect to={'/homePage'} />;
+    }
     return (
       <form className="PollCreateV2">
         <div className="PollCreation">
           <div className="search_form_div">
-        <div className="input">
-          <input
-            id="question"
-            placeholder="Type your poll name here"
-            onFocus={e => (e.target.placeholder = "")}
-            onBlur={e =>
-              (e.target.placeholder = "Type your question here")
-              }
-            autoComplete="off"
-            type="text"
-            />
-        </div> 
-        </div>
-        <Button id="submitBtn" color="#841584" onClick={this.handlePollCreation}>
-          Create Poll
+            <div className="input">
+              <input
+                id="question"
+                placeholder="Type your question here"
+                onFocus={e => (e.target.placeholder = "")}
+                onBlur={e =>
+                  (e.target.placeholder = "Type your question here")
+                }
+                autoComplete="off"
+                type="text"
+              />
+            </div>
+          </div>
+          <Button id="submitBtn" variant="contained" color="primary" onClick={this.handlePollQuestion}>
+            Create Question
+        </Button>
+        <Button id="submitBtn" variant="contained" color="primary" onClick={this.handleFinishCreation}>
+            Create Question
         </Button>
         </div>
-        
+
       </form>
     );
   }

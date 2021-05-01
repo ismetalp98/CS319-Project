@@ -1,53 +1,42 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Header from "./Header";
 import ProfilePage from "./ProfilePage";
 import Login from "./Login";
 import GroupPage from "./GroupPage";
 import HomePage from "./HomePage";
 import "../csss/mainPage.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, withRouter } from "react-router-dom";
+import PollQuestionCreate from "../components/PollQuestionCreate";
+import PollCreateOpenEnded from "./PollCreateOpenEnded";
 
-class MainPage extends Component {
-  state = {};
-  componentWillMount() {
-    
-    var xhruser = new XMLHttpRequest();
-    xhruser.open("GET", "http://d7c59928777f.ngrok.io/api/student/" + localStorage.getItem('currentUserMail'));
-
-    xhruser.send();
-    xhruser.addEventListener("load", () => {
-      var parsed = JSON.parse(xhruser.response);
-      if (parsed.group === null) {
-        this.setState({hasNoGroup : true})
-       }
-      else {
-        this.setState({hasNoGroup : false})
-      }
-      
-    });
-  }
-  render() {
-    return (
-      <Router>
-        <div className="main_page">
-          <Header hasNoGroup={this.state.hasNoGroup}/>
-          <Switch>
-            <Route exact path="/homePage">
-              <HomePage />
-            </Route>
-            <Route exact path="/profilePage">
-              <ProfilePage />
-            </Route>
-            <Route exact path="/login">
-              <Login />
-            </Route>
-            <Route exact path="/groupPage">
-              <GroupPage />
-            </Route>
-          </Switch>
-        </div>
-      </Router>
-    );
-  }
+function MainPage() {
+  return (
+    <Router>
+      <div className="main_page">
+        <Header />
+        <Switch>
+          <Route exact path="/homePage">
+            <HomePage />
+          </Route>
+          <Route exact path="/profilePage">
+            <ProfilePage />
+          </Route>
+          <Route exact path="/login">
+            <Login />
+          </Route>
+          <Route exact path="/groupPage">
+            <GroupPage />
+          </Route>
+        </Switch>
+        <Route exact path="/pollQuestionCreate">
+          <PollQuestionCreate />
+        </Route>
+        <Route exact path="/pollCreateOpenEnded">
+          <PollCreateOpenEnded />
+        </Route>
+      </div>
+    </Router>
+  );
 }
-export default MainPage;
+
+export default withRouter(MainPage);
