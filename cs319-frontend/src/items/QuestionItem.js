@@ -9,8 +9,7 @@ class QuestionItem extends Component {
     this.setState({ "index": this.index });
   }
   handleAnswer = e =>{
-    var index = this.props.index;
-    let answer = document.getElementById("answer").value;
+    
     var data = {
       "pollQuestionId": this.index, // QUESTION ID OLUCAK
       "studentEmail" : localStorage.getItem("selectedMember"),

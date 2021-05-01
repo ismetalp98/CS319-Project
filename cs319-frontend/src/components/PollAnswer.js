@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import Button from "@material-ui/core/Button";
 import "../csss/PollAnswer.css";
 import { Redirect } from "react-router-dom";
-import QuestionItem from "../items/QuestionItem";
+
 
 
 
@@ -14,8 +13,6 @@ class PollAnswer extends Component {
     var pollName = localStorage.getItem("currentPollName");
     console.log("POLL INDEX ALOO " + pollIndex);
     console.log("POLL NAME " + pollName);
-    var questionIndex;
-    var pollquestions;
     var xhrquestions = new XMLHttpRequest();
     xhrquestions.addEventListener("load", () => {
         var parsed = JSON.parse(xhrquestions.response);
