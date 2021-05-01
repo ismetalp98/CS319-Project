@@ -36,6 +36,18 @@ public class Group extends AbstractBaseObj{
 	)
 	private List<Deliverable> deliverables = new ArrayList<>();
 	
+	@OneToMany(
+			mappedBy = "group",
+	        cascade = CascadeType.ALL,
+	        orphanRemoval = true
+	)
+	private List<PeerEvaluation> peerEvaluations = new ArrayList<>();
+	
+	public void addPeerEvaluation(PeerEvaluation evaluation) {
+		peerEvaluations.add(evaluation);
+		evaluation.setGroup(this);
+	}
+	
 	public void addStudent(Student student) {
 		students.add(student);
 		student.setGroup(this);
