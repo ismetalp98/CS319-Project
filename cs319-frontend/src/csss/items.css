@@ -5,6 +5,7 @@
     border-radius: 5px;
     background-color: #8ec5fc;
     background-image: linear-gradient(135deg, #9452a5a0 10%, #dfacdb44 100%);
+    cursor: pointer;
 }
 
 .poll_item1 {
@@ -16,6 +17,7 @@
     border-color: #1f2124;
     border-width: 2px;
     border-style: solid;
+    cursor: pointer;
 }
 
 .poll_item2 {
@@ -25,6 +27,7 @@
     border-radius: 5px;
     background-color: #8ec5fc;
     background-image: linear-gradient(135deg, #002661 10%, #92ffc0 100%);
+    cursor: pointer;
 }
 
 .poll_item_name {
