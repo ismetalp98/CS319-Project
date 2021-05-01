@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "../csss/PollAnswer.css";
 import { Redirect } from "react-router-dom";
+import QuestionItem from "../items/QuestionItem";
+import { CollectionsBookmarkRounded } from "@material-ui/icons";
 
 
 
@@ -11,19 +13,24 @@ class PollAnswer extends Component {
   getQuestions = e => {
     var pollIndex = localStorage.getItem("currentPollIndex");
     var pollName = localStorage.getItem("currentPollName");
-    console.log("POLL INDEX ALOO " + pollIndex);
-    console.log("POLL NAME " + pollName);
-    var xhrquestions = new XMLHttpRequest();
-    xhrquestions.addEventListener("load", () => {
-        var parsed = JSON.parse(xhrquestions.response);
-        console.log("pollanswer 3" + parsed);
-        if (xhrquestions.status === 200) {
+    var pollQuestions;
+    var xhrpolls = new XMLHttpRequest();
+    xhrpolls.open("GET", "https://d7c59928777f.ngrok.io/api/poll/" + pollIndex);
+    xhrpolls.send();
+    xhrpolls.addEventListener("load", () => {
+      // update the state of the component with the result here
+      var parsed = JSON.parse(xhrpolls.response);
+      pollQuestions = parsed.questions;
+      console.log(pollQuestions);
 
-        }
-      });
-      xhrquestions.open("GET", "https://d7c59928777f.ngrok.io/api/poll/" + pollIndex);
-      xhrquestions.send();
-    //this.setState({questionAnswerEnded : true});
+      const polls = pollQuestions.map(questionobj => {
+      return <QuestionItem
+        key = {questionobj.id}
+        index = {questionobj.id}
+        question = {questionobj.question}>
+      </QuestionItem>})
+      this.setState({ polls: polls });
+    });
   };
   componentDidMount() {
     this.getQuestions();
@@ -38,7 +45,7 @@ class PollAnswer extends Component {
 
     <h2>questions</h2>
     <hr />
-    {this.state.questions}
+    {this.state.polls}
     </div>
 
       </form>

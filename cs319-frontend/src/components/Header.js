@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../csss/header.css";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, withRouter } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import Popup from 'reactjs-popup';
@@ -13,7 +13,6 @@ class Header extends Component {
 
   handleLogout = e => {
     e.preventDefault();
-    localStorage.setItem('currentUserMail', null);
     this.setState({ loggedOut: true });
   };
 
@@ -46,6 +45,7 @@ class Header extends Component {
 
 
   };
+
 
   render() {
     if (this.state.loggedOut) {
@@ -127,11 +127,11 @@ class Header extends Component {
 
           </li>
         </ul>
-        {this.props.instructor ? <Redirect to={'/instructorHome'}/> : <Redirect to={'/homePage'} />}
+        <Redirect to={'/homePage'} />
       </header>
 
     );
   }
 }
 
-export default Header;
+export default withRouter(Header);

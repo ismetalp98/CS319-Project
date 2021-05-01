@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import InstructorProfile from "./InstructorProfile";
 import PollItem from "../items/PollItem";
 import GroupItem from "../items/GroupItem";
 import Member from "../items/Member";
