@@ -127,7 +127,7 @@ class Header extends Component {
 
           </li>
         </ul>
-        <Redirect to={'/homePage'} />
+        {this.props.instructor ? <Redirect to={'/instructorHome'}/> : null}
       </header>
 
     );

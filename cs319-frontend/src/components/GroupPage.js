@@ -7,14 +7,18 @@ import 'reactjs-popup/dist/index.css';
 import Button from "@material-ui/core/Button";
 import DocumentItem from "../items/DocumentItem";
 import ReviewItem from "../items/ReviewItem";
-import { Redirect, withRouter } from "react-router-dom";
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
+import { Redirect} from "react-router-dom";
 
 class GroupPage extends Component {
-  state = {value: 0};
+  state = {valueR : null};
+
+  getDeliverables = (parsedDeliverables) => {
+    var j = 0;
+      const deliverableNames = parsedDeliverables.map(documentitem => <div>
+         <input key={j++} type="radio" value={documentitem.id} name="gender" /> {documentitem.name}
+      </div>)
+      this.setState({ deliverableNames: deliverableNames });
+  };
 
   componentWillMount() {
     //members
@@ -28,15 +32,14 @@ class GroupPage extends Component {
 
 
       //Deliverables
+      this.setState({valueR : 6});
       const deliverables = parsedDeliverables.map(documentitem => <DocumentItem
         key={documentitem.id}
         name={documentitem.name}
         url={documentitem.url}
       />)
 
-      const deliverableNames = parsedDeliverables.map(documentitem => <div>
-        <FormControlLabel value={documentitem.id} control={<Radio />} label={documentitem.name} />
-      </div>)
+      this.getDeliverables(parsedDeliverables);
 
       //Reviews
       var myMap = new Map();
@@ -85,7 +88,7 @@ class GroupPage extends Component {
         </div>
       </div>)
 
-      this.setState({ deliverableNames: deliverableNames });
+      
       this.setState({ membersNames: membersNames });
       this.setState({ members: members });
       this.setState({ deliverables: deliverables });
@@ -119,11 +122,7 @@ class GroupPage extends Component {
     xhr.send(json);
   }
 
-  handleSaveReview = e => {
-    e.preventDefault();
-    let review = document.getElementById("review").value;
-    console.log(review);
-  }
+  
 
   handleJoinGroup = e => {
     e.preventDefault();
@@ -157,9 +156,37 @@ class GroupPage extends Component {
 
   }
 
+  handleSaveReview = e => {
+    e.preventDefault();
+
+    let review = document.getElementById("review").value;
+    let email = localStorage.getItem('currentUserMail');
+    let doc = this.state.valueR
+    console.log(review);
+    console.log(doc);
+    console.log(email);
+
+    var data = {
+      "studentEmail": email,
+      "deliverableId": doc,
+      "review":review
+    };
+    
+    var json = JSON.stringify(data);
+    console.log(json);
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "http://d7c59928777f.ngrok.io/api/deliverable/addReview");
+    xhr.send(json);
+
+    xhr.addEventListener("load", () => {
+        console.log(xhr.status);
+    });
+
+    
+  }
+
   handleChange = (event) => {
-    event.preventDefault();
-    this.setState({ value: event.target.value });
+    this.setState({ valueR: event.target.value });
   };
 
   render() {
@@ -294,11 +321,9 @@ class GroupPage extends Component {
   </button>
                     <div className="header"> Review </div>
                     <div className="content">
-                      <FormControl component="fieldset">
-                        <RadioGroup aria-label="gender" name="gender" value={this.state.value} onChange={this.handleChange}>
+                        <div  onClick={this.handleChange}>
                           {this.state.deliverableNames}
-                        </RadioGroup>
-                      </FormControl>
+                        </div>
                     </div>
                     <div className="actions">
 
@@ -336,5 +361,5 @@ class GroupPage extends Component {
   }
 }
 
-export default withRouter(GroupPage);
+export default GroupPage;
 
