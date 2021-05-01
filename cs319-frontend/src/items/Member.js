@@ -10,16 +10,16 @@ class Member extends Component {
     e.preventDefault();
     localStorage.setItem('selectedMember', this.props.email);
   };
+
   render() {
     return (
       <div className="member" onClick={this.handleLogin}>
-        <Link style={{ textDecoration: 'none' }} id="member_link"  to="profilePage">
-          
+        <Link style={{ textDecoration: 'none' }} id="member_link"  to="/profilePage">
           <div className="member_image">
             <FaceIcon id="member_icon" />
           </div>
           <div className="member_name">
-            <h3> {this.props.name}</h3>
+            <h3> {this.props.name} {this.props.surname}</h3>
           </div>
         </Link>
       </div>
@@ -27,4 +27,4 @@ class Member extends Component {
   }
 }
 
-export default Member
+export default Member;

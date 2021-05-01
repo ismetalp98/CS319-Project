@@ -8,10 +8,14 @@ import Button from "@material-ui/core/Button";
 import DocumentItem from "../items/DocumentItem";
 import ReviewItem from "../items/ReviewItem";
 import { Redirect, withRouter } from "react-router-dom";
-
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
 
 class GroupPage extends Component {
-  state = {};
+  state = {value: 0};
+
   componentWillMount() {
     //members
     var xhrgroups = new XMLHttpRequest();
@@ -22,21 +26,17 @@ class GroupPage extends Component {
       var parsedStudents = parsed.students;
       var parsedDeliverables = parsed.deliverables;
 
-      const members = parsedStudents.map(memberitem => <Member
-        key={memberitem.studentid}
-        name={memberitem.name}
-        surname={memberitem.surname}
-        email={memberitem.email}
-      />)
 
-
-      var i = 0;
+      //Deliverables
       const deliverables = parsedDeliverables.map(documentitem => <DocumentItem
-        key={i++}
+        key={documentitem.id}
         name={documentitem.name}
         url={documentitem.url}
       />)
 
+      const deliverableNames = parsedDeliverables.map(documentitem => <div>
+        <FormControlLabel value={documentitem.id} control={<Radio />} label={documentitem.name} />
+      </div>)
 
       //Reviews
       var myMap = new Map();
@@ -44,7 +44,7 @@ class GroupPage extends Component {
         myMap.set(a.name, a.reviews);
       }
       console.log(myMap);
-      i = 0;
+      var i = 0;
       var reviews = [];
       myMap.forEach(function (value, key) {
         if (value.length !== 0) {
@@ -66,6 +66,14 @@ class GroupPage extends Component {
 
       });
 
+      //Members
+      const members = parsedStudents.map(memberitem => <Member
+        key={memberitem.studentid}
+        name={memberitem.name}
+        surname={memberitem.surname}
+        email={memberitem.email}
+      />)
+
       const membersNames = parsedStudents.map(memberitem => <div><li key={memberitem.studentid}> {memberitem.name} {memberitem.surname}</li>
         <div className="input">
           <textarea
@@ -77,6 +85,7 @@ class GroupPage extends Component {
         </div>
       </div>)
 
+      this.setState({ deliverableNames: deliverableNames });
       this.setState({ membersNames: membersNames });
       this.setState({ members: members });
       this.setState({ deliverables: deliverables });
@@ -113,7 +122,6 @@ class GroupPage extends Component {
   handleSaveReview = e => {
     e.preventDefault();
     let review = document.getElementById("review").value;
-
     console.log(review);
   }
 
@@ -129,7 +137,7 @@ class GroupPage extends Component {
     var json = JSON.stringify(data);
     var xhr = new XMLHttpRequest();
     xhr.addEventListener("load", () => {
-  
+
 
       if (xhr.status === 200) {
         console.log(xhr.status);
@@ -148,6 +156,11 @@ class GroupPage extends Component {
   handleSavePeerReview = e => {
 
   }
+
+  handleChange = (event) => {
+    event.preventDefault();
+    this.setState({ value: event.target.value });
+  };
 
   render() {
     if (this.state.joinedGroup) {
@@ -281,8 +294,11 @@ class GroupPage extends Component {
   </button>
                     <div className="header"> Review </div>
                     <div className="content">
-
-
+                      <FormControl component="fieldset">
+                        <RadioGroup aria-label="gender" name="gender" value={this.state.value} onChange={this.handleChange}>
+                          {this.state.deliverableNames}
+                        </RadioGroup>
+                      </FormControl>
                     </div>
                     <div className="actions">
 
