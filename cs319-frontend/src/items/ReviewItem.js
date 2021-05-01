@@ -7,12 +7,15 @@ import "../csss/items.css";
 class ReviewItem extends Component {
   handleLogin = e => {
     e.preventDefault();
+
+    
   };
   render() {
     return (
       <div  className="member" onClick={this.handleLogin}>      
           <div  className="member_name">      
             <h3> {this.props.name}</h3>  
+            <h3> {this.props.review}</h3>  
           </div>
       </div>
     );

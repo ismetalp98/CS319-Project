@@ -21,15 +21,24 @@ class GroupPage extends Component {
       var parsed = JSON.parse(xhrgroups.response);
       var parsedStudents = parsed.students;
       var parsedDeliverables = parsed.deliverables;
-      var parsedReviews = parsedDeliverables.reviews;
-
+      console.log( parsedDeliverables)
       const members = parsedStudents.map(memberitem => <Member
         key={memberitem.studentid}
         name={memberitem.name}
         surname={memberitem.surname}
         email={memberitem.email}
       />)
+      console.log(parsedDeliverables);
 
+
+        //Reviews
+      var reviewList = Array();
+      var a;
+      for (a in parsedDeliverables){
+        reviewList = reviewList.concat(parsedDeliverables[a].reviews);
+      }
+      
+      console.log(reviewList);
       var i = 0;
       const deliverables = parsedDeliverables.map(documentitem => <DocumentItem
         key={i++}
@@ -37,15 +46,14 @@ class GroupPage extends Component {
         url={documentitem.url}
       />)
 
-      // --------------- Burasııııııııııııııııııı -------------------------
-      /*i = 0;
-      const reviews = parsedReviews.map(reviewitem => <ReviewItem
+
+      i = 0;
+      const reviews = reviewList.map(reviewitem => <ReviewItem
         key={i++}
         name={reviewitem.student.name}
-      />)*/
+        review={reviewitem.review}
+      />)
 
-
-      // --------------- Buraya kadarrrrrrrrrrrrrr -------------------------
 
 
       const membersNames = parsedStudents.map(memberitem => <div><li key={memberitem.studentid}> {memberitem.name} {memberitem.surname}</li>
@@ -61,7 +69,7 @@ class GroupPage extends Component {
       this.setState({ membersNames: membersNames });
       this.setState({ members: members });
       this.setState({ deliverables: deliverables });
-      //this.setState({ reviews: reviews });
+      this.setState({ reviews: reviews });
     });
   }
 
@@ -94,6 +102,8 @@ class GroupPage extends Component {
   handleSaveReview = e => {
     e.preventDefault();
     let review = document.getElementById("review").value;
+
+    console.log( review);
   }
   
   handleJoinGroup = e => {
@@ -153,7 +163,7 @@ class GroupPage extends Component {
             <h1> Reviews </h1>
             <hr />
             <div className="reviews">
-
+            {this.state.reviews}
             </div>
           </div>
         </div>
