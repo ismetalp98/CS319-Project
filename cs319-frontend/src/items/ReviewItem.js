@@ -13,7 +13,7 @@ class ReviewItem extends Component {
   render() {
     return (
       <Popup
-        trigger={<div className="member" onClick={this.handleLogin}>
+        trigger={<div className="review_div" onClick={this.handleLogin}>
           <div className="review_texts">
             <h3 id="review_name"> {this.props.name}</h3>
             <h3 id="review_content"> {this.props.review}</h3>

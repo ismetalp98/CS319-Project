@@ -127,6 +127,26 @@
     background-color: #ddedfd;
 }
 
+.review_div{
+    margin-right: auto;
+    margin-left: auto;
+    width: 70%;
+    margin-bottom: 10px;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    border: double 4px transparent;
+    border-radius: 80px;
+    border-color: #2c2f35;
+    border-style: solid;
+    margin-bottom: 20px;
+}
+
+.review_div :hover {
+    border-radius: 80px;
+    background-color: #ddedfd;
+}
+
 .review_texts {
     width: 100%;
     text-align: center;
@@ -153,4 +173,8 @@
 
 .review_content_popup{
     font-size: 2rem;
+}
+
+#document_review_object{
+    text-align: center;
 }
