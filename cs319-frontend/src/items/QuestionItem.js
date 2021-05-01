@@ -5,16 +5,20 @@ import Button from "@material-ui/core/Button";
 class QuestionItem extends Component {
   state = {};
   componentDidMount() {
-    this.setState({ "name": this.question });
-    this.setState({ "index": this.index });
+    this.setState({ "name": this.props.question });
+    this.setState({ "index": this.props.index });
   }
   handleAnswer = e =>{
-    var index = this.props.index;
+
     let answer = document.getElementById("answer").value;
+    console.log(this.props.index);
+    console.log(localStorage.getItem("selectedMember"));
+    console.log(answer);
+
     var data = {
-      "pollQuestionId": this.index, // QUESTION ID OLUCAK
+      "pollQuestionId": this.props.index,
       "studentEmail" : localStorage.getItem("selectedMember"),
-      "answer": this.answer
+      "answer": answer
     };
     var json = JSON.stringify(data);
     var xhr = new XMLHttpRequest();
@@ -30,27 +34,24 @@ class QuestionItem extends Component {
     xhr.setRequestHeader("Content-Type", "application/json");
     // send the request
     xhr.send(json);
-    this.setState({questionAnswerEnded : true});
+    //this.setState({questionAnswerEnded : true});
   };
   render() {
     return (
       <div className={this.state.name}>
           <div className="question_item_name">
-            
             <h3 id="question_name" >{this.state.name}</h3>
-            <div className="input">
-                    <input
-                      id="answer"
-                      placeholder="Answer"
-                      autoComplete="off"
-                      type="text"
-                    />
-            </div>
-            <div>
+          </div>
+          <div className="input">
+            <input
+              id="answer"
+              placeholder="Answer"
+              autoComplete="off"
+              type="text"
+            />
             <Button onClick={this.handleAnswer}>
-                  Submit
-              </Button>
-            </div>
+              Submit
+            </Button>
           </div>
       </div>
     );
