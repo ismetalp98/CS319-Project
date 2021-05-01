@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import ProfilePage from "./ProfilePage";
 import PollItem from "../items/PollItem";
 import GroupItem from "../items/GroupItem";
+import Member from "../items/Member";
 import "../csss/homePage.css";
+
 
 
 
@@ -27,7 +29,29 @@ class InstructorMain extends Component {
       this.setState({ groups: groups });
     });
   };
-
+  getStudentList = e => {
+    //var studentid = 0;
+    localStorage.setItem("selectedMember", localStorage.getItem('currentUserMail'));
+    var xhrstudents = new XMLHttpRequest();
+    xhrstudents.open("GET", "http://d7c59928777f.ngrok.io/api/student/getAllList");
+    xhrstudents.send();
+    xhrstudents.addEventListener("load", () => {
+      // update the state of the component with the result here
+      var parsed = JSON.parse(xhrstudents.response);
+      const studentList = parsed.map(memberitem => <Member
+        key={memberitem.studentid}
+        name={memberitem.name}
+        surname={memberitem.surname}
+        email={memberitem.email}
+        /*if ( {memberitem.group.name} !== "null" ) {
+          group ={memberitem.group.name}
+        }*/
+        group ={memberitem.group}
+      />)
+      this.setState({ studentList: studentList });
+    });
+  };
+  
   getPolls = e => {
     var pollid = 0;
     var xhrpolls = new XMLHttpRequest();
@@ -47,35 +71,10 @@ class InstructorMain extends Component {
     });
   };
 
-  getMyGroup = e => {
-    var xhruser = new XMLHttpRequest();
-    xhruser.open("GET", "http://d7c59928777f.ngrok.io/api/student/" + localStorage.getItem('currentUserMail'));
-    var groupid = 0;
-    xhruser.send();
-    xhruser.addEventListener("load", () => {
-      var parsed = JSON.parse(xhruser.response);
-      if (parsed.group === null) {
-        const myGroup = <h2>Has no group</h2>
-        this.setState({ myGroup: myGroup });
-        localStorage.setItem('myGroupName',"none");
-       }
-      else {
-        const myGroup = <GroupItem
-          key={groupid++}
-          color={1}
-          name={parsed.group.name}
-          project={'PeerReview'} />
-        this.setState({ myGroup: myGroup });
-        localStorage.setItem('myGroupName',parsed.group.name);
-        localStorage.setItem('hasNoGroup',false);
-      }
-    });
-  };
-
   componentDidMount() {
       this.getGroups();
       this.getPolls();
-      this.getMyGroup();
+      this.getStudentList();
   }
   render() {
     return (
@@ -89,7 +88,7 @@ class InstructorMain extends Component {
           <div className="group_list_div">
             <h2>Class</h2>
             <hr />
-            {this.state.myGroup}
+             {this.state.studentList}
             <hr />
             <h2>All Groups</h2>
             <hr />

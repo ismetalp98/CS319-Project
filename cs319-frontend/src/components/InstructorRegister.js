@@ -37,7 +37,7 @@ class InstructorRegister extends Component {
 
     // open the request with the verb and the url
 
-    xhr.open("POST", "https://d7c59928777f.ngrok.io/api/student/create/");
+    xhr.open("POST", "https://d7c59928777f.ngrok.io/api/instructor/create/");
     xhr.setRequestHeader("Content-Type", "application/json");
     // send the request
     xhr.send(json);
