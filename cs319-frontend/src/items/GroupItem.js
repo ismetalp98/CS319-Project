@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import "../csss/items.css";
 import { Link } from "react-router-dom";
 
-/*function asd() {
-  console.log("asd");
-}*/
 
 
 class GroupItem extends Component {
