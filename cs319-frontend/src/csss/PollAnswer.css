@@ -1,0 +1,59 @@
+.PollCreateV2 {
+    text-align: center;
+    display: flex;
+  }
+  
+  .PollCreation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    margin-top: 10%;
+  }
+  
+  .PollCreation .input > input {
+    border: none;
+    outline: auto 0px;
+    height: 2.5rem;
+    width: 20vw;
+    text-align: left;
+    justify-content: space-between;
+    background-color: transparent;
+    display: flex;
+    font-size: 16px;
+    line-height: 20px;
+    caret-color: rgb(255, 63, 85);
+    overflow: hidden;
+    flex: 1 1 0%;
+    margin: 0px;
+    padding: 0px;
+    border-style: none;
+  }
+  .input > input > button {
+    padding: 20px;
+  }
+  #submitBtn {
+    width: 100%;
+    margin-top: 20%;
+  }
+ .PollCreation .search_form_div {
+    margin-top: 5%;
+    background-color: var(--bg-gray);
+    width: 25vw;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    text-align: left;
+    -webkit-box-pack: center;
+    justify-content: center;
+    cursor: inherit;
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: darkgray;
+    border-image: initial;
+    position: relative;
+  }
+
+
+  

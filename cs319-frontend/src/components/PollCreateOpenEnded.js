@@ -21,7 +21,7 @@ class PollCreateV2 extends Component {
       var parsed = JSON.parse(xhr.response);
       if (xhr.status === 200) {
         index = parsed.id;
-        console.log(index);
+        console.log("pollopeneded " + index);
         localStorage.setItem("currentPollIndex", index);
         this.setState({ pollCreated: true });
       }

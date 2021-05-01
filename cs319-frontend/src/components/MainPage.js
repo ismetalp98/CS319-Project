@@ -8,6 +8,7 @@ import "../csss/mainPage.css";
 import { BrowserRouter as Router, Switch, Route, withRouter } from "react-router-dom";
 import PollQuestionCreate from "../components/PollQuestionCreate";
 import PollCreateOpenEnded from "./PollCreateOpenEnded";
+import PollAnswer from './PollAnswer';
 
 function MainPage() {
   return (
@@ -33,6 +34,9 @@ function MainPage() {
         </Route>
         <Route exact path="/pollCreateOpenEnded">
           <PollCreateOpenEnded />
+        </Route>
+        <Route exact path="/pollAnswer">
+          <PollAnswer />
         </Route>
       </div>
     </Router>
