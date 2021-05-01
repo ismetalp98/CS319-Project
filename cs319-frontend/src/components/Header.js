@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../csss/header.css";
-import { Link, Redirect, withRouter } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import Popup from 'reactjs-popup';
@@ -127,11 +127,11 @@ class Header extends Component {
 
           </li>
         </ul>
-        {this.props.instructor ? <Redirect to={'/instructorHome'}/> : null}
+        {this.props.instructor ? <Redirect to={'/instructorHome'}/> : <Redirect to={'/homePage'}/>}
       </header>
 
     );
   }
 }
 
-export default withRouter(Header);
+export default Header;
