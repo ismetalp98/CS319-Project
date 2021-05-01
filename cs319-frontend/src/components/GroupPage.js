@@ -176,6 +176,7 @@ class GroupPage extends Component {
     console.log(json);
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "http://d7c59928777f.ngrok.io/api/deliverable/addReview");
+    xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(json);
 
     xhr.addEventListener("load", () => {
