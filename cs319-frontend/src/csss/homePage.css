@@ -17,7 +17,18 @@
   border-right: 2px;
   text-align: center;
 }
-
+.class_info_div {
+  background-color: white;
+  overflow-y: scroll;
+  width: 100%;
+  border-right: 2px;
+  border-right-color: darkgray;
+  border-right-style: dashed;
+  border-left-color: darkgray;
+  border-left-style: dashed;
+  height: 80vh;
+  text-align: center;
+}
 .group_list_div {
   background-color: white;
   overflow-y: scroll;
