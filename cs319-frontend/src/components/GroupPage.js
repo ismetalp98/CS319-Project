@@ -21,24 +21,15 @@ class GroupPage extends Component {
       var parsed = JSON.parse(xhrgroups.response);
       var parsedStudents = parsed.students;
       var parsedDeliverables = parsed.deliverables;
-      console.log( parsedDeliverables)
+
       const members = parsedStudents.map(memberitem => <Member
         key={memberitem.studentid}
         name={memberitem.name}
         surname={memberitem.surname}
         email={memberitem.email}
       />)
-      console.log(parsedDeliverables);
 
 
-        //Reviews
-      var reviewList = Array();
-      var a;
-      for (a in parsedDeliverables){
-        reviewList = reviewList.concat(parsedDeliverables[a].reviews);
-      }
-      
-      console.log(reviewList);
       var i = 0;
       const deliverables = parsedDeliverables.map(documentitem => <DocumentItem
         key={i++}
@@ -47,14 +38,33 @@ class GroupPage extends Component {
       />)
 
 
+      //Reviews
+      var myMap = new Map();
+      for (var a of parsedDeliverables) {
+        myMap.set(a.name, a.reviews);
+      }
+      console.log(myMap);
       i = 0;
-      const reviews = reviewList.map(reviewitem => <ReviewItem
-        key={i++}
-        name={reviewitem.student.name}
-        review={reviewitem.review}
-      />)
+      var reviews = Array();
+      myMap.forEach(function (value, key) {
+        if (value.length !== 0) {
+          const curr = <div>
+            <h2 id="document_review_object"> {key}</h2>
+            <hr /></div>;
+          const currRevs = value.map(reviewitem =>
+            <ReviewItem
+              key={i++}
+              name={reviewitem.student.name}
+              review={reviewitem.review}
+            />)
 
+          let buffer = []
+          buffer.push(curr);
+          buffer.push(currRevs);
+          reviews = reviews.concat(buffer);
+        }
 
+      });
 
       const membersNames = parsedStudents.map(memberitem => <div><li key={memberitem.studentid}> {memberitem.name} {memberitem.surname}</li>
         <div className="input">
@@ -66,7 +76,7 @@ class GroupPage extends Component {
           />
         </div>
       </div>)
-      
+
       this.setState({ membersNames: membersNames });
       this.setState({ members: members });
       this.setState({ deliverables: deliverables });
@@ -104,9 +114,9 @@ class GroupPage extends Component {
     e.preventDefault();
     let review = document.getElementById("review").value;
 
-    console.log( review);
+    console.log(review);
   }
-  
+
   handleJoinGroup = e => {
     e.preventDefault();
     let groupname = localStorage.getItem('selectedGroup');
@@ -136,7 +146,7 @@ class GroupPage extends Component {
   };
 
   handleSavePeerReview = e => {
-      
+
   }
 
   render() {
@@ -164,7 +174,7 @@ class GroupPage extends Component {
             <h1> Reviews </h1>
             <hr />
             <div className="reviews">
-            {this.state.reviews}
+              {this.state.reviews}
             </div>
           </div>
         </div>
