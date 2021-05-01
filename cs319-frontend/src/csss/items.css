@@ -1,130 +1,156 @@
 .poll_item {
-  margin-bottom: 20px;
-  margin-left: 20%;
-  margin-right: 20%;
-  border-radius: 5px;
-  background-color: #8ec5fc;
-  background-image: linear-gradient(135deg, #9452a5a0 10%, #dfacdb44 100%);
+    margin-bottom: 20px;
+    margin-left: 20%;
+    margin-right: 20%;
+    border-radius: 5px;
+    background-color: #8ec5fc;
+    background-image: linear-gradient(135deg, #9452a5a0 10%, #dfacdb44 100%);
 }
 
 .poll_item1 {
-  margin-bottom: 20px;
-  margin-left: 20%;
-  border-radius: 5px;
-  margin-right: 20%;
-  background-color: white;
-  border-color: #1f2124;
-  border-width: 2px;
-  border-style: solid;
+    margin-bottom: 20px;
+    margin-left: 20%;
+    border-radius: 5px;
+    margin-right: 20%;
+    background-color: white;
+    border-color: #1f2124;
+    border-width: 2px;
+    border-style: solid;
 }
 
 .poll_item2 {
-  margin-bottom: 20px;
-  margin-left: 20%;
-  margin-right: 20%;
-  border-radius: 5px;
-  background-color: #8ec5fc;
-  background-image: linear-gradient(135deg, #002661 10%, #92ffc0 100%);
+    margin-bottom: 20px;
+    margin-left: 20%;
+    margin-right: 20%;
+    border-radius: 5px;
+    background-color: #8ec5fc;
+    background-image: linear-gradient(135deg, #002661 10%, #92ffc0 100%);
 }
 
-
 .poll_item_name {
-  height: fit-content;
-  text-align: center;
-  width: 100%;
+    height: fit-content;
+    text-align: center;
+    width: 100%;
 }
 
 .poll_item_name h3 {
-  color: white;
+    color: white;
 }
 
-
 .poll_item1 .poll_item_name h3 {
-  font-size: 1.4em;
-  color: black;
+    font-size: 1.4em;
+    color: black;
 }
 
 #memcount {
-  margin-top: auto;
-  margin-bottom: auto;
-  font-size: 1.4rem;
-  margin-right: 30px;
-  color: #1f2124;
-  margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 1.4rem;
+    margin-right: 30px;
+    color: #1f2124;
+    margin-left: auto;
 }
 
 #votecount {
-  margin-top: auto;
-  margin-bottom: auto;
-  font-size: 1.4rem;
-  margin-right: 30px;
-  color: #1f2124;
-  margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 1.4rem;
+    margin-right: 30px;
+    color: #1f2124;
+    margin-left: auto;
 }
 
 .member {
-  margin-right: auto;
-  margin-left: auto;
-  width: 70%;
-  margin-bottom: 10px;
-  background-color: white;
-  display: flex;
-  flex-direction: row;
-  border: double 4px transparent;
-  border-radius: 80px;
-  border-color:#2c2f35;
-  border-style:solid;
+    margin-right: auto;
+    margin-left: auto;
+    width: 70%;
+    margin-bottom: 10px;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    border: double 4px transparent;
+    border-radius: 80px;
+    border-color: #2c2f35;
+    border-style: solid;
 }
 
-#member_link{
-  width: 100%;
-  display: flex;
-  flex-direction: row;
+#member_link {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
 }
 
 .member .member_image {
-  width: 50px;
-  background-color: white;
-  height: 50px;
-  margin: 10px;
-  margin-right: -50px;
-  border-radius: 100%;
-  display: flex;
+    width: 50px;
+    background-color: white;
+    height: 50px;
+    margin: 10px;
+    margin-right: -50px;
+    border-radius: 100%;
+    display: flex;
 }
 
 .member .member_image #member_icon {
-  margin-bottom: auto;
-  margin-top: auto;
-  width: 50px;
-  height: 50px;
+    margin-bottom: auto;
+    margin-top: auto;
+    width: 50px;
+    height: 50px;
 }
 
 .member .member_name {
-  margin: auto;
-  height: fit-content;
+    margin: auto;
+    height: fit-content;
 }
 
 .member .member_name h3 {
-  font-size: 1.2em;
+    font-size: 1.2em;
 }
 
 #linkGroup {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
 }
 
 #group_name {
-  font-size: 1.2rem;
+    font-size: 1.2rem;
 }
 
-#document_link{
-  text-align: center;
-  width: 100%;
-  cursor: pointer;
+#document_link {
+    text-align: center;
+    width: 100%;
+    cursor: pointer;
 }
 
-.member :hover{
-  border-radius: 80px;
-  background-color: #ddedfd;
+.member :hover {
+    border-radius: 80px;
+    background-color: #ddedfd;
+}
+
+.review_texts {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+#review_name {
+    width: fit-content;
+    align-self: center;
+}
+
+#review_content {
+    margin: auto;
+    margin-bottom: 5px;
+    width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
+.review_content_popup{
+    font-size: 2rem;
 }

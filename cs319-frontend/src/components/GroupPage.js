@@ -13,11 +13,11 @@ import { Redirect } from "react-router-dom";
 class GroupPage extends Component {
   state = {};
   componentWillMount() {
+    //members
     var xhrgroups = new XMLHttpRequest();
     xhrgroups.open("GET", "http://d7c59928777f.ngrok.io/api/group/getdeliverable/" + localStorage.getItem('selectedGroup'));
     xhrgroups.send();
     xhrgroups.addEventListener("load", () => {
-      // update the state of the component with the result here
       var parsed = JSON.parse(xhrgroups.response);
       var parsedStudents = parsed.students;
       var parsedDeliverables = parsed.deliverables;
@@ -66,6 +66,7 @@ class GroupPage extends Component {
           />
         </div>
       </div>)
+      
       this.setState({ membersNames: membersNames });
       this.setState({ members: members });
       this.setState({ deliverables: deliverables });
