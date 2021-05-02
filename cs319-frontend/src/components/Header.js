@@ -4,7 +4,6 @@ import { Link, Redirect } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import Popup from 'reactjs-popup';
-import "react-toggle/style.css"
 
 
 class Header extends Component {
@@ -13,12 +12,13 @@ class Header extends Component {
 
   handleLogout = e => {
     e.preventDefault();
-    this.setState({ loggedOut: true });
+    localStorage.setItem('currentUserMail', null);
+    localStorage.setItem('myGroupName', null);
+    this.setState({ loggedOut: true }); 
   };
 
   handleMain = e => {
     localStorage.setItem("selectedMember", localStorage.getItem('currentUserMail'))
-    console.log(localStorage.getItem('selectedMember'))
   };
 
   getPeriod = e => {

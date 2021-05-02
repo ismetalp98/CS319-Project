@@ -50,10 +50,10 @@ class GroupPage extends Component {
       console.log(myMap);
       var i = 0;
       var reviews = [];
-      myMap.forEach(function (value, key) {
+      myMap.forEach(function (value, keya) {
         if (value.length !== 0) {
-          const curr = <div key={i++}>
-            <h2 style={{ color: '#f50057' }} id="document_review_object"> {key}</h2>
+          const curr = <div key={keya}>
+            <h2 style={{ color: '#f50057' }} id="document_review_object"> {keya}</h2>
             <hr /></div>;
           const currRevs = value.map(reviewitem =>
             <ReviewItem
@@ -67,7 +67,6 @@ class GroupPage extends Component {
           buffer.push(currRevs);
           reviews = reviews.concat(buffer);
         }
-
       });
 
       //Members
