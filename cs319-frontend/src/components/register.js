@@ -3,7 +3,8 @@ import Button from "@material-ui/core/Button";
 import "../csss/auth.css";
 import bg from "./../bg.svg";
 import { Link, Redirect } from "react-router-dom";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class Register extends Component {
   state = {};
@@ -14,7 +15,7 @@ class Register extends Component {
     let email = document.getElementById("email").value;
     let studentId = document.getElementById("studentId").value;
     let pss = document.getElementById("pss").value;
-
+    let pss2 = document.getElementById("pss2").value;
     var data = {
       "email": email,
       "studentid": studentId,
@@ -22,30 +23,41 @@ class Register extends Component {
       "surname": lastname,
       "password": pss
     };
-    var json = JSON.stringify(data);
-    var xhr = new XMLHttpRequest();
-
-    xhr.addEventListener("load", () => {
-      // update the state of the component with the result here
 
 
-      if (xhr.status === 200) {
-        console.log(xhr.status);
-        console.log("Successfully Registered");
-        this.setState({ registered: true });
+    if (/*email.includes("@ug.bilkent.edu.tr") && pss.length >= 8 &&
+        firstname.length > 1 &&
+        lastname.length > 1 &&
+        studentId.length >= 8*/true) {
+
+      if (pss !== pss2) {
+        toast.error("Passwords does not match.");
+      } else {
+        var json = JSON.stringify(data);
+        var xhr = new XMLHttpRequest();
+
+        xhr.addEventListener("load", () => {
+          // update the state of the component with the result here
+
+
+          if (xhr.status === 200) {
+            toast.success("Successfully Registered");
+            this.setState({ registered: true });
+          }
+        });
+
+
+        // open the request with the verb and the url
+
+        xhr.open("POST", "https://d7c59928777f.ngrok.io/api/student/create/");
+        xhr.setRequestHeader("Content-Type", "application/json");
+        // send the request
+        xhr.send(json);
       }
-    });
-
-
-    // open the request with the verb and the url
-
-    xhr.open("POST", "https://d7c59928777f.ngrok.io/api/student/create/");
-    xhr.setRequestHeader("Content-Type", "application/json");
-    // send the request
-    xhr.send(json);
-
-
-  };
+    }else {
+      toast.error("Your mail adress and password is not in proper format!");
+    }
+  }
   render() {
 
     if (this.state.registered) {
@@ -69,6 +81,7 @@ class Register extends Component {
                       placeholder="First Name"
                       autoComplete="off"
                       type="text"
+                      title="At least 2 characters"
                     />
                   </div>
                 </div>
@@ -79,6 +92,7 @@ class Register extends Component {
                       placeholder="Last Name"
                       autoComplete="off"
                       type="text"
+                      title="At least 2 characters"
                     />
                   </div>
                 </div>
@@ -89,6 +103,7 @@ class Register extends Component {
                       placeholder="Student ID"
                       autoComplete="off"
                       type="text"
+                      title="At least 8 characters"
                     />
                   </div>
                 </div>
@@ -99,6 +114,7 @@ class Register extends Component {
                       placeholder="E-mail"
                       autoComplete="off"
                       type="text"
+                      title="Please use @ug.bilkent.edu.tr domain."
                     />
                   </div>
                 </div>
@@ -109,6 +125,7 @@ class Register extends Component {
                       placeholder="Password"
                       autoComplete="off"
                       type="password"
+                      title="At least 8 characters"
                     />
                   </div>
                 </div>
@@ -116,7 +133,7 @@ class Register extends Component {
                 <div className="search_form_div">
                   <div className="input">
                     <input
-                      id="pss"
+                      id="pss2"
                       placeholder="Password Again"
                       autoComplete="off"
                       type="password"
@@ -127,6 +144,8 @@ class Register extends Component {
                 <Button id="logBtn" variant="contained" color="primary" onClick={this.handleLogin}>
                   Register
               </Button>
+
+              <ToastContainer />
 
                 <hr />
                 <Link to={"/login"}>
