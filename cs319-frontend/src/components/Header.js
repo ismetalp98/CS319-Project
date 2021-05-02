@@ -4,23 +4,17 @@ import { Link, Redirect } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import Popup from 'reactjs-popup';
-
-
 class Header extends Component {
-
   state = {};
-
   handleLogout = e => {
     e.preventDefault();
     localStorage.setItem('currentUserMail', null);
     localStorage.setItem('myGroupName', null);
     this.setState({ loggedOut: true }); 
   };
-
   handleMain = e => {
     localStorage.setItem("selectedMember", localStorage.getItem('currentUserMail'))
   };
-
   getPeriod = e => {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "https://d7c59928777f.ngrok.io/api/instructor/evaluationPeriod");
@@ -35,28 +29,23 @@ class Header extends Component {
     });
     if(localStorage.getItem("currentPeriod" === false)) {
       localStorage.setItem("periodButton","Start");
-      localStorage.setItem("periodButtonColor","primary");
     }
     else{
       localStorage.setItem("periodButton","End");
-      localStorage.setItem("periodButtonColor","secondary");
     }
   };
   handlePeriod = e => {
 
     if(localStorage.getItem("periodButton")==="End") {
       localStorage.setItem("periodButton","Start");
-      localStorage.setItem("periodButtonColor","primary");
     }
     else {
       localStorage.setItem("periodButton","End");
-      localStorage.setItem("periodButtonColor","secondary");
     }
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://d7c59928777f.ngrok.io/api/instructor/reverseEvaluationPeriod");
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send();
-
     xhr.addEventListener("load", () => {
       if (xhr.status === 200) {
         console.log(xhr.response);
@@ -69,7 +58,6 @@ class Header extends Component {
   handleCreateGroup = e => {
     e.preventDefault();
     let groupName = document.getElementById("groupName").value;
-
     var data = {
       "name": groupName
     };
@@ -84,14 +72,12 @@ class Header extends Component {
         xhr.open("POST", "https://d7c59928777f.ngrok.io/api/group/create/");
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(json);
-
       }
     });
   };
   componentDidMount() {
     this.getPeriod();
   }
-
   render() {
     if (this.state.loggedOut) {
       return <Redirect to={'/login'} />
@@ -109,8 +95,6 @@ class Header extends Component {
                 Home Page
             </Button>
             </Link>}
-
-
           </li>
           {localStorage.getItem('myGroupName') === "none" ?
             <li className="nav_button">
@@ -128,11 +112,8 @@ class Header extends Component {
   </button>
                     <div className="header"> Create Group </div>
                     <div className="content">
-
-
                     </div>
                     <div className="actions">
-
                       <div className="search_form_div">
                         <div className="input">
                           <input
@@ -143,7 +124,6 @@ class Header extends Component {
                           />
                         </div>
                       </div>
-
                       <Button
                         id="button_save"
                         onClick={this.handleCreateGroup}
@@ -165,15 +145,13 @@ class Header extends Component {
           </li>
           <li >
             <Link style={{ textDecoration: 'none' }}>
-              <Button id="periodButton" onClick={this.handlePeriod} variant="contained" color={localStorage.getItem("periodButtonColor")}>
+              <Button id="periodButton" onClick={this.handlePeriod} variant="contained" color="primary">
                 {localStorage.getItem("periodButton")} period
             </Button>
             </Link>
           </li>
         </ul>
-
         <h1 id="title">
-
           Pire
         </h1>
         <ul className="logout_buttons_ul">
@@ -181,14 +159,11 @@ class Header extends Component {
             <Button id="logoutbtn" variant="contained" color="secondary" startIcon={<ExitToAppIcon />} onClick={this.handleLogout}>
               Log Out
             </Button>
-
           </li>
         </ul>
         {this.props.instructor ? <Redirect to={'/instructorHome'} /> : <Redirect to={'/homePage'} />}
       </header>
-
     );
   }
 }
-
 export default Header;
