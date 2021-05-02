@@ -3,6 +3,8 @@ import Button from "@material-ui/core/Button";
 import "../csss/auth.css";
 import bg from "./../bg.svg";
 import { Link, Redirect } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 class InstructorRegister extends Component {
@@ -13,37 +15,49 @@ class InstructorRegister extends Component {
     let lastname = document.getElementById("lastname").value;
     let email = document.getElementById("email").value;
     let pss = document.getElementById("pss").value;
+    let pss2 = document.getElementById("pss2").value;
+    if (/*email.includes("@bilkent.edu.tr") && pss.length >= 8 &&
+        firstname.length > 1 &&
+        lastname.length > 1*/true) {
+        if(pss !== pss2){
+          toast.error("Passwords does not match.");
+        }
+        else{
+          var data = {
+            "email": email,
+            "name": firstname,
+            "surname": lastname,
+            "password": pss
+          };
 
-    var data = {
-      "email": email,
-      "name": firstname,
-      "surname": lastname,
-      "password": pss
-    };
-    var json = JSON.stringify(data);
-    var xhr = new XMLHttpRequest();
+          var json = JSON.stringify(data);
+          var xhr = new XMLHttpRequest();
+    
+          xhr.addEventListener("load", () => {
+            // update the state of the component with the result here
+            console.log(xhr.status);
+            if (xhr.status === 200) {
+              toast.success("Successfully Registered");
+              this.setState({ registered: true });
+            }
+            else{
+              toast.error("Instructor already exists.");
+            }
+          });
+          // open the request with the verb and the url
+          xhr.open("POST", "https://d7c59928777f.ngrok.io/api/instructor/create/");
+          xhr.setRequestHeader("Content-Type", "application/json");
+          // send the request
+          xhr.send(json);
+        };
+          
 
-    xhr.addEventListener("load", () => {
-      // update the state of the component with the result here
+        }else{
 
+          toast.error("Bro at least type something.");
 
-      if (xhr.status === 200) {
-        console.log(xhr.status);
-        console.log("Successfully Registered");
-        this.setState({ registered: true });
-      }
-    });
-
-
-    // open the request with the verb and the url
-
-    xhr.open("POST", "https://d7c59928777f.ngrok.io/api/instructor/create/");
-    xhr.setRequestHeader("Content-Type", "application/json");
-    // send the request
-    xhr.send(json);
-
-
-  };
+        }
+  }
   render() {
 
     if (this.state.registered) {
@@ -97,6 +111,7 @@ class InstructorRegister extends Component {
                       placeholder="Password"
                       autoComplete="off"
                       type="password"
+                      title="At least 8 characters"
                     />
                   </div>
                 </div>
@@ -104,7 +119,7 @@ class InstructorRegister extends Component {
                 <div className="search_form_div">
                   <div className="input">
                     <input
-                      id="pss"
+                      id="pss2"
                       placeholder="Password Again"
                       autoComplete="off"
                       type="password"
@@ -115,6 +130,7 @@ class InstructorRegister extends Component {
                 <Button id="logBtn" variant="contained" color="primary" onClick={this.handleLogin}>
                   Register
               </Button>
+              <ToastContainer />
 
                 <hr />
                 <Link to={"/InstructorLogin"}>
