@@ -62,7 +62,7 @@ class HomePage extends Component {
         if (parsed.group === null) {
           const myGroup = <h2>Has no group</h2>
           this.setState({ myGroup: myGroup });
-          localStorage.setItem('myGroupName', null);
+          localStorage.setItem('myGroupName', "none");
         }
         else {
           const myGroup = <GroupItem
