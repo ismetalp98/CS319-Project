@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 import "../csss/items.css";
 import Popup from 'reactjs-popup';
+import PollShowing from "../items/PollShowing";
 
 class QuestionAnswerItem extends Component {
   state = {};
@@ -29,15 +30,13 @@ class QuestionAnswerItem extends Component {
         for (var current of pollQuestions) {
           if(current.id === this.state.index) {
           console.log(current.answers);
-          for(var oneAnswer of current.answers) {
-            console.log(oneAnswer.answer);
-          }
           var j = 0;
-          polls = current.answers.map(questionobj => {
-            <div key={j++}>
-              <h3>{questionobj.answer}</h3>
-            </div>
+          const polls = current.answers.map(questionobj => {
+            return <PollShowing
+              answer={questionobj.answer}>
+            </PollShowing>
           })
+          
           this.setState({ polls: polls });
         }  
       }
