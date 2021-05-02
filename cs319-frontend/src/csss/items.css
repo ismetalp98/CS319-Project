@@ -188,3 +188,73 @@
 #document_review_object{
     text-align: center;
 }
+
+.member_actions{
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+}
+
+.member_actions{
+    display: flex;
+    flex-direction: column;
+}
+
+.member_actions  #group_button {
+    width: 12em;
+    height: 10em;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: white;
+    margin-left: 5%;
+    margin-right: 5%;
+    border: double 4px transparent;
+    border-radius: 8px;
+    border-color: darkgray;
+    border-style: solid;
+    cursor: pointer;
+  }
+
+  .header{
+      display: flex;
+      flex-direction: column;
+  }
+
+  #member_profile_view{
+      width: 60%;
+      margin-top: 20px;
+      margin-left: auto;
+      margin-right: auto;
+  }
+
+  .member_friend{
+      width: 100%;
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+  }
+
+  .input_friend{
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+  }
+
+  .friend_member_radio{
+      display: flex;
+      margin-left: auto;
+      margin-right: auto;
+  }
+
+  .friend_member_radio span{
+      font-size: 1.4rem;
+  }
+
+  .input_friend textarea{
+      max-width: 100%;
+      height: 90px;
+      width: 90%;
+      margin-left: 5%;
+  }
+
