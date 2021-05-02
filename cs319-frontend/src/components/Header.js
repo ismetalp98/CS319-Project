@@ -4,7 +4,7 @@ import { Link, Redirect } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import Popup from 'reactjs-popup';
-
+import "react-toggle/style.css"
 
 
 class Header extends Component {
@@ -21,6 +21,40 @@ class Header extends Component {
     console.log(localStorage.getItem('selectedMember'))
   };
 
+  getPeriod = e => {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://d7c59928777f.ngrok.io/api/instructor/evaluationPeriod");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send();
+    xhr.addEventListener("load", () => {
+      if (xhr.status === 200) {
+        console.log(xhr.response);
+        var parsed = JSON.parse(xhr.response);
+        localStorage.setItem("currentPeriod", parsed.active)
+      }
+    });
+  };
+  handlePeriod = e => {
+
+    if(localStorage.getItem("periodButton")==="End") {
+      localStorage.setItem("periodButton","Start");
+    }
+    else {
+      localStorage.setItem("periodButton","End");
+    }
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://d7c59928777f.ngrok.io/api/instructor/reverseEvaluationPeriod");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send();
+
+    xhr.addEventListener("load", () => {
+      if (xhr.status === 200) {
+        console.log(xhr.response);
+        var parsed = JSON.parse(xhr.response);
+        localStorage.setItem("currentPeriod", parsed.active)
+      }
+    });
+  };
   handleCreateGroup = e => {
     e.preventDefault();
     let groupName = document.getElementById("groupName").value;
@@ -42,10 +76,10 @@ class Header extends Component {
 
       }
     });
-
-
   };
-
+  componentDidMount() {
+    this.getPeriod();
+  }
 
   render() {
     if (this.state.loggedOut) {
@@ -115,6 +149,13 @@ class Header extends Component {
             <Link to="/pollCreateOpenEnded" style={{ textDecoration: 'none' }}>
               <Button id="createPollBtn" variant="contained" color="primary">
                 Create Poll
+            </Button>
+            </Link>
+          </li>
+          <li >
+            <Link style={{ textDecoration: 'none' }}>
+              <Button id="periodButton" onClick={this.handlePeriod} variant="contained" color="primary">
+                {localStorage.getItem("periodButton")} period
             </Button>
             </Link>
           </li>
