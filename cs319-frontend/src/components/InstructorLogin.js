@@ -16,7 +16,7 @@ class InstructorLogin extends Component {
     let pss = document.getElementById("pss").value;
     var xhr = new XMLHttpRequest();
     
-    if(email.includes("@bilkent.edu.tr") && pss.length > 8){
+    if(/*email.includes("@bilkent.edu.tr") && pss.length > 8*/true){
       xhr.addEventListener("load", () => {
         // update the state of the component with the result here
         var parsed = JSON.parse(xhr.response);
