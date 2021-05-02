@@ -4,6 +4,7 @@ pire applicaiton database tables
 
 CREATE SCHEMA account;
 CREATE SCHEMA review;
+create schema general;
 
 /* account */
 CREATE TABLE account.student(
@@ -83,6 +84,14 @@ CREATE TABLE poll.peerevaluation(
 	FOREIGN KEY (group_id) REFERENCES account.group (id)
 );
 
+/* General */
+CREATE TABLE general.peerreviewperiod(
+	id serial PRIMARY KEY,
+	active boolean
+);
+
+/* Insertes */
+INSERT INTO general.peerreviewperiod(active) VALUES (true);
 
 /* Indexes */
 CREATE UNIQUE INDEX ON account.student USING btree (email);
