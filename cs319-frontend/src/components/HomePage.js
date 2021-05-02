@@ -3,7 +3,7 @@ import ProfilePage from "./ProfilePage";
 import PollItem from "../items/PollItem";
 import GroupItem from "../items/GroupItem";
 import "../csss/homePage.css";
-import { withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 
 
@@ -52,32 +52,36 @@ class HomePage extends Component {
   getMyGroup = e => {
     var xhruser = new XMLHttpRequest();
     xhruser.open("GET", "http://d7c59928777f.ngrok.io/api/student/" + localStorage.getItem('currentUserMail'));
+    xhruser.setRequestHeader("Content-Type", "application/json");
     var groupid = 0;
     xhruser.send();
     xhruser.addEventListener("load", () => {
       var parsed = JSON.parse(xhruser.response);
-      if (parsed.group === null) {
-        const myGroup = <h2>Has no group</h2>
-        this.setState({ myGroup: myGroup });
-        localStorage.setItem('myGroupName',"none");
-       }
-      else {
-        const myGroup = <GroupItem
-          key={groupid++}
-          color={1}
-          name={parsed.group.name}
-          project={'PeerReview'} />
-        this.setState({ myGroup: myGroup });
-        localStorage.setItem('myGroupName',parsed.group.name);
-        localStorage.setItem('hasNoGroup',false);
+      if (xhruser.status === 200) {
+        if (parsed.group === null) {
+          const myGroup = <h2>Has no group</h2>
+          this.setState({ myGroup: myGroup });
+          localStorage.setItem('myGroupName', "none");
+        }
+        else {
+          const myGroup = <GroupItem
+            key={groupid++}
+            color={1}
+            name={parsed.group.name}
+            project={'PeerReview'} />
+          this.setState({ myGroup: myGroup });
+          localStorage.setItem('myGroupName', parsed.group.name);
+          localStorage.setItem('hasNoGroup', false);
+        }
       }
+
     });
   };
 
   componentDidMount() {
-      this.getGroups();
-      this.getPolls();
-      this.getMyGroup();
+    this.getGroups();
+    this.getPolls();
+    this.getMyGroup();
   }
   render() {
     return (

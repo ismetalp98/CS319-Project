@@ -11,7 +11,6 @@ class PollAnswer extends Component {
 
   getQuestions = e => {
     var pollIndex = localStorage.getItem("currentPollIndex");
-    var pollName = localStorage.getItem("currentPollName");
     var pollQuestions;
     var xhrpolls = new XMLHttpRequest();
     xhrpolls.open("GET", "https://d7c59928777f.ngrok.io/api/poll/" + pollIndex);
@@ -42,7 +41,7 @@ class PollAnswer extends Component {
     return (
       <form className="PollAnswer">
         <div className="poll_answers_div">
-          <h1>Questions</h1>
+          <h1>{localStorage.getItem("currentPollName")}</h1>
           <hr />
           {this.state.polls}
         </div>

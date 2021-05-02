@@ -7,17 +7,17 @@ import 'reactjs-popup/dist/index.css';
 import Button from "@material-ui/core/Button";
 import DocumentItem from "../items/DocumentItem";
 import ReviewItem from "../items/ReviewItem";
-import { Redirect} from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 class GroupPage extends Component {
-  state = {valueR : null};
+  state = { valueR: null };
 
   getDeliverables = (parsedDeliverables) => {
     var j = 0;
-      const deliverableNames = parsedDeliverables.map(documentitem => <div>
-         <input key={j++} type="radio" value={documentitem.id} name="gender" /> {documentitem.name}
-      </div>)
-      this.setState({ deliverableNames: deliverableNames });
+    const deliverableNames = parsedDeliverables.map(documentitem => <div>
+      <input key={j++} type="radio" value={documentitem.id} name="gender" /> {documentitem.name}
+    </div>)
+    this.setState({ deliverableNames: deliverableNames });
   };
 
   componentWillMount() {
@@ -32,7 +32,7 @@ class GroupPage extends Component {
 
 
       //Deliverables
-      this.setState({valueR : 6});
+      this.setState({ valueR: 6 });
       const deliverables = parsedDeliverables.map(documentitem => <DocumentItem
         key={documentitem.id}
         name={documentitem.name}
@@ -88,7 +88,7 @@ class GroupPage extends Component {
         </div>
       </div>)
 
-      
+
       this.setState({ membersNames: membersNames });
       this.setState({ members: members });
       this.setState({ deliverables: deliverables });
@@ -122,7 +122,7 @@ class GroupPage extends Component {
     xhr.send(json);
   }
 
-  
+
 
   handleJoinGroup = e => {
     e.preventDefault();
@@ -156,6 +156,30 @@ class GroupPage extends Component {
 
   }
 
+  handleLeaveGroup = e => {
+    e.preventDefault();
+    let studentEmail = localStorage.getItem('currentUserMail');
+
+    var data = {
+      "email": studentEmail,
+    };
+    var json = JSON.stringify(data);
+    var xhr = new XMLHttpRequest();
+    xhr.addEventListener("load", () => {
+
+
+      if (xhr.status === 200) {
+        this.setState({ leavedGroup: true });
+        alert("Leaved the group")
+      }
+    });
+
+    xhr.open("POST", "http://d7c59928777f.ngrok.io/api/student/leaveGroup");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    // send the request
+    xhr.send(json);
+  }
+
   handleSaveReview = e => {
     e.preventDefault();
 
@@ -169,9 +193,9 @@ class GroupPage extends Component {
     var data = {
       "studentEmail": email,
       "deliverableId": doc,
-      "review":review
+      "review": review
     };
-    
+
     var json = JSON.stringify(data);
     console.log(json);
     var xhr = new XMLHttpRequest();
@@ -180,10 +204,10 @@ class GroupPage extends Component {
     xhr.send(json);
 
     xhr.addEventListener("load", () => {
-        console.log(xhr.status);
+      console.log(xhr.status);
     });
 
-    
+
   }
 
   handleChange = (event) => {
@@ -191,8 +215,8 @@ class GroupPage extends Component {
   };
 
   render() {
-    if (this.state.joinedGroup) {
-      return <Redirect to={'/groupPage'} />
+    if (this.state.joinedGroup || this.state.leavedGroup) {
+      return <Redirect to={'/mainPage'} />
     }
     return (
       <div className="group_page">
@@ -235,13 +259,13 @@ class GroupPage extends Component {
                     <div className="modal">
                       <button className="close" onClick={close}>
                         &times;
-        </button>
+            </button>
                       <div className="header"> Add Document </div>
                       <div className="content">
                         {' '}
-          Give your Document URL
+               your Document URL
 
-        </div>
+            </div>
                       <div className="actions">
                         <div className="search_form_div">
                           <div className="input">
@@ -280,7 +304,8 @@ class GroupPage extends Component {
 
             {localStorage.getItem('myGroupName') === localStorage.getItem('selectedGroup') ?
               <Popup
-                trigger={<div id="group_button"><AddIcon id="add_icon" />
+                trigger={<div id="group_button">
+                  <AddIcon id="add_icon" />
                   <span>Add Peer Review</span></div>}
                 modal
                 nested
@@ -289,7 +314,7 @@ class GroupPage extends Component {
                   <div className="modal">
                     <button className="close" onClick={close}>
                       &times;
-  </button>
+            </button>
                     <div className="header">Peer Review </div>
                     <div className="content">
                       <ul id="peerReviewMembers">
@@ -322,9 +347,9 @@ class GroupPage extends Component {
   </button>
                     <div className="header"> Review </div>
                     <div className="content">
-                        <div  onClick={this.handleChange}>
-                          {this.state.deliverableNames}
-                        </div>
+                      <div onClick={this.handleChange}>
+                        {this.state.deliverableNames}
+                      </div>
                     </div>
                     <div className="actions">
 
@@ -354,6 +379,13 @@ class GroupPage extends Component {
                 <AddIcon id="add_icon" />
                 <span>Join the Group</span>
               </div>
+            }
+            {localStorage.getItem('myGroupName') === localStorage.getItem('selectedGroup') ?
+              <div id="group_button" onClick={this.handleLeaveGroup}>
+                <AddIcon id="add_icon" />
+                <span>Leave the Group</span>
+              </div>
+              : null
             }
           </div>
         </div>

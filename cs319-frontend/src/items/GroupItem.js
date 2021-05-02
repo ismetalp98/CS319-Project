@@ -29,7 +29,7 @@ class GroupItem extends Component {
   render() {
     return (
       <div className={this.state.color} onClick={this.handleGroup}>
-        <Link id="linkGroup" to="/groupPage" >
+        <Link id="linkGroup" to="/groupPage" style={{ textDecoration: 'none' }}>
           <div className="poll_item_name" >
             <h3 id="group_name"> {this.props.name}</h3>
             <h3 id="group_name"> {this.props.project}</h3>

@@ -10,10 +10,7 @@ class QuestionItem extends Component {
   }
 
   handleAnswer = e => {
-    let answer = document.getElementById("answer").value;
-    console.log(this.props.index);
-    console.log(localStorage.getItem("selectedMember"));
-    console.log(answer);
+    let answer = document.getElementById(this.props.index).value;
 
     var data = {
       "pollQuestionId": this.props.index,
@@ -24,17 +21,12 @@ class QuestionItem extends Component {
     var xhr = new XMLHttpRequest();
 
     xhr.addEventListener("load", () => {
-      // update the state of the component with the result here
       if (xhr.status === 200) {
       }
     });
-    // open the request with the verb and the url
-
     xhr.open("POST", "http://d7c59928777f.ngrok.io/api/poll/createPollAnswer");
     xhr.setRequestHeader("Content-Type", "application/json");
-    // send the request
     xhr.send(json);
-    //this.setState({questionAnswerEnded : true});
   };
   
   render() {
@@ -46,7 +38,7 @@ class QuestionItem extends Component {
         <div className="question_form_div">
           <div className="input">
             <input
-              id="answer"
+              id={this.props.index}
               placeholder="Answer"
               autoComplete="off"
               type="text"

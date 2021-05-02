@@ -33,7 +33,7 @@ class PollItem extends Component {
           <div className="poll_item_name">
             <h3 id="group_name"> {this.props.name}</h3>
           </div>
-          <h3 id="votecount"> {this.props.count}</h3>    
+ 
       </div>
     );
   }
