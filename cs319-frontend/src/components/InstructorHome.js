@@ -57,9 +57,11 @@ class InstructorHome extends Component {
 
       const polls = parsed.map(pollitem => <PollItem
         key={pollitem.id}
+        id={pollitem.id}
         name={pollitem.name}
         color={pollid++}
         count={10}
+        isInstructor={true}
       />)
       this.setState({ polls: polls });
     });

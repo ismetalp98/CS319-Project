@@ -15,25 +15,31 @@ class PollItem extends Component {
             : "poll_item1";
     this.setState({ "name": name });
   }
-  set = e =>{
+  set = e => {
     e.preventDefault();
-    localStorage.setItem("currentPollName",this.props.name);
-    console.log(this.props.id);
-    console.log(this.props.name);
-    localStorage.setItem("currentPollIndex",this.props.id);
-    this.setState({redirect: true});
+    localStorage.setItem("currentPollName", this.props.name);
+    console.log("1. " + this.props.id);
+    console.log("2. " + this.props.name);
+    localStorage.setItem("currentPollIndex", this.props.id);
+    this.setState({ redirect: true });
   }
-  
+
   render() {
     if (this.state.redirect) {
-      return <Redirect to={'/pollAnswer'} />
+      if (this.props.isInstructor) {
+        return <Redirect to={'/showPollAnswer'} />
+      }
+      else {
+        return <Redirect to={'/pollAnswer'} />
+      }
+
     }
     return (
       <div className={this.state.name} onClick={this.set}>
-          <div className="poll_item_name">
-            <h3 id="group_name"> {this.props.name}</h3>
-          </div>
- 
+        <div className="poll_item_name">
+          <h3 id="group_name"> {this.props.name}</h3>
+        </div>
+
       </div>
     );
   }

@@ -9,6 +9,7 @@ import "../csss/mainPage.css";
 import { BrowserRouter as Router, Switch, Route, withRouter } from "react-router-dom";
 import PollQuestionCreate from "../components/PollQuestionCreate";
 import PollCreateOpenEnded from "./PollCreateOpenEnded";
+import ShowPollAnswer from "./ShowPollAnswer";
 
 function InstructorMain() {
   return (
@@ -17,7 +18,7 @@ function InstructorMain() {
         <Header instructor={true} />
         <Switch>
           <Route exact path="/InstructorHome">
-            <InstructorHome />
+            <InstructorHome instructor={true}/>
           </Route>
           <Route exact path="/InstructorProfile">
             <InstructorProfile />
@@ -36,6 +37,9 @@ function InstructorMain() {
           </Route>
           <Route exact path="/pollCreateOpenEnded">
             <PollCreateOpenEnded />
+          </Route>
+          <Route exact path="/showPollAnswer">
+            <ShowPollAnswer />
           </Route>
         </Switch>
       </div>

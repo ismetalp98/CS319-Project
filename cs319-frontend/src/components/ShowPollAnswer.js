@@ -2,29 +2,31 @@ import React, { Component } from "react";
 import "../csss/PollAnswer.css";
 import { Redirect } from "react-router-dom";
 import QuestionItem from "../items/QuestionItem";
-
+import QuestionAnswerItem from "../items/QuestionAnswerItem";
 
 class ShowPollAnswer extends Component {
   state = {};
 
   getQuestions = e => {
     var pollIndex = localStorage.getItem("currentPollIndex");
+    console.log("baban" + pollIndex);
     var pollQuestions;
     var xhrpolls = new XMLHttpRequest();
-    xhrpolls.open("GET", "https://d7c59928777f.ngrok.io/api/poll/" + pollIndex);
+    xhrpolls.open("GET", "http://d7c59928777f.ngrok.io/api/poll/" + pollIndex);
     xhrpolls.send();
     xhrpolls.addEventListener("load", () => {
       // update the state of the component with the result here
       var parsed = JSON.parse(xhrpolls.response);
+      console.log(parsed);
       pollQuestions = parsed.questions;
-      console.log(pollQuestions);
+      console.log(pollQuestions.question);
 
-      const polls = pollQuestions.map(questionobj => {
+     const polls = pollQuestions.map(questionobj => {
         return <QuestionAnswerItem
           key={questionobj.id}
           index={questionobj.id}
           question={questionobj.question}
-          answer={questionobj.answers}>
+          pollIndex={pollIndex}>
         </QuestionAnswerItem>
       })
       this.setState({ polls: polls });

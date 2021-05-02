@@ -1,71 +1,80 @@
 import React, { Component } from "react";
-import "../csss/questionItem.css";
 import Button from "@material-ui/core/Button";
+import "../csss/items.css";
+import Popup from 'reactjs-popup';
 
 class QuestionAnswerItem extends Component {
   state = {};
   componentDidMount() {
     this.setState({ "name": this.props.question });
     this.setState({ "index": this.props.index });
+    this.setState({ "pollIndex": this.props.pollIndex });
+    console.log(this.props.question);
+    console.log(this.props.index);
+    console.log(this.props.pollIndex);
   }
 
-  handleAnswer = e => {
-    let answer = document.getElementById(this.props.index).value;
+  set = e => {
+    e.preventDefault();
 
-    var data = {
-      "pollQuestionId": this.props.index,
-      "studentEmail": localStorage.getItem("selectedMember"),
-      "answer": answer
-    };
-    var json = JSON.stringify(data);
     var xhr = new XMLHttpRequest();
+    var pollQuestions;
 
     xhr.addEventListener("load", () => {
       if (xhr.status === 200) {
+        var parsed = JSON.parse(xhr.response);
+        pollQuestions = parsed.questions;
+//        console.log(pollQuestions);
+        var polls = [];
+        for (var current of pollQuestions) {
+          if(current.id === this.state.index) {
+          console.log(current.answers);
+          for(var oneAnswer of current.answers) {
+            console.log(oneAnswer.answer);
+          }
+          var j = 0;
+          polls = current.answers.map(questionobj => {
+            <div key={j++}>
+              <h3>{questionobj.answer}</h3>
+            </div>
+          })
+          this.setState({ polls: polls });
+        }  
       }
-    });
-    xhr.open("POST", "http://d7c59928777f.ngrok.io/api/poll/createPollAnswer");
+    }});
+    xhr.open("GET", "http://d7c59928777f.ngrok.io/api/poll/" + this.state.pollIndex);
     xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send(json);
-  };
-  getAnswer = e => {
-    var data = {
-      "pollQuestionId": this.props.index,
-      "studentEmail": localStorage.getItem("selectedMember"),
-      "answer": answer
-    };
-    var json = JSON.stringify(data);
-    var xhr = new XMLHttpRequest();
+    xhr.send();
+  }
 
-    xhr.addEventListener("load", () => {
-      if (xhr.status === 200) {
-      }
-    });
-    xhr.open("GET", "http://d7c59928777f.ngrok.io/api/poll/" + this.props.index);
-    xhr.setRequestHeader("Content-Type", "application/json");
-    xhr.send(json);
-  };
-  
   render() {
     return (
-      <div className="question_answer_div">
-        <div className="question_item_name">
-          <h3 id="question_name" >{this.state.name}</h3>
-        </div>
-        <div className="question_form_div">
-          <div className="input">
-            <input
-              id={this.props.index}
-              placeholder="Answer"
-              autoComplete="off"
-              type="text"
-            />
+      <div>
+      <Popup
+      trigger={<div className="poll_item1">
+      <div className="poll_item_name" onClick={this.set}>
+      <h3 id="group_name"> {this.state.name}</h3>
+      </div>
+    </div>}
+
+      modal
+      nested
+    >
+      {close => (
+        <div className="modal">
+          <button className="close" onClick={close}>
+            &times;
+</button>
+          <div className="header">Answers</div>
+          <div className="content">
+              {this.state.polls}
+          </div>
+          <div className="actions">
           </div>
         </div>
-        <Button id="asnwer_submit_btn" onClick={this.handleAnswer} variant="contained" color="primary">
-          Submit
-        </Button>
-      </div>
+      )}
+    </Popup>
+    </div>
     );
   }
 }

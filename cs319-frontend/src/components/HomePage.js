@@ -44,6 +44,7 @@ class HomePage extends Component {
         name={pollitem.name}
         color={pollid++}
         count={10}
+        isInstructor ={false}
       />)
       this.setState({ polls: polls });
     });
