@@ -23,8 +23,7 @@ public class Group extends AbstractBaseObj{
 	
 	@OneToMany(
 		mappedBy = "group",
-        cascade = CascadeType.ALL,
-        orphanRemoval = true
+        cascade = CascadeType.ALL
 	)
 	private List<Student> students = new ArrayList<>();
 	
@@ -57,5 +56,10 @@ public class Group extends AbstractBaseObj{
 	{
 		deliverables.add(deliverable);
 		deliverable.setGroup(this);
+	}
+	
+	public void removeStudent(Student student) {
+		students.remove(student);
+		student.setGroup(null);
 	}
 }
