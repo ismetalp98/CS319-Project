@@ -137,6 +137,7 @@ class Header extends Component {
                 )}
               </Popup>
             </li> : null}
+            {this.props.instructor ? <div className="instructor_header_buttons">
           <li >
             <Link to="/pollCreateOpenEnded" style={{ textDecoration: 'none' }}>
               <Button id="createPollBtn" variant="contained" color="primary">
@@ -147,11 +148,12 @@ class Header extends Component {
           <li >
             <Link style={{ textDecoration: 'none' }}>
               <Button id="periodButton" onClick={this.handlePeriod} variant="contained" color= "primary">
-                {localStorage.getItem("periodButton")} period
+                {localStorage.getItem("periodButton")} Period
             </Button>
             </Link>
             
           </li>
+          </div> : null}
         </ul>
         <h1 id="title">
           Pire

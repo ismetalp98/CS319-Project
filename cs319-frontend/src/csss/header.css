@@ -45,3 +45,11 @@
   border-radius: 10px;
   background-color: rgb(175, 166, 37);
 }
+
+.instructor_header_buttons{
+  display: flex;
+}
+
+#periodButton{
+  margin-left: 20px;
+}

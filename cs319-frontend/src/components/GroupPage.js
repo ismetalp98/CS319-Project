@@ -77,6 +77,7 @@ class GroupPage extends Component {
           surname={memberitem.surname}
           email={memberitem.email}
           myfriend={true}
+          isInstructor={!this.props.instructor}
         />)
         this.setState({ members: members });
       }
@@ -87,6 +88,7 @@ class GroupPage extends Component {
           surname={memberitem.surname}
           email={memberitem.email}
           myfriend={false}
+          isInstructor={!this.props.instructor}
         />)
         this.setState({ members: members });
       }

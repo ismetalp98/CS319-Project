@@ -112,7 +112,7 @@ class Member extends Component {
               >
                 View Profile
     </Button>
-              {this.props.instructor ? null :
+              {this.props.isInstructor ? null :
                 <Popup
                   trigger={<div className="review">
                     <div className="member_name">

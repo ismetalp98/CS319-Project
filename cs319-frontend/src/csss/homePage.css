@@ -18,16 +18,13 @@
   text-align: center;
 }
 .class_info_div {
+  margin-top: 0px;
   background-color: white;
-  overflow-y: scroll;
+  height: 80vh;
   width: 100%;
   border-right: 2px;
-  border-right-color: darkgray;
-  border-right-style: dashed;
-  border-left-color: darkgray;
-  border-left-style: dashed;
-  height: 80vh;
   text-align: center;
+  overflow-y: scroll;
 }
 .group_list_div {
   background-color: white;
