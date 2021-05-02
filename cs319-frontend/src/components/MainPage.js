@@ -17,7 +17,7 @@ function MainPage() {
         <Header instructor={false} />
         <Switch>
           <Route exact path="/homePage">
-            <HomePage instructor={false}/>
+            <HomePage />
           </Route>
           <Route exact path="/profilePage">
             <ProfilePage />

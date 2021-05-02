@@ -77,7 +77,7 @@ class Header extends Component {
     });
   };
   componentDidMount() {
-    this.getPeriod();
+    this.getPeriod();    
   }
   render() {
     if (this.state.loggedOut) {
@@ -97,7 +97,7 @@ class Header extends Component {
             </Button>
             </Link>}
           </li>
-          {localStorage.getItem('myGroupName') === "none" ?
+          {!this.props.instructor ?
             <li className="nav_button">
               <Popup
                 trigger={<Button variant="contained" color="primary" >

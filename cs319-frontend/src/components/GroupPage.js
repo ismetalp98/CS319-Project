@@ -173,7 +173,7 @@ class GroupPage extends Component {
 
       if (xhr.status === 200) {
         this.setState({ leavedGroup: true });
-        localStorage.setItem('myGroupName', "none");
+        localStorage.setItem("myGroupName", "none");
         alert("Leaved the group")
       }
     });

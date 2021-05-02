@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "../csss/review.css";
-import Button from "@material-ui/core/Button";
 
 class Evaluation extends Component {
     state = {};

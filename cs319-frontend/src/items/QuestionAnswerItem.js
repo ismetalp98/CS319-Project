@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Button from "@material-ui/core/Button";
 import "../csss/items.css";
 import Popup from 'reactjs-popup';
 import PollShowing from "../items/PollShowing";
@@ -25,12 +24,9 @@ class QuestionAnswerItem extends Component {
       if (xhr.status === 200) {
         var parsed = JSON.parse(xhr.response);
         pollQuestions = parsed.questions;
-//        console.log(pollQuestions);
-        var polls = [];
         for (var current of pollQuestions) {
           if(current.id === this.state.index) {
           console.log(current.answers);
-          var j = 0;
           const polls = current.answers.map(questionobj => {
             return <PollShowing
               answer={questionobj.answer}>

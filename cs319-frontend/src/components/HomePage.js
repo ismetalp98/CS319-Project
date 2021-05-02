@@ -54,6 +54,7 @@ class HomePage extends Component {
     var xhruser = new XMLHttpRequest();
     xhruser.open("GET", "http://d7c59928777f.ngrok.io/api/student/" + localStorage.getItem('currentUserMail'));
     xhruser.setRequestHeader("Content-Type", "application/json");
+   
     var groupid = 0;
     xhruser.send();
     xhruser.addEventListener("load", () => {

@@ -71,6 +71,7 @@ class InstructorHome extends Component {
       this.getGroups();
       this.getPolls();
       this.getStudentList();
+      localStorage.setItem('myGroupName', "none");
   }
   render() {
     return (

@@ -18,7 +18,7 @@ function InstructorMain() {
         <Header instructor={true} />
         <Switch>
           <Route exact path="/InstructorHome">
-            <InstructorHome instructor={true}/>
+            <InstructorHome />
           </Route>
           <Route exact path="/InstructorProfile">
             <InstructorProfile />
