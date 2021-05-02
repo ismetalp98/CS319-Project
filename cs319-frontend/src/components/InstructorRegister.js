@@ -54,7 +54,7 @@ class InstructorRegister extends Component {
 
         }else{
 
-          toast.error("Bro at least type something.");
+          toast.error("Please fill empty fields.");
 
         }
   }
@@ -81,6 +81,7 @@ class InstructorRegister extends Component {
                       placeholder="First Name"
                       autoComplete="off"
                       type="text"
+                      title="At least 2 characters"
                     />
                   </div>
                 </div>
@@ -91,6 +92,7 @@ class InstructorRegister extends Component {
                       placeholder="Last Name"
                       autoComplete="off"
                       type="text"
+                      title="At least 2 characters"
                     />
                   </div>
                 </div>
@@ -101,6 +103,7 @@ class InstructorRegister extends Component {
                       placeholder="E-mail"
                       autoComplete="off"
                       type="text"
+                      title="Please use @bilkent.edu.tr domain."
                     />
                   </div>
                 </div>

@@ -8,6 +8,7 @@ import Button from "@material-ui/core/Button";
 import DocumentItem from "../items/DocumentItem";
 import ReviewItem from "../items/ReviewItem";
 import { Redirect } from "react-router-dom";
+import RemoveIcon from "@material-ui/icons/Remove";
 
 class GroupPage extends Component {
   state = { valueR: null };
@@ -51,7 +52,7 @@ class GroupPage extends Component {
       var reviews = [];
       myMap.forEach(function (value, key) {
         if (value.length !== 0) {
-          const curr = <div>
+          const curr = <div key={i++}>
             <h2 style={{ color: '#f50057' }} id="document_review_object"> {key}</h2>
             <hr /></div>;
           const currRevs = value.map(reviewitem =>
@@ -70,27 +71,31 @@ class GroupPage extends Component {
       });
 
       //Members
-      const members = parsedStudents.map(memberitem => <Member
-        key={memberitem.studentid}
-        name={memberitem.name}
-        surname={memberitem.surname}
-        email={memberitem.email}
-      />)
+      if (localStorage.getItem('myGroupName') === localStorage.getItem('selectedGroup')) {
+        const members = parsedStudents.map(memberitem => <Member
+          key={memberitem.studentid}
+          name={memberitem.name}
+          surname={memberitem.surname}
+          email={memberitem.email}
+          myfriend={true}
+        />)
+        this.setState({ members: members });
+      }
+      else{
+        const members = parsedStudents.map(memberitem => <Member
+          key={memberitem.studentid}
+          name={memberitem.name}
+          surname={memberitem.surname}
+          email={memberitem.email}
+          myfriend={false}
+        />)
+        this.setState({ members: members });
+      }
 
-      const membersNames = parsedStudents.map(memberitem => <div><li key={memberitem.studentid}> {memberitem.name} {memberitem.surname}</li>
-        <div className="input">
-          <textarea
-            id="url"
-            placeholder="Review"
-            autoComplete="off"
-            type="text"
-          />
-        </div>
-      </div>)
 
 
-      this.setState({ membersNames: membersNames });
-      this.setState({ members: members });
+
+      this.setState({ parsedStudents: parsedStudents });
       this.setState({ deliverables: deliverables });
       this.setState({ reviews: reviews });
     });
@@ -152,9 +157,6 @@ class GroupPage extends Component {
     xhr.send(json);
   };
 
-  handleSavePeerReview = e => {
-
-  }
 
   handleLeaveGroup = e => {
     e.preventDefault();
@@ -263,8 +265,7 @@ class GroupPage extends Component {
             </button>
                       <div className="header"> Add Document </div>
                       <div className="content">
-                        {' '}
-               your Document URL
+                        your Document URL
 
             </div>
                       <div className="actions">
@@ -304,37 +305,7 @@ class GroupPage extends Component {
 
 
             {localStorage.getItem('myGroupName') === localStorage.getItem('selectedGroup') ?
-              <Popup
-                trigger={<div id="group_button">
-                  <AddIcon id="add_icon" />
-                  <span>Add Peer Review</span></div>}
-                modal
-                nested
-              >
-                {close => (
-                  <div className="modal">
-                    <button className="close" onClick={close}>
-                      &times;
-            </button>
-                    <div className="header">Peer Review </div>
-                    <div className="content">
-                      <ul id="peerReviewMembers">
-                        {this.state.membersNames}
-                      </ul>
-                    </div>
-                    <div className="actions">
-
-                      <Button
-                        id="button_save"
-                        onClick={this.handleSavePeerReview}
-                        variant="contained" color="primary"
-                      >
-                        Save Peer Review
-    </Button>
-                    </div>
-                  </div>
-                )}
-              </Popup>
+              null
               : <Popup
                 trigger={<div id="group_button"><AddIcon id="add_icon" />
                   <span>Add Review</span></div>}
@@ -383,7 +354,7 @@ class GroupPage extends Component {
             }
             {localStorage.getItem('myGroupName') === localStorage.getItem('selectedGroup') ?
               <div id="group_button" onClick={this.handleLeaveGroup}>
-                <AddIcon id="add_icon" />
+                <RemoveIcon id="remove_icon" />
                 <span>Leave the Group</span>
               </div>
               : null

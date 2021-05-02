@@ -27,7 +27,7 @@ class InstructorHome extends Component {
     });
   };
   getStudentList = e => {
-    //var studentid = 0;
+    var studentid = 0;
     localStorage.setItem("selectedMember", localStorage.getItem('currentUserMail'));
     var xhrstudents = new XMLHttpRequest();
     xhrstudents.open("GET", "http://d7c59928777f.ngrok.io/api/student/getAllList");
@@ -36,13 +36,10 @@ class InstructorHome extends Component {
       // update the state of the component with the result here
       var parsed = JSON.parse(xhrstudents.response);
       const studentList = parsed.map(memberitem => <Member
-        key={memberitem.studentid}
+        key={studentid++}
         name={memberitem.name}
         surname={memberitem.surname}
         email={memberitem.email}
-        /*if ( {memberitem.group.name} !== "null" ) {
-          group ={memberitem.group.name}
-        }*/
         group ={memberitem.group}
       />)
       this.setState({ studentList: studentList });
