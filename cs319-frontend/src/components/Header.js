@@ -26,21 +26,26 @@ class Header extends Component {
         var parsed = JSON.parse(xhr.response);
         localStorage.setItem("currentPeriod", parsed.active)
       }
+      if(localStorage.getItem("currentPeriod" === false)) {
+        localStorage.setItem("periodButton","Start");
+        localStorage.setItem("periodButtonColor","primary");
+      }
+      else{
+        localStorage.setItem("periodButton","End");
+        localStorage.setItem("periodButtonColor","secondary");
+      }
     });
-    if(localStorage.getItem("currentPeriod" === false)) {
-      localStorage.setItem("periodButton","Start");
-    }
-    else{
-      localStorage.setItem("periodButton","End");
-    }
+
   };
   handlePeriod = e => {
 
     if(localStorage.getItem("periodButton")==="End") {
       localStorage.setItem("periodButton","Start");
+      localStorage.setItem("periodButtonColor","primary");
     }
     else {
       localStorage.setItem("periodButton","End");
+      localStorage.setItem("periodButtonColor","secondary");
     }
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://d7c59928777f.ngrok.io/api/instructor/reverseEvaluationPeriod");
@@ -145,7 +150,7 @@ class Header extends Component {
           </li>
           <li >
             <Link style={{ textDecoration: 'none' }}>
-              <Button id="periodButton" onClick={this.handlePeriod} variant="contained" color="primary">
+              <Button id="periodButton" onClick={this.handlePeriod} variant="contained" color={localStorage.getItem("periodButtonColor")}>
                 {localStorage.getItem("periodButton")} period
             </Button>
             </Link>
