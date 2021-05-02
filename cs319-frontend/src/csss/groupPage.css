@@ -124,6 +124,14 @@
   height: 70%;
 }
 
+#remove_icon {
+  color: red;
+  margin-right: auto;
+  margin-left: auto;
+  width: 70%;
+  height: 70%;
+}
+
 #group_button span {
   font-size: 0.8rem;
 }
