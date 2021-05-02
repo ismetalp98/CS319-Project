@@ -82,7 +82,6 @@
     border-radius: 80px;
     border-color: #2c2f35;
     border-style: solid;
-    cursor: pointer;
 }
 
 #member_link {
@@ -151,7 +150,6 @@
     border-color: #2c2f35;
     border-style: solid;
     margin-bottom: 20px;
-    cursor: pointer;
 }
 
 .review_div :hover {
