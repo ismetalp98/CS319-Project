@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pire.api.dto.account.CreateStudentDto;
+import com.pire.api.dto.account.StudentIntructorView;
 import com.pire.api.dto.account.StudentListView;
 import com.pire.api.dto.account.StudentLoginDto;
 import com.pire.api.dto.account.StudentView;
@@ -55,4 +56,10 @@ public class StudentController {
 		return ResponseEntity.ok(service.getAllStudentList());
 	}
 	
+	@GetMapping("/getinstructorview/{email}")
+	public ResponseEntity<StudentIntructorView> findByEmailInsructorView(
+			@PathVariable(name = "email", required = true) String email)
+	{
+		return ResponseEntity.ok(service.getStudentIntructorView(email));
+	}
 }

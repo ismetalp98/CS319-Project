@@ -7,6 +7,7 @@ import org.mapstruct.Mapper;
 import com.pire.api.domain.Student;
 import com.pire.api.dto.account.CreateStudentDto;
 import com.pire.api.dto.account.StudentGroupDto;
+import com.pire.api.dto.account.StudentIntructorView;
 import com.pire.api.dto.account.StudentListView;
 import com.pire.api.dto.account.StudentLoginDto;
 import com.pire.api.dto.account.StudentReviewViewDto;
@@ -26,5 +27,7 @@ public abstract class StudentMapper {
 	public abstract StudentReviewViewDto getStudentReviewViewDtoFromStudent(Student student);
 	
 	public abstract List<StudentListView> getStudentListViewFromStudentList(List<Student> studentList);
+	
+	public abstract StudentIntructorView getStudentIntructorViewFromStudent(Student student);
 
 }
