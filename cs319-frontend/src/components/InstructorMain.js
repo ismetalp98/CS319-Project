@@ -25,7 +25,7 @@ function InstructorMain() {
             <InstructorLogin />
           </Route>
           <Route exact path="/groupPage">
-            <GroupPage />
+            <GroupPage instructor={true} />
           </Route>
           <Route exact path="/pollQuestionCreate">
             <PollQuestionCreate />

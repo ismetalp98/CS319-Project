@@ -243,6 +243,7 @@ class GroupPage extends Component {
             </div>
           </div>
         </div>
+        {this.props.instructor ? null : 
         <div className="group_buttons_div">
           <div className="group_buttons_inner_div">
             {localStorage.getItem('myGroupName') === localStorage.getItem('selectedGroup') ?
@@ -389,10 +390,11 @@ class GroupPage extends Component {
             }
           </div>
         </div>
+      }
       </div>
-    );
+          
+        );
   }
 }
-
 export default GroupPage;
 
