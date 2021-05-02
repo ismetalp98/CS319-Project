@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.pire.api.domain.Student;
 import com.pire.api.dto.account.CreateStudentDto;
+import com.pire.api.dto.account.StudentIntructorView;
 import com.pire.api.dto.account.StudentListView;
 import com.pire.api.dto.account.StudentLoginDto;
 import com.pire.api.dto.account.StudentView;
@@ -62,6 +63,10 @@ public class StudentService {
 		return listView;
 	}
 	
-	
+	public StudentIntructorView getStudentIntructorView(String studentemail) {
+		Student student = repository.findByEmail(studentemail).orElseThrow(() -> new NotFoundException("Student not found."));
+		
+		return mapper.getStudentIntructorViewFromStudent(student);
+	}
 	
 }
