@@ -17,26 +17,32 @@ class Login extends Component {
     let pss = document.getElementById("pss").value;
     var xhr = new XMLHttpRequest();
     
-    
-    xhr.addEventListener("load", () => {
-      // update the state of the component with the result here
-      var parsed = JSON.parse(xhr.response);
-      if (parsed.password === pss) {
-        toast.error("Logged in succesfully");
-        this.setState({ loggedIn: true });
-        localStorage.setItem('currentUserMail', email);
-        localStorage.setItem('userLogedIn', true);
-        
-      } else {
-        toast.error("Wrong password or username!");
+    if(email.includes("@ug.bilkent.edu.tr") && pss.length > 8){
+      xhr.addEventListener("load", () => {
+        // update the state of the component with the result here
+        var parsed = JSON.parse(xhr.response);
+        if (parsed.password === pss) {
+          toast.success("Logged in succesfully");
+          this.setState({ loggedIn: true });
+          localStorage.setItem('currentUserMail', email);
+          localStorage.setItem('userLogedIn', true);
+        } else {
+          toast.error("Wrong password or username!");
+  
+        }
+      });
+  
+      // open the request with the verb and the url
+      xhr.open("GET", url +"/api/student/login/" + email);
+      // send the request
+      xhr.send();
 
-      }
-    });
+    }
+    else{
+      toast.error("Your mail adress and password is not in proper format!");
 
-    // open the request with the verb and the url
-    xhr.open("GET", url +"/api/student/login/" + email);
-    // send the request
-    xhr.send();
+    }
+
   };
   render() {
     if (this.state.loggedIn) {

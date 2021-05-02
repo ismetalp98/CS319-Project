@@ -3,6 +3,8 @@ import Button from "@material-ui/core/Button";
 import "../csss/auth.css";
 import bg from "./../bg.svg";
 import { Link, Redirect } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 var url = "https://d7c59928777f.ngrok.io"
 
 class InstructorLogin extends Component {
@@ -14,25 +16,32 @@ class InstructorLogin extends Component {
     let pss = document.getElementById("pss").value;
     var xhr = new XMLHttpRequest();
     
-    
-    xhr.addEventListener("load", () => {
-      // update the state of the component with the result here
-      var parsed = JSON.parse(xhr.response);
-      if (parsed.password === pss) {
-        console.log("Logged in succesfully");
-        this.setState({ loggedIn: true });
-        localStorage.setItem('currentUserMail', email);
-        localStorage.setItem('userLogedIn', true);
-        
-      } else {
-        alert("Wrong password or username");
-      }
-    });
+    if(email.includes("@bilkent.edu.tr") && pss.length > 8){
+      xhr.addEventListener("load", () => {
+        // update the state of the component with the result here
+        var parsed = JSON.parse(xhr.response);
+        if (parsed.password === pss) {
+          toast.success("Logged in succesfully");
+          this.setState({ loggedIn: true });
+          localStorage.setItem('currentUserMail', email);
+          localStorage.setItem('userLogedIn', true);
+          
+        } else {
+  
+          toast.error("Wrong password or username");
+        }
+      });
+  
+      // open the request with the verb and the url
+      xhr.open("GET", url +"/api/instructor/login/" + email);
+      // send the request
+      xhr.send();
 
-    // open the request with the verb and the url
-    xhr.open("GET", url +"/api/instructor/login/" + email);
-    // send the request
-    xhr.send();
+    }else{
+      toast.error("Your mail adress and password is not in proper format!");
+
+    }
+
 
 
   };
@@ -75,6 +84,7 @@ class InstructorLogin extends Component {
               <Button id="logBtn" variant="contained" color="primary" onClick={this.handleLogin}>
                 Login
               </Button>
+              <ToastContainer />
 
               <hr />
 
