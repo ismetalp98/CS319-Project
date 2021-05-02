@@ -8,8 +8,8 @@ class QuestionItem extends Component {
     this.setState({ "name": this.props.question });
     this.setState({ "index": this.props.index });
   }
-  handleAnswer = e => {
 
+  handleAnswer = e => {
     let answer = document.getElementById("answer").value;
     console.log(this.props.index);
     console.log(localStorage.getItem("selectedMember"));
@@ -36,6 +36,7 @@ class QuestionItem extends Component {
     xhr.send(json);
     //this.setState({questionAnswerEnded : true});
   };
+  
   render() {
     return (
       <div className="question_answer_div">

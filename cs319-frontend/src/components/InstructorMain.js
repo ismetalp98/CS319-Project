@@ -1,8 +1,8 @@
 import React from 'react';
 import Header from "./Header";
-import ProfilePage from "./InstructorProfile";
+import InstructorProfile from "./InstructorProfile";
 import InstructorLogin from "./InstructorLogin";
-import GroupPage from "./groupPage";
+import GroupPage from "./GroupPage";
 import InstructorHome from "./InstructorHome";
 import "../csss/mainPage.css";
 import { BrowserRouter as Router, Switch, Route, withRouter } from "react-router-dom";
@@ -13,7 +13,7 @@ function InstructorMain() {
   return (
     <Router>
       <div className="main_page">
-        <Header />
+        <Header instructor={true} />
         <Switch>
           <Route exact path="/InstructorHome">
             <InstructorHome />
@@ -27,13 +27,13 @@ function InstructorMain() {
           <Route exact path="/groupPage">
             <GroupPage />
           </Route>
+          <Route exact path="/pollQuestionCreate">
+            <PollQuestionCreate />
+          </Route>
+          <Route exact path="/pollCreateOpenEnded">
+            <PollCreateOpenEnded />
+          </Route>
         </Switch>
-        <Route exact path="/pollQuestionCreate">
-          <PollQuestionCreate />
-        </Route>
-        <Route exact path="/pollCreateOpenEnded">
-          <PollCreateOpenEnded />
-        </Route>
       </div>
     </Router>
   );

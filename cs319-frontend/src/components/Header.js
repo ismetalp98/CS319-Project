@@ -55,11 +55,16 @@ class Header extends Component {
       <header className="nav">
         <ul className="nav_buttons_ul">
           <li className="nav_button">
-            <Link to="/homePage" style={{ textDecoration: 'none' }}>
+            {this.props.instructor ? <Link to="/InstructorHome" style={{ textDecoration: 'none' }}>
               <Button id="btn1" variant="contained" color="secondary" onClick={this.handleMain}>
                 Home Page
             </Button>
-            </Link>
+            </Link> : <Link to="/homePage" style={{ textDecoration: 'none' }}>
+              <Button id="btn1" variant="contained" color="secondary" onClick={this.handleMain}>
+                Home Page
+            </Button>
+            </Link>}
+
 
           </li>
           {localStorage.getItem('myGroupName') === "none" ?
@@ -127,7 +132,7 @@ class Header extends Component {
 
           </li>
         </ul>
-        {this.props.instructor ? <Redirect to={'/instructorHome'}/> : <Redirect to={'/homePage'}/>}
+        {this.props.instructor ? <Redirect to={'/instructorHome'} /> : <Redirect to={'/homePage'} />}
       </header>
 
     );

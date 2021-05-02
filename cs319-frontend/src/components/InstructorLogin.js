@@ -38,7 +38,7 @@ class InstructorLogin extends Component {
   };
   render() {
     if (this.state.loggedIn) {
-      return <Redirect to={'/InstructorHome'} />
+      return <Redirect to={'/instructorMain'} />
     }
     return (
       <div className="register_class column">

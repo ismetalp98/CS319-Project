@@ -14,7 +14,7 @@ function MainPage() {
   return (
     <Router>
       <div className="main_page">
-        <Header />
+        <Header instructor={false} />
         <Switch>
           <Route exact path="/homePage">
             <HomePage />
@@ -28,16 +28,17 @@ function MainPage() {
           <Route exact path="/groupPage">
             <GroupPage />
           </Route>
+
+          <Route exact path="/pollQuestionCreate">
+            <PollQuestionCreate />
+          </Route>
+          <Route exact path="/pollCreateOpenEnded">
+            <PollCreateOpenEnded />
+          </Route>
+          <Route exact path="/pollAnswer">
+            <PollAnswer />
+          </Route>
         </Switch>
-        <Route exact path="/pollQuestionCreate">
-          <PollQuestionCreate />
-        </Route>
-        <Route exact path="/pollCreateOpenEnded">
-          <PollCreateOpenEnded />
-        </Route>
-        <Route exact path="/pollAnswer">
-          <PollAnswer />
-        </Route>
       </div>
     </Router>
   );
