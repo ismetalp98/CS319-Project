@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../csss/items.css";
+import "../csss/review.css";
 import Button from "@material-ui/core/Button";
 
 class Evaluation extends Component {
@@ -19,8 +19,8 @@ class Evaluation extends Component {
         return (
             <div className="review_texts">
                 <h4 id="review_name" >{this.state.name} {this.state.surname}</h4>
-                <h5 id="review_content">{this.state.point}</h5>
-                <h5 id="review_content">{this.state.evaluation} </h5>
+                <h5 id="review_content">Point: {this.state.point}</h5>
+                <h5 id="review_content">"{this.state.evaluation}" </h5>
                 <hr></hr>
             </div>
 
