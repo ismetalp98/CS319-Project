@@ -8,6 +8,7 @@ import Button from "@material-ui/core/Button";
 import DocumentItem from "../items/DocumentItem";
 import ReviewItem from "../items/ReviewItem";
 import { Redirect } from "react-router-dom";
+import RemoveIcon from "@material-ui/icons/Remove";
 
 class GroupPage extends Component {
   state = { valueR: null };
@@ -353,7 +354,7 @@ class GroupPage extends Component {
             }
             {localStorage.getItem('myGroupName') === localStorage.getItem('selectedGroup') ?
               <div id="group_button" onClick={this.handleLeaveGroup}>
-                <AddIcon id="add_icon" />
+                <RemoveIcon id="remove_icon" />
                 <span>Leave the Group</span>
               </div>
               : null
