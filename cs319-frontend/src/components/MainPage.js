@@ -26,7 +26,7 @@ function MainPage() {
             <Login />
           </Route>
           <Route exact path="/groupPage">
-            <GroupPage />
+            <GroupPage instructor={false}/>
           </Route>
 
           <Route exact path="/pollQuestionCreate">
