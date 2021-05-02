@@ -33,6 +33,12 @@ class Header extends Component {
         localStorage.setItem("currentPeriod", parsed.active)
       }
     });
+    if(localStorage.getItem("currentPeriod" === false)) {
+      localStorage.setItem("periodButton","Start");
+    }
+    else{
+      localStorage.setItem("periodButton","End");
+    }
   };
   handlePeriod = e => {
 
@@ -54,6 +60,7 @@ class Header extends Component {
         localStorage.setItem("currentPeriod", parsed.active)
       }
     });
+    this.forceUpdate();
   };
   handleCreateGroup = e => {
     e.preventDefault();
