@@ -216,7 +216,7 @@ class GroupPage extends Component {
 
   render() {
     if (this.state.joinedGroup || this.state.leavedGroup) {
-      return <Redirect to={'/mainPage'} />
+      return <Redirect to={'/homePage'} />
     }
     return (
       <div className="group_page">
