@@ -3,7 +3,10 @@ import Button from "@material-ui/core/Button";
 import "../csss/auth.css";
 import bg from "./../bg.svg";
 import { Link, Redirect } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 var url = "https://d7c59928777f.ngrok.io"
+
 
 class Login extends Component {
 
@@ -19,13 +22,14 @@ class Login extends Component {
       // update the state of the component with the result here
       var parsed = JSON.parse(xhr.response);
       if (parsed.password === pss) {
-        console.log("Logged in succesfully");
+        toast.error("Logged in succesfully");
         this.setState({ loggedIn: true });
         localStorage.setItem('currentUserMail', email);
         localStorage.setItem('userLogedIn', true);
         
       } else {
-        alert("Wrong password or username");
+        toast.error("Wrong password or username!");
+
       }
     });
 
@@ -39,6 +43,7 @@ class Login extends Component {
       return <Redirect to={'/mainPage'} />
     }
     return (
+      
       <div className="register_class column">
         <div className="logo_login_register">
           <img id="bg" src={bg} alt="bg" />
@@ -73,6 +78,7 @@ class Login extends Component {
               <Button id="logBtn" variant="contained" color="primary" onClick={this.handleLogin}>
                 Login
               </Button>
+              <ToastContainer />
 
               <hr />
 
