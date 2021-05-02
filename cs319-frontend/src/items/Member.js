@@ -91,8 +91,8 @@ class Member extends Component {
             <div className="modal_members_div">
               <div className="member_actions">
 
-
-                {this.props.myfriend ?
+              
+                {this.props.myfriend && localStorage.getItem("currentPeriod") === "true"  ? 
                   <div className="member_friend">
                     <div className="input_friend">
                       <textarea
@@ -130,11 +130,12 @@ class Member extends Component {
                       Submit Peer Review
     </Button>
                   </div>
-                  : null}
+                  : null}   
               </div>
             </div>
           </div>
         )}
+        
       </Popup>
     );
   }

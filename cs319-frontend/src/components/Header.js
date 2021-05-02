@@ -28,11 +28,9 @@ class Header extends Component {
       }
       if(localStorage.getItem("currentPeriod" === false)) {
         localStorage.setItem("periodButton","Start");
-        localStorage.setItem("periodButtonColor","primary");
       }
       else{
         localStorage.setItem("periodButton","End");
-        localStorage.setItem("periodButtonColor","secondary");
       }
     });
 
@@ -41,11 +39,9 @@ class Header extends Component {
 
     if(localStorage.getItem("periodButton")==="End") {
       localStorage.setItem("periodButton","Start");
-      localStorage.setItem("periodButtonColor","primary");
     }
     else {
       localStorage.setItem("periodButton","End");
-      localStorage.setItem("periodButtonColor","secondary");
     }
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://d7c59928777f.ngrok.io/api/instructor/reverseEvaluationPeriod");
@@ -150,10 +146,11 @@ class Header extends Component {
           </li>
           <li >
             <Link style={{ textDecoration: 'none' }}>
-              <Button id="periodButton" onClick={this.handlePeriod} variant="contained" color={localStorage.getItem("periodButtonColor")}>
+              <Button id="periodButton" onClick={this.handlePeriod} variant="contained" color= "primary">
                 {localStorage.getItem("periodButton")} period
             </Button>
             </Link>
+            
           </li>
         </ul>
         <h1 id="title">
