@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from "./Header";
 import InstructorProfile from "./InstructorProfile";
+import ProfilePage from "./ProfilePage";
 import InstructorLogin from "./InstructorLogin";
 import GroupPage from "./GroupPage";
 import InstructorHome from "./InstructorHome";
@@ -20,6 +21,9 @@ function InstructorMain() {
           </Route>
           <Route exact path="/InstructorProfile">
             <InstructorProfile />
+          </Route>
+          <Route exact path="/ProfilePage">
+            <ProfilePage />
           </Route>
           <Route exact path="/InstructorLogin">
             <InstructorLogin />
