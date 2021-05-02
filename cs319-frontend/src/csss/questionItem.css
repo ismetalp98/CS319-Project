@@ -1,4 +1,37 @@
+.question_answer_div{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
 .question_item_name {
     display: flex;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
+#asnwer_submit_btn{
+    margin-top: 10px;
+  }
+
+  #question_name{
+    font-size: 2rem;
+  }
+
+  .question_form_div{
+  background-color: var(--bg-gray);
+  width: 25vw;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  cursor: inherit;
+  border-radius: 8px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: darkgray;
+  border-image: initial;
+  position: relative;
   }

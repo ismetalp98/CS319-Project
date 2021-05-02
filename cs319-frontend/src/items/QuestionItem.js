@@ -8,7 +8,7 @@ class QuestionItem extends Component {
     this.setState({ "name": this.props.question });
     this.setState({ "index": this.props.index });
   }
-  handleAnswer = e =>{
+  handleAnswer = e => {
 
     let answer = document.getElementById("answer").value;
     console.log(this.props.index);
@@ -17,7 +17,7 @@ class QuestionItem extends Component {
 
     var data = {
       "pollQuestionId": this.props.index,
-      "studentEmail" : localStorage.getItem("selectedMember"),
+      "studentEmail": localStorage.getItem("selectedMember"),
       "answer": answer
     };
     var json = JSON.stringify(data);
@@ -38,10 +38,11 @@ class QuestionItem extends Component {
   };
   render() {
     return (
-      <div className={this.state.name}>
-          <div className="question_item_name">
-            <h3 id="question_name" >{this.state.name}</h3>
-          </div>
+      <div className="question_answer_div">
+        <div className="question_item_name">
+          <h3 id="question_name" >{this.state.name}</h3>
+        </div>
+        <div className="question_form_div">
           <div className="input">
             <input
               id="answer"
@@ -49,10 +50,11 @@ class QuestionItem extends Component {
               autoComplete="off"
               type="text"
             />
-            <Button onClick={this.handleAnswer}>
-              Submit
-            </Button>
           </div>
+        </div>
+        <Button id="asnwer_submit_btn" onClick={this.handleAnswer} variant="contained" color="primary">
+          Submit
+        </Button>
       </div>
     );
   }

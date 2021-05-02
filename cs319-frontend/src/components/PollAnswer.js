@@ -8,7 +8,7 @@ import QuestionItem from "../items/QuestionItem";
 
 class PollAnswer extends Component {
   state = {};
-  
+
   getQuestions = e => {
     var pollIndex = localStorage.getItem("currentPollIndex");
     var pollName = localStorage.getItem("currentPollName");
@@ -23,30 +23,29 @@ class PollAnswer extends Component {
       console.log(pollQuestions);
 
       const polls = pollQuestions.map(questionobj => {
-      return <QuestionItem
-        key = {questionobj.id}
-        index = {questionobj.id}
-        question = {questionobj.question}>
-      </QuestionItem>})
+        return <QuestionItem
+          key={questionobj.id}
+          index={questionobj.id}
+          question={questionobj.question}>
+        </QuestionItem>
+      })
       this.setState({ polls: polls });
     });
   };
   componentDidMount() {
     this.getQuestions();
-}
+  }
   render() {
     if (this.state.questionAnswerEnded) {
       return <Redirect to={'/homePage'} />;
     }
     return (
-      <form className="PollCreateV2">
-          <div className="poll_list_div">
-
-    <h2>questions</h2>
-    <hr />
-    {this.state.polls}
-    </div>
-
+      <form className="PollAnswer">
+        <div className="poll_answers_div">
+          <h1>Questions</h1>
+          <hr />
+          {this.state.polls}
+        </div>
       </form>
     );
   }
