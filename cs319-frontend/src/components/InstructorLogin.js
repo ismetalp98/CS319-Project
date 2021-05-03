@@ -16,7 +16,7 @@ class InstructorLogin extends Component {
     let pss = document.getElementById("pss").value;
     var xhr = new XMLHttpRequest();
     
-    if(/*email.includes("@bilkent.edu.tr") && pss.length >= 8*/true){
+    if(email.includes("@bilkent.edu.tr") && pss.length >= 8){
       xhr.addEventListener("load", () => {
         // update the state of the component with the result here
         var parsed = JSON.parse(xhr.response);
@@ -39,10 +39,7 @@ class InstructorLogin extends Component {
 
     }else{
       toast.error("Your mail adress and password is not in proper format!");
-
     }
-
-
 
   };
   render() {

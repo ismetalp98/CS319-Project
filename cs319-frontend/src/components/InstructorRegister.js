@@ -19,9 +19,9 @@ class InstructorRegister extends Component {
     let code = document.getElementById("instcode").value;
 
 
-    if (/*email.includes("@bilkent.edu.tr") && pss.length >= 8 &&
+    if (email.includes("@bilkent.edu.tr") && pss.length >= 8 &&
         firstname.length > 1 &&
-        lastname.length > 1*/true) {
+        lastname.length > 1) {
         if(pss !== pss2){
           toast.error("Passwords does not match.");
         }
