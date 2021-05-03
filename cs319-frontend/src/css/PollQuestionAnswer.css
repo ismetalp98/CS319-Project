@@ -1,4 +1,19 @@
 .question_item_name {
     display: flex;
+    margin-left: auto;
+    margin-right: auto;
 
+  }
+  .question_answer_div{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .question_form_div {
+    display: flex;
+  }
+  .question_answer_div .input {
+    margin-left: auto;
+    margin-right: auto;
   }
