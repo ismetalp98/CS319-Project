@@ -25,7 +25,8 @@ class Header extends Component {
         var parsed = JSON.parse(xhr.response);
         localStorage.setItem("currentPeriod", parsed.active)
       }
-      if (localStorage.getItem("currentPeriod" === false)) {
+      
+      if (localStorage.getItem("currentPeriod") === false) {
         localStorage.setItem("periodButton", "Start");
       }
       else {
@@ -35,7 +36,6 @@ class Header extends Component {
 
   };
   handlePeriod = e => {
-
     if (localStorage.getItem("periodButton") === "End") {
       localStorage.setItem("periodButton", "Start");
     }
@@ -79,10 +79,12 @@ class Header extends Component {
   }
   render() {
     if (this.state.loggedOut) {
-      if(this.state.instructor){
-        return <Redirect to={'/login'} />
+      if(this.props.instructor){
+        return <Redirect to={'/InstructorLogin'} />
       }
+      else{
       return <Redirect to={'/login'} />
+      }
     }
     return (
       <header className="nav">
