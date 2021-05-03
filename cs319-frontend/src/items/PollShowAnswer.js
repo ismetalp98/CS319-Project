@@ -11,10 +11,10 @@ class PollShowAnswer extends Component {
   render() {
     return (
       <div>
-          {this.state.name}
-          <hr></hr>
-    </div>
-    
+        {this.state.name}
+        <hr></hr>
+      </div>
+
     );
   }
 }

@@ -10,7 +10,7 @@ class Header extends Component {
     e.preventDefault();
     localStorage.setItem('currentUserMail', null);
     localStorage.setItem('myGroupName', null);
-    this.setState({ loggedOut: true }); 
+    this.setState({ loggedOut: true });
   };
   handleMain = e => {
     localStorage.setItem("selectedMember", localStorage.getItem('currentUserMail'))
@@ -25,22 +25,22 @@ class Header extends Component {
         var parsed = JSON.parse(xhr.response);
         localStorage.setItem("currentPeriod", parsed.active)
       }
-      if(localStorage.getItem("currentPeriod" === false)) {
-        localStorage.setItem("periodButton","Start");
+      if (localStorage.getItem("currentPeriod" === false)) {
+        localStorage.setItem("periodButton", "Start");
       }
-      else{
-        localStorage.setItem("periodButton","End");
+      else {
+        localStorage.setItem("periodButton", "End");
       }
     });
 
   };
   handlePeriod = e => {
 
-    if(localStorage.getItem("periodButton")==="End") {
-      localStorage.setItem("periodButton","Start");
+    if (localStorage.getItem("periodButton") === "End") {
+      localStorage.setItem("periodButton", "Start");
     }
     else {
-      localStorage.setItem("periodButton","End");
+      localStorage.setItem("periodButton", "End");
     }
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://d7c59928777f.ngrok.io/api/instructor/reverseEvaluationPeriod");
@@ -75,7 +75,7 @@ class Header extends Component {
     });
   };
   componentDidMount() {
-    this.getPeriod();    
+    this.getPeriod();
   }
   render() {
     if (this.state.loggedOut) {
@@ -135,22 +135,22 @@ class Header extends Component {
                 )}
               </Popup>
             </li> : null}
-            {this.props.instructor ? <div className="instructor_header_buttons">
-          <li >
-            <Link to="/pollCreateOpenEnded" style={{ textDecoration: 'none' }}>
-              <Button id="createPollBtn" variant="contained" color="primary">
-                Create Poll
+          {this.props.instructor ? <div className="instructor_header_buttons">
+            <li >
+              <Link to="/pollCreateOpenEnded" style={{ textDecoration: 'none' }}>
+                <Button id="createPollBtn" variant="contained" color="primary">
+                  Create Poll
             </Button>
-            </Link>
-          </li>
-          <li >
-            <Link style={{ textDecoration: 'none' }}>
-              <Button id="periodButton" onClick={this.handlePeriod} variant="contained" color= "primary">
-                {localStorage.getItem("periodButton")} Period
+              </Link>
+            </li>
+            <li >
+              <Link style={{ textDecoration: 'none' }}>
+                <Button id="periodButton" onClick={this.handlePeriod} variant="contained" color="primary">
+                  {localStorage.getItem("periodButton")} Period
             </Button>
-            </Link>
-            
-          </li>
+              </Link>
+
+            </li>
           </div> : null}
         </ul>
         <h1 id="title">

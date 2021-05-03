@@ -23,7 +23,7 @@ class PollInstrAnswer extends Component {
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send();
   };
-  
+
   render() {
     return (
       <div className={this.state.name} onClick={this.set}>

@@ -20,48 +20,48 @@ class InstructorRegister extends Component {
 
 
     if (email.includes("@bilkent.edu.tr") && pss.length >= 8 &&
-        firstname.length > 1 &&
-        lastname.length > 1) {
-        if(pss !== pss2){
-          toast.error("Passwords does not match.");
-        }
-        else if(code !== 'CS319'){
-          toast.error("Wrong intructor code.");
-        }
-        else{
-          var data = {
-            "email": email,
-            "name": firstname,
-            "surname": lastname,
-            "password": pss
-          };
-
-          var json = JSON.stringify(data);
-          var xhr = new XMLHttpRequest();
-    
-          xhr.addEventListener("load", () => {
-            // update the state of the component with the result here
-            if (xhr.status === 200) {
-              toast.success("Successfully Registered");
-              this.setState({ registered: true });
-            }
-            else{
-              toast.error("Instructor already exists.");
-            }
-          });
-          // open the request with the verb and the url
-          xhr.open("POST", "https://d7c59928777f.ngrok.io/api/instructor/create/");
-          xhr.setRequestHeader("Content-Type", "application/json");
-          // send the request
-          xhr.send(json);
+      firstname.length > 1 &&
+      lastname.length > 1) {
+      if (pss !== pss2) {
+        toast.error("Passwords does not match.");
+      }
+      else if (code !== 'CS319') {
+        toast.error("Wrong intructor code.");
+      }
+      else {
+        var data = {
+          "email": email,
+          "name": firstname,
+          "surname": lastname,
+          "password": pss
         };
-          
 
-        }else{
+        var json = JSON.stringify(data);
+        var xhr = new XMLHttpRequest();
 
-          toast.error("Please fill empty fields.");
+        xhr.addEventListener("load", () => {
+          // update the state of the component with the result here
+          if (xhr.status === 200) {
+            toast.success("Successfully Registered");
+            this.setState({ registered: true });
+          }
+          else {
+            toast.error("Instructor already exists.");
+          }
+        });
+        // open the request with the verb and the url
+        xhr.open("POST", "https://d7c59928777f.ngrok.io/api/instructor/create/");
+        xhr.setRequestHeader("Content-Type", "application/json");
+        // send the request
+        xhr.send(json);
+      };
 
-        }
+
+    } else {
+
+      toast.error("Please fill empty fields.");
+
+    }
   }
   render() {
 
@@ -149,7 +149,7 @@ class InstructorRegister extends Component {
                 <Button id="logBtn" variant="contained" color="primary" onClick={this.handleLogin}>
                   Register
               </Button>
-              <ToastContainer />
+                <ToastContainer />
 
                 <hr />
                 <Link to={"/InstructorLogin"}>

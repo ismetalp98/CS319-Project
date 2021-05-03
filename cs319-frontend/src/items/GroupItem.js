@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 
 class GroupItem extends Component {
-  state={};
+  state = {};
 
   handleGroup = e => {
     e.preventDefault();

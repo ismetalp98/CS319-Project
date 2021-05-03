@@ -18,7 +18,7 @@ class PollQuestionAnswer extends Component {
       "answer": answer
     };
     var json = JSON.stringify(data);
-    var xhr = new XMLHttpRequest(); 
+    var xhr = new XMLHttpRequest();
 
     xhr.addEventListener("load", () => {
       if (xhr.status === 200) {
@@ -28,7 +28,7 @@ class PollQuestionAnswer extends Component {
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(json);
   };
-  
+
   render() {
     return (
       <div className="question_answer_div">

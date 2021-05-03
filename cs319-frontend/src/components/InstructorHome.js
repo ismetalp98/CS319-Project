@@ -3,7 +3,7 @@ import PollItem from "../items/PollItem";
 import GroupItem from "../items/GroupItem";
 import Member from "../items/Member";
 import "../css/homePage.css";
-import { withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 class InstructorHome extends Component {
   state = {};
@@ -40,12 +40,12 @@ class InstructorHome extends Component {
         name={memberitem.name}
         surname={memberitem.surname}
         email={memberitem.email}
-        group ={memberitem.group}
+        group={memberitem.group}
       />)
       this.setState({ studentList: studentList });
     });
   };
-  
+
   getPolls = e => {
     var pollid = 0;
     var xhrpolls = new XMLHttpRequest();
@@ -68,17 +68,17 @@ class InstructorHome extends Component {
   };
 
   componentDidMount() {
-      this.getGroups();
-      this.getPolls();
-      this.getStudentList();
-      localStorage.setItem('myGroupName', "none");
+    this.getGroups();
+    this.getPolls();
+    this.getStudentList();
+    localStorage.setItem('myGroupName', "none");
   }
   render() {
     return (
       <div className="home_page">
         <div className="three_part_div">
           <div className="class_info_div">
-          <h2>Class</h2>
+            <h2>Class</h2>
             <hr />
             {this.state.studentList}
           </div>

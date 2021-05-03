@@ -15,8 +15,8 @@ class InstructorLogin extends Component {
     let email = document.getElementById("email").value;
     let pss = document.getElementById("pss").value;
     var xhr = new XMLHttpRequest();
-    
-    if(email.includes("@bilkent.edu.tr") && pss.length >= 8){
+
+    if (email.includes("@bilkent.edu.tr") && pss.length >= 8) {
       xhr.addEventListener("load", () => {
         // update the state of the component with the result here
         var parsed = JSON.parse(xhr.response);
@@ -25,19 +25,19 @@ class InstructorLogin extends Component {
           this.setState({ loggedIn: true });
           localStorage.setItem('currentUserMail', email);
           localStorage.setItem('userLogedIn', true);
-          
+
         } else {
-  
+
           toast.error("Wrong password or username");
         }
       });
-  
+
       // open the request with the verb and the url
-      xhr.open("GET", url +"/api/instructor/login/" + email);
+      xhr.open("GET", url + "/api/instructor/login/" + email);
       // send the request
       xhr.send();
 
-    }else{
+    } else {
       toast.error("Your mail adress and password is not in proper format!");
     }
 

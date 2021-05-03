@@ -23,17 +23,18 @@ class QuestionAnswerItem extends Component {
         pollQuestions = parsed.questions;
         // map all questions in poll as poll show answer object which indicates how their answer will be displayed
         for (var current of pollQuestions) {
-          if(current.id === this.state.index) {
-          const polls = current.answers.map(questionobj => {
-            return <PollShowAnswer
-              answer={questionobj.answer}>
-            </PollShowAnswer>
-          })
-          
-          this.setState({ polls: polls });
-        }  
+          if (current.id === this.state.index) {
+            const polls = current.answers.map(questionobj => {
+              return <PollShowAnswer
+                answer={questionobj.answer}>
+              </PollShowAnswer>
+            })
+
+            this.setState({ polls: polls });
+          }
+        }
       }
-    }});
+    });
     xhr.open("GET", "http://d7c59928777f.ngrok.io/api/poll/" + this.state.pollIndex);
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send();
@@ -42,31 +43,31 @@ class QuestionAnswerItem extends Component {
   render() {
     return (
       <div>
-      <Popup
-      trigger={<div className="poll_item1">
-      <div className="poll_item_name" onClick={this.set}>
-      <h3 id="group_name"> {this.state.name}</h3>
-      </div>
-    </div>}
+        <Popup
+          trigger={<div className="poll_item1">
+            <div className="poll_item_name" onClick={this.set}>
+              <h3 id="group_name"> {this.state.name}</h3>
+            </div>
+          </div>}
 
-      modal
-      nested
-    >
-      {close => (
-        <div className="modal">
-          <button className="close" onClick={close}>
-            &times;
+          modal
+          nested
+        >
+          {close => (
+            <div className="modal">
+              <button className="close" onClick={close}>
+                &times;
 </button>
-          <div className="header">Answers</div>
-          <div className="content">
-              {this.state.polls}
-          </div>
-          <div className="actions">
-          </div>
-        </div>
-      )}
-    </Popup>
-    </div>
+              <div className="header">Answers</div>
+              <div className="content">
+                {this.state.polls}
+              </div>
+              <div className="actions">
+              </div>
+            </div>
+          )}
+        </Popup>
+      </div>
     );
   }
 }

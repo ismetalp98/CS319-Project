@@ -26,9 +26,9 @@ class Register extends Component {
 
 
     if (email.includes("@ug.bilkent.edu.tr") && pss.length >= 8 &&
-        firstname.length > 1 &&
-        lastname.length > 1 &&
-        studentId.length >= 8) {
+      firstname.length > 1 &&
+      lastname.length > 1 &&
+      studentId.length >= 8) {
 
       if (pss !== pss2) {
         toast.error("Passwords does not match.");
@@ -54,7 +54,7 @@ class Register extends Component {
         // send the request
         xhr.send(json);
       }
-    }else {
+    } else {
       toast.error("Your mail adress and password is not in proper format!");
     }
   }
@@ -145,7 +145,7 @@ class Register extends Component {
                   Register
               </Button>
 
-              <ToastContainer />
+                <ToastContainer />
 
                 <hr />
                 <Link to={"/login"}>

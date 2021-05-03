@@ -80,7 +80,7 @@ class GroupPage extends Component {
         />)
         this.setState({ members: members });
       }
-      else{
+      else {
         const members = parsedStudents.map(memberitem => <Member
           key={memberitem.studentid}
           name={memberitem.name}
@@ -238,16 +238,70 @@ class GroupPage extends Component {
             </div>
           </div>
         </div>
-        {this.props.instructor ? null : 
-        <div className="group_buttons_div">
-          <div className="group_buttons_inner_div">
-            {localStorage.getItem('myGroupName') === localStorage.getItem('selectedGroup') ?
-              <div >
-                <Popup
-                  trigger={<div id="group_button">
-                    <AddIcon id="add_icon" />
-                    <span>Add Document</span>
-                  </div>}
+        {this.props.instructor ? null :
+          <div className="group_buttons_div">
+            <div className="group_buttons_inner_div">
+              {localStorage.getItem('myGroupName') === localStorage.getItem('selectedGroup') ?
+                <div >
+                  <Popup
+                    trigger={<div id="group_button">
+                      <AddIcon id="add_icon" />
+                      <span>Add Document</span>
+                    </div>}
+                    modal
+                    nested
+                  >
+                    {close => (
+                      <div className="modal">
+                        <button className="close" onClick={close}>
+                          &times;
+            </button>
+                        <div className="header"> Add Document </div>
+                        <div className="content">
+                          your Document URL
+
+            </div>
+                        <div className="actions">
+                          <div className="search_form_div">
+                            <div className="input">
+                              <input
+                                id="name"
+                                placeholder="Name"
+                                autoComplete="off"
+                                type="text"
+                              />
+                            </div>
+                          </div>
+                          <div className="search_form_div">
+                            <div className="input">
+                              <input
+                                id="url"
+                                placeholder="URL"
+                                autoComplete="off"
+                                type="text"
+                              />
+                            </div>
+                          </div>
+
+                          <Button
+                            id="button_save"
+                            onClick={this.handleSaveDocument}
+                            variant="contained" color="primary"
+                          >
+                            Save document
+          </Button>
+                        </div>
+                      </div>
+                    )}
+                  </Popup>
+                </div> : null}
+
+
+              {localStorage.getItem('myGroupName') === localStorage.getItem('selectedGroup') ?
+                null
+                : <Popup
+                  trigger={<div id="group_button"><AddIcon id="add_icon" />
+                    <span>Add Review</span></div>}
                   modal
                   nested
                 >
@@ -255,109 +309,55 @@ class GroupPage extends Component {
                     <div className="modal">
                       <button className="close" onClick={close}>
                         &times;
-            </button>
-                      <div className="header"> Add Document </div>
+  </button>
+                      <div className="header"> Review </div>
                       <div className="content">
-                        your Document URL
-
-            </div>
-                      <div className="actions">
-                        <div className="search_form_div">
-                          <div className="input">
-                            <input
-                              id="name"
-                              placeholder="Name"
-                              autoComplete="off"
-                              type="text"
-                            />
-                          </div>
+                        <div onClick={this.handleChange}>
+                          {this.state.deliverableNames}
                         </div>
-                        <div className="search_form_div">
-                          <div className="input">
-                            <input
-                              id="url"
-                              placeholder="URL"
-                              autoComplete="off"
-                              type="text"
-                            />
-                          </div>
+                      </div>
+                      <div className="actions">
+
+                        <div className="input">
+                          <textarea
+                            id="review"
+                            placeholder="Review"
+                            autoComplete="off"
+                            type="text"
+                          />
                         </div>
 
                         <Button
                           id="button_save"
-                          onClick={this.handleSaveDocument}
+                          onClick={this.handleSaveReview}
                           variant="contained" color="primary"
                         >
-                          Save document
-          </Button>
+                          Save Review
+    </Button>
                       </div>
                     </div>
                   )}
-                </Popup>
-              </div> : null}
-
-
-            {localStorage.getItem('myGroupName') === localStorage.getItem('selectedGroup') ?
-              null
-              : <Popup
-                trigger={<div id="group_button"><AddIcon id="add_icon" />
-                  <span>Add Review</span></div>}
-                modal
-                nested
-              >
-                {close => (
-                  <div className="modal">
-                    <button className="close" onClick={close}>
-                      &times;
-  </button>
-                    <div className="header"> Review </div>
-                    <div className="content">
-                      <div onClick={this.handleChange}>
-                        {this.state.deliverableNames}
-                      </div>
-                    </div>
-                    <div className="actions">
-
-                      <div className="input">
-                        <textarea
-                          id="review"
-                          placeholder="Review"
-                          autoComplete="off"
-                          type="text"
-                        />
-                      </div>
-
-                      <Button
-                        id="button_save"
-                        onClick={this.handleSaveReview}
-                        variant="contained" color="primary"
-                      >
-                        Save Review
-    </Button>
-                    </div>
-                  </div>
-                )}
-              </Popup>}
-            {localStorage.getItem('myGroupName') !== "none" ?
-              null
-              : <div id="group_button" onClick={this.handleJoinGroup}>
-                <AddIcon id="add_icon" />
-                <span>Join the Group</span>
-              </div>
-            }
-            {localStorage.getItem('myGroupName') === localStorage.getItem('selectedGroup') ?
-              <div id="group_button" onClick={this.handleLeaveGroup}>
-                <RemoveIcon id="remove_icon" />
-                <span>Leave the Group</span>
-              </div>
-              : null
-            }
+                </Popup>}
+              {localStorage.getItem('myGroupName') !== "none" ?
+                null
+                : <div id="group_button" onClick={this.handleJoinGroup}>
+                  <AddIcon id="add_icon" />
+                  <span>Join the Group</span>
+                </div>
+              }
+              {localStorage.getItem('myGroupName') === localStorage.getItem('selectedGroup') ?
+                <div id="group_button" onClick={this.handleLeaveGroup}>
+                  <RemoveIcon id="remove_icon" />
+                  <span>Leave the Group</span>
+                </div>
+                : null
+              }
+            </div>
           </div>
-        </div>
-      }
+        }
       </div>
-          
-        );
+
+    );
   }
 }
 export default GroupPage;
