@@ -16,6 +16,11 @@ import com.pire.api.repository.GroupRepository;
 import com.pire.api.repository.PeerEvaluationRepository;
 import com.pire.api.repository.StudentRepository;
 
+/**
+ * Handle all databse operations of peer evaluation and return the resund to the controller
+ * @author atesel
+ *
+ */
 @Service
 public class PeerEvaluationService {
 
@@ -31,6 +36,11 @@ public class PeerEvaluationService {
 	@Autowired
 	GroupRepository groupRepository;
 	
+	/**
+	 * create new peer evalıuation and save it tod database 
+	 * @param dto
+	 * @return PeerEvaluationView
+	 */
 	public PeerEvaluationView createPeerEvaluation(CreatePeerEvaluationDto dto) {
 		Student evaluatorStudent = studentRepository.findByEmail(dto.getEvaluatorStudentEmail()).orElseThrow(
 				() -> new NotFoundException("Evaluator student not found")
@@ -57,6 +67,11 @@ public class PeerEvaluationService {
 		return mapper.getPeerEvaluationViewFromPeerEvaluation(peerEvaluation);
 	}
 	
+	/**
+	 * return the list of peer evaluation which is called by name 
+	 * @param groupName
+	 * @return List<PeerEvaluationView> 
+	 */
 	public List<PeerEvaluationView> getGroupPeerEvaluation(String groupName){
 		List<PeerEvaluation> evaluations = repository.findAllByGroupName(groupName);
 		

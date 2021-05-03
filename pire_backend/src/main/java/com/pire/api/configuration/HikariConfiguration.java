@@ -11,6 +11,11 @@ import org.springframework.context.annotation.Profile;
 import com.codahale.metrics.MetricRegistry;
 import com.zaxxer.hikari.HikariDataSource;
 
+/**
+ * HikariConfiguration of the pire applicaton
+ * @author atesel
+ *
+ */
 @Configuration
 @Profile("production")
 public class HikariConfiguration {
@@ -26,7 +31,6 @@ public class HikariConfiguration {
     dsb.username(dataSourceProperties.getUsername());
     dsb.password(dataSourceProperties.getPassword());
 
-    // TODO use HikariConfig & application.yml ??
     final HikariDataSource hikariDataSource = dsb.build();
     hikariDataSource.setMaximumPoolSize(30);
     hikariDataSource.setMetricRegistry(metricRegistry);

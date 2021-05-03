@@ -9,6 +9,11 @@ import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
+/**
+ * Database object of peer evaluation
+ * @author atesel
+ *
+ */
 @Data
 @Entity
 @Table(schema = "poll", name = "peerevaluation")

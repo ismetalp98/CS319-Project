@@ -14,6 +14,11 @@ import com.pire.api.mapper.InstructorMapper;
 import com.pire.api.repository.InstructorRepository;
 import com.pire.api.repository.PeerEvaluationPeriodRepository;
 
+/**
+ * Handle all databse operation of Instructor and return the return to the controller
+ * @author atesel
+ *
+ */
 @Service
 public class InstructorService {
 	@Autowired
@@ -25,6 +30,11 @@ public class InstructorService {
 	@Autowired
 	PeerEvaluationPeriodRepository evaluationPeriodRepository;
 
+	/**
+	 * create new Instructor and save it to database
+	 * @param dto
+	 * @return InstructorView
+	 */
 	public InstructorView createInstructor(CreateInstructorDto dto) {
 		repository.findByEmail(dto.getEmail()).ifPresent(d -> {
 			throw new AlreadyExsitException("Instructor already exsist", "Student", "Email");
@@ -38,6 +48,11 @@ public class InstructorService {
 		return instructorView;
 	}
 
+	/**
+	 * return the login information of Instructor
+	 * @param email
+	 * @return InstructorLoginDto
+	 */
 	public InstructorLoginDto login(String email) {
 		try {
 			Instructor instructor = repository.findByEmail(email).get();
@@ -47,6 +62,11 @@ public class InstructorService {
 		}
 	}
 
+	/**
+	 * find Instructor by name and return Instructor as view 
+	 * @param email
+	 * @return InstructorView
+	 */
 	public InstructorView findByEmail(String email) {
 		Instructor inst = repository.findByEmail(email)
 				.orElseThrow(() -> new NotFoundException("Instructor not found"));
@@ -54,10 +74,18 @@ public class InstructorService {
 		return mapper.getInstructorViewFromInstructor(inst);
 	}
 
+	/**
+	 * return the value of peer evaluation period
+	 * @return PeerEvaluationPeriod
+	 */
 	public PeerEvaluationPeriod getPeerEvaluationPeriod() {
 		return evaluationPeriodRepository.findById(1).get();
 	}
 
+	/**
+	 * toggle the peer evaluation period true to false and false to true
+	 * @return PeerEvaluationPeriod
+	 */
 	public PeerEvaluationPeriod reverseEvaluationPeriod() {
 		PeerEvaluationPeriod period = evaluationPeriodRepository.findById(1).get();
 

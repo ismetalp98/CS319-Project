@@ -6,6 +6,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * Alreadty exsist excepstion which return when  the object is already in database.
+ * @author atesel
+ *
+ */
 @Data
 @EqualsAndHashCode(callSuper=false)
 @ResponseStatus(value = HttpStatus.CONFLICT)

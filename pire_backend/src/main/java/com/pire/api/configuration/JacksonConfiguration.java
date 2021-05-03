@@ -7,6 +7,11 @@ import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
+/**
+ * Jackson Configuration of the applicaition
+ * @author atesel
+ *
+ */
 @Configuration
 public class JacksonConfiguration {
 

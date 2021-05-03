@@ -22,6 +22,11 @@ import com.pire.api.dto.poll.PollQuestionView;
 import com.pire.api.dto.poll.PollView;
 import com.pire.api.servise.PollService;
 
+/**
+ * This class responseable from answer http call about polls
+ * @author atesel
+ *
+ */
 @RestController
 @RequestMapping(path = "api/poll")
 public class PollController {
@@ -29,21 +34,41 @@ public class PollController {
 	@Autowired
 	PollService service;
 	
+	/**
+	 * answers the http request about creaing new poll 
+	 * @param dto
+	 * @return
+	 */
 	@PostMapping("/createPoll")
 	public ResponseEntity<PollView> createPoll(@RequestBody @Valid CreatePollDto dto){
 		return ResponseEntity.ok(service.createPoll(dto));
 	}
 	
+	/**
+	 * answers the http request about create poll question
+	 * @param dto
+	 * @return
+	 */
 	@PostMapping("/createPollQuestion")
 	public ResponseEntity<PollQuestionView> createPollQuestion(@RequestBody @Valid CreatePollQuestionDto dto){
 		return ResponseEntity.ok(service.createPollQuestion(dto));
 	}
 	
+	/**
+	 * answers the http request about creating poll answers
+	 * @param dto
+	 * @return
+	 */
 	@PostMapping("/createPollAnswer")
 	public ResponseEntity<PollAnswerView> createPollAnswer(@RequestBody @Valid CreatePollAnswerDto dto){
 		return ResponseEntity.ok(service.createPollAnswer(dto));
 	}
 	
+	/**
+	 * answers the http request about find poll by id
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/{id}")
 	public ResponseEntity<PollView> findById(
 			@PathVariable(name = "id", required = true) Integer id)
@@ -51,13 +76,20 @@ public class PollController {
 		return ResponseEntity.ok(service.getPollById(id));
 	}
 	
-	
+	/**
+	 * answers the http request about getting all polls with name
+	 * @return
+	 */
 	@GetMapping("/getAll")
 	public ResponseEntity<List<PollView>> findAll()
 	{
 		return ResponseEntity.ok(service.getAll());
 	}
 	
+	/**
+	 * answers the http request about find all answers which is releted to the given poll id
+	 * @return
+	 */
 	@GetMapping("/getAllListView")
 	public ResponseEntity<List<PollListView>> findAllListView()
 	{

@@ -19,6 +19,12 @@ import com.pire.api.repository.GroupRepository;
 import com.pire.api.repository.ReviewRepository;
 import com.pire.api.repository.StudentRepository;
 
+
+/**
+ * Handle all database operation and return the return to the controller
+ * @author atesel
+ *
+ */
 @Service
 public class DeliverableService {
 
@@ -40,8 +46,14 @@ public class DeliverableService {
 	@Autowired
 	StudentRepository studentRepository;
 
+	/**
+	 * Create new deliverable object in databse and saved to databse
+	 * @param dto
+	 * @return DeliverableView
+	 */
 	public DeliverableView createDeliverable(CreateDeliverableDto dto) {
 		
+		// check the group exsist or not
 		Group group = groupRepository.findGroupByName(dto.getGroupname()).orElseThrow(
 		 () -> new NotFoundException("Group not found")		
 		);
@@ -57,6 +69,11 @@ public class DeliverableService {
 		return mapper.getDeliverableViewFromDeliverable(deliverablesaved);
 	}
 	
+	/**
+	 * Create new review and save it to database
+	 * @param dto
+	 * @return ReviewView
+	 */
 	public ReviewView addReview(CreateReviewDto dto){
 		Deliverable deliverable = repository.findById(dto.getDeliverableId()).orElseThrow(
 				 () -> new NotFoundException("Deliverable not found")		
@@ -77,6 +94,11 @@ public class DeliverableService {
 		return reviewView;
 	}
 	
+	/**
+	 * find and retunr delviable with id
+	 * @param id
+	 * @return DeliverableView
+	 */
 	public DeliverableView findDeliverableById(Integer id)
 	{
 		return mapper.getDeliverableViewFromDeliverable(repository.findById(id).get());

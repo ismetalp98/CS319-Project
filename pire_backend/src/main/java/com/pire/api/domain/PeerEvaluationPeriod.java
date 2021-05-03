@@ -7,6 +7,11 @@ import javax.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * Databse object of the peer review period
+ * @author atesel
+ *
+ */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Entity

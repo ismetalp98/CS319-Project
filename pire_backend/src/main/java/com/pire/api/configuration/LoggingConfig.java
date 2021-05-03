@@ -7,6 +7,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
+/**
+ * logging confuguration help to log while applcaiton is running
+ * @author atesel
+ *
+ */
 @Configuration
 public class LoggingConfig {
 
