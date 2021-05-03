@@ -62,7 +62,7 @@ class PollQuestionCreate extends Component {
             Create Question
         </Button>
           <Button id="submitBtn" variant="contained" color="primary" onClick={this.handleFinishCreation}>
-            Create Question
+            Finish Creation
         </Button>
         </div>
 
