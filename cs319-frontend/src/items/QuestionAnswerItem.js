@@ -9,9 +9,6 @@ class QuestionAnswerItem extends Component {
     this.setState({ "name": this.props.question });
     this.setState({ "index": this.props.index });
     this.setState({ "pollIndex": this.props.pollIndex });
-    console.log(this.props.question);
-    console.log(this.props.index);
-    console.log(this.props.pollIndex);
   }
 
   set = e => {
@@ -26,7 +23,6 @@ class QuestionAnswerItem extends Component {
         pollQuestions = parsed.questions;
         for (var current of pollQuestions) {
           if(current.id === this.state.index) {
-          console.log(current.answers);
           const polls = current.answers.map(questionobj => {
             return <PollShowing
               answer={questionobj.answer}>

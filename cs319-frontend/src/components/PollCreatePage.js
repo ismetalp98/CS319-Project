@@ -21,7 +21,7 @@ class PollCreatePage extends Component {
         ...prevState.OptionDetails,
         {
           index: Math.random,
-          oprtion: ""
+          option: ""
         }
       ]
     }));
@@ -39,7 +39,7 @@ class PollCreatePage extends Component {
         <div className="PollCreation">
           <div className="PirePollHeader">
             <h2>Pire Poll</h2>
-            <Button id="addOptionBtn" variant="contained" color="primary" onClick={() => this.addOption()}>
+            <Button id="addOptionBtn" onClick={() => this.addOption()}>
               <AddIcon />
             </Button>
           </div>
@@ -72,7 +72,7 @@ class PollCreatePage extends Component {
               </div>
             </div>
           </div>
-          <Button id="submitBtn" variant="contained" color="primary">
+          <Button id="submitBtn" color="#841584">
             Submit
           </Button>
         </div>

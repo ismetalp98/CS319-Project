@@ -32,9 +32,9 @@ class PollQuestionCreate extends Component {
     xhr.send(json);
   };
 
-  handleFinishCreation = e =>{
+  handleFinishCreation = e => {
     e.preventDefault();
-    this.setState({questionCreationEnded : true});
+    this.setState({ questionCreationEnded: true });
   }
 
   render() {
@@ -61,7 +61,7 @@ class PollQuestionCreate extends Component {
           <Button id="submitBtn" variant="contained" color="primary" onClick={this.handlePollQuestion}>
             Create Question
         </Button>
-        <Button id="submitBtn" variant="contained" color="primary" onClick={this.handleFinishCreation}>
+          <Button id="submitBtn" variant="contained" color="primary" onClick={this.handleFinishCreation}>
             Create Question
         </Button>
         </div>

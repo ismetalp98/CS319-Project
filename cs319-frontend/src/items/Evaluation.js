@@ -4,10 +4,6 @@ import "../csss/review.css";
 class Evaluation extends Component {
     state = {};
     componentDidMount() {
-        console.log(this.props.evaluation);
-        console.log(this.props.point);
-        console.log(this.props.name);
-        console.log(this.props.surname);
         this.setState({ "evaluation": this.props.evaluation });
         this.setState({ "point": this.props.point });
         this.setState({ "name": this.props.name });

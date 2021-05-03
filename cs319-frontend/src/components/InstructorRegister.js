@@ -18,12 +18,10 @@ class InstructorRegister extends Component {
     let pss2 = document.getElementById("pss2").value;
     let code = document.getElementById("instcode").value;
 
-    console.log(code === 'code2023');
 
     if (/*email.includes("@bilkent.edu.tr") && pss.length >= 8 &&
         firstname.length > 1 &&
         lastname.length > 1*/true) {
-        console.log(code === 'code2023');
         if(pss !== pss2){
           toast.error("Passwords does not match.");
         }
@@ -43,7 +41,6 @@ class InstructorRegister extends Component {
     
           xhr.addEventListener("load", () => {
             // update the state of the component with the result here
-            console.log(xhr.status);
             if (xhr.status === 200) {
               toast.success("Successfully Registered");
               this.setState({ registered: true });

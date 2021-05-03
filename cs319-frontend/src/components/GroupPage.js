@@ -47,7 +47,6 @@ class GroupPage extends Component {
       for (var a of parsedDeliverables) {
         myMap.set(a.name, a.reviews);
       }
-      console.log(myMap);
       var i = 0;
       var reviews = [];
       myMap.forEach(function (value, keya) {
@@ -119,7 +118,6 @@ class GroupPage extends Component {
     xhr.addEventListener("load", () => {
 
       if (xhr.status === 200) {
-        console.log(data)
       }
     });
 
@@ -145,8 +143,6 @@ class GroupPage extends Component {
 
 
       if (xhr.status === 200) {
-        console.log(xhr.status);
-        console.log("Successfully Joined");
         this.setState({ joinedGroup: true });
         alert("Joined to the group")
       }
@@ -190,9 +186,6 @@ class GroupPage extends Component {
     let review = document.getElementById("review").value;
     let email = localStorage.getItem('currentUserMail');
     let doc = this.state.valueR
-    console.log(review);
-    console.log(doc);
-    console.log(email);
 
     var data = {
       "studentEmail": email,
@@ -201,14 +194,12 @@ class GroupPage extends Component {
     };
 
     var json = JSON.stringify(data);
-    console.log(json);
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "http://d7c59928777f.ngrok.io/api/deliverable/addReview");
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(json);
 
     xhr.addEventListener("load", () => {
-      console.log(xhr.status);
     });
 
 

@@ -22,7 +22,6 @@ class Header extends Component {
     xhr.send();
     xhr.addEventListener("load", () => {
       if (xhr.status === 200) {
-        console.log(xhr.response);
         var parsed = JSON.parse(xhr.response);
         localStorage.setItem("currentPeriod", parsed.active)
       }
@@ -49,7 +48,6 @@ class Header extends Component {
     xhr.send();
     xhr.addEventListener("load", () => {
       if (xhr.status === 200) {
-        console.log(xhr.response);
         var parsed = JSON.parse(xhr.response);
         localStorage.setItem("currentPeriod", parsed.active)
       }

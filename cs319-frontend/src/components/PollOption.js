@@ -6,8 +6,8 @@ import MinusIcon from "@material-ui/icons/Remove";
 import Icon from "@material-ui/core/Icon";
 
 function addPro() {
-    this.props.add();
-  }
+  this.props.add();
+}
 const OptionList = props => {
   return props.OptionDetails.map((val, idx) => {
     let option = `option-${idx}`;

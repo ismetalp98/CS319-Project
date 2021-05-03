@@ -2,15 +2,12 @@ import React, { Component } from "react";
 import "../csss/questionItem.css";
 import Button from "@material-ui/core/Button";
 
-class PollAnswer extends Component {
+class PollInstrAnswer extends Component {
   state = {};
   componentDidMount() {
     this.setState({ "name": this.props.question });
     this.setState({ "index": this.props.index });
     this.setState({ "pollIndex": this.props.pollIndex });
-    console.log(this.props.question);
-    console.log(this.props.index);
-    console.log(this.props.pollIndex);
   }
 
   handleAnswer = e => {
@@ -41,5 +38,5 @@ class PollAnswer extends Component {
   }
 }
 
-export default PollAnswer;
+export default PollInstrAnswer;
 

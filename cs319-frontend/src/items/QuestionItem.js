@@ -18,7 +18,7 @@ class QuestionItem extends Component {
       "answer": answer
     };
     var json = JSON.stringify(data);
-    var xhr = new XMLHttpRequest();
+    var xhr = new XMLHttpRequest(); 
 
     xhr.addEventListener("load", () => {
       if (xhr.status === 200) {

@@ -19,7 +19,6 @@ class PollAnswer extends Component {
       // update the state of the component with the result here
       var parsed = JSON.parse(xhrpolls.response);
       pollQuestions = parsed.questions;
-      console.log(pollQuestions);
 
       const polls = pollQuestions.map(questionobj => {
         return <QuestionItem

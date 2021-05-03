@@ -9,7 +9,6 @@ class GroupItem extends Component {
 
   handleGroup = e => {
     e.preventDefault();
-    console.log(this.props.name)
     localStorage.setItem('selectedGroup', this.props.name);
   };
 

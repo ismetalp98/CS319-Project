@@ -18,8 +18,6 @@ class PollItem extends Component {
   set = e => {
     e.preventDefault();
     localStorage.setItem("currentPollName", this.props.name);
-    console.log("1. " + this.props.id);
-    console.log("2. " + this.props.name);
     localStorage.setItem("currentPollIndex", this.props.id);
     this.setState({ redirect: true });
   }

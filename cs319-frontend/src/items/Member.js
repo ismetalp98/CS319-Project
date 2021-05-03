@@ -25,7 +25,6 @@ class Member extends Component {
       // update the state of the component with the result here
       var parsed = JSON.parse(xhr.response);
       evalObject = parsed.otherEvaluation;
-      console.log(evalObject);
 
       const reviews = evalObject.map(reviewObj => {
         return <Evaluation
@@ -51,10 +50,6 @@ class Member extends Component {
     let recieveremail = this.props.email;
     let point = this.state.valueR;
 
-    console.log(review);
-    console.log(senderemail);
-    console.log(recieveremail);
-    console.log(point);
 
     var data = {
       "evaluatorStudentEmail": senderemail,
@@ -65,7 +60,6 @@ class Member extends Component {
     };
 
     var json = JSON.stringify(data);
-    console.log(json);
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "http://d7c59928777f.ngrok.io/api/peerevaluation/create");
     xhr.setRequestHeader("Content-Type", "application/json");
