@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import "../csss/PollAnswer.css";
 import { Redirect } from "react-router-dom";
-import QuestionItem from "../items/QuestionItem";
 import QuestionAnswerItem from "../items/QuestionAnswerItem";
 
 class ShowPollAnswer extends Component {

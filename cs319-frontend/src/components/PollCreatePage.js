@@ -39,7 +39,7 @@ class PollCreatePage extends Component {
         <div className="PollCreation">
           <div className="PirePollHeader">
             <h2>Pire Poll</h2>
-            <Button id="addOptionBtn" onClick={() => this.addOption()}>
+            <Button id="addOptionBtn" variant="contained" color="primary" onClick={() => this.addOption()}>
               <AddIcon />
             </Button>
           </div>
@@ -72,7 +72,7 @@ class PollCreatePage extends Component {
               </div>
             </div>
           </div>
-          <Button id="submitBtn" color="#841584">
+          <Button id="submitBtn" variant="contained" color="primary">
             Submit
           </Button>
         </div>
