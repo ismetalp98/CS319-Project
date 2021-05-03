@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../csss/items.css";
+import "../css/items.css";
 
 // how answer of a poll will be displayed
 class PollShowAnswer extends Component {

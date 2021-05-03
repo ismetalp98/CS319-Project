@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
-import "../csss/PollCreateV2.css";
+import "../css/PollCreateOpenEnded.css";
 import { Link, Redirect } from "react-router-dom";
 
-class PollCreateV2 extends Component {
+class PollCreateOpenEnded extends Component {
   state = {};
   handlePollCreation = e => {
     e.preventDefault();
@@ -37,7 +37,7 @@ class PollCreateV2 extends Component {
       return <Redirect to={'/pollQuestionCreate'} />;
     }
     return (
-      <form className="PollCreateV2">
+      <form className="PollCreateOpenEnded">
         <div className="PollCreation">
           <div className="search_form_div">
             <div className="input">
@@ -65,4 +65,4 @@ class PollCreateV2 extends Component {
   }
 }
 
-export default PollCreateV2;
+export default PollCreateOpenEnded;

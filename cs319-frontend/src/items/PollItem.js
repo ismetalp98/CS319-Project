@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../csss/items.css";
+import "../css/items.css";
 import { Redirect } from 'react-router';
 
 // How polls will be displayed in home page and what will happen when clicked

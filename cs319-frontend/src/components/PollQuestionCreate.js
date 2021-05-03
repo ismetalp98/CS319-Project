@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
-import "../csss/PollCreateV2.css";
+import "../css/PollCreateOpenEnded.css";
 import { Redirect } from "react-router-dom";
 
 
@@ -42,7 +42,7 @@ class PollQuestionCreate extends Component {
       return <Redirect to={'/homePage'} />;
     }
     return (
-      <form className="PollCreateV2">
+      <form className="PollCreateOpenEnded">
         <div className="PollCreation">
           <div className="search_form_div">
             <div className="input">

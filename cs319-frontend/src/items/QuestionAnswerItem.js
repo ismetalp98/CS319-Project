@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../csss/items.css";
+import "../css/items.css";
 import Popup from 'reactjs-popup';
 import PollShowAnswer from "./PollShowAnswer";
 

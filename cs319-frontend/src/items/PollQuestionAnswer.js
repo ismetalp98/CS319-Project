@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../csss/PollQuestionAnswer.css";
+import "../css/PollQuestionAnswer.css";
 import Button from "@material-ui/core/Button";
 
 class PollQuestionAnswer extends Component {

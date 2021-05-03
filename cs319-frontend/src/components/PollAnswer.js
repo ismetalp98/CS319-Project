@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../csss/PollAnswer.css";
+import "../css/PollAnswer.css";
 import { Redirect } from "react-router-dom";
 import PollQuestionAnswer from "../items/PollQuestionAnswer";
 

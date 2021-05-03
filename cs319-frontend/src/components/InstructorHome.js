@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PollItem from "../items/PollItem";
 import GroupItem from "../items/GroupItem";
 import Member from "../items/Member";
-import "../csss/homePage.css";
+import "../css/homePage.css";
 import { withRouter} from "react-router-dom";
 
 class InstructorHome extends Component {

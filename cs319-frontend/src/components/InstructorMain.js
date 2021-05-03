@@ -5,7 +5,7 @@ import ProfilePage from "./ProfilePage";
 import InstructorLogin from "./InstructorLogin";
 import GroupPage from "./GroupPage";
 import InstructorHome from "./InstructorHome";
-import "../csss/mainPage.css";
+import "../css/mainPage.css";
 import { BrowserRouter as Router, Switch, Route, withRouter } from "react-router-dom";
 import PollQuestionCreate from "../components/PollQuestionCreate";
 import PollCreateOpenEnded from "./PollCreateOpenEnded";

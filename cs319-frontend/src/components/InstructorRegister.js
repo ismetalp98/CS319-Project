@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
-import "../csss/auth.css";
+import "../css/auth.css";
 import bg from "./../bg.svg";
 import { Link, Redirect } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';

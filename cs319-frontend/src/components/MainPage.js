@@ -4,7 +4,7 @@ import ProfilePage from "./ProfilePage";
 import Login from "./Login";
 import GroupPage from "./GroupPage";
 import HomePage from "./HomePage";
-import "../csss/mainPage.css";
+import "../css/mainPage.css";
 import { BrowserRouter as Router, Switch, Route, withRouter } from "react-router-dom";
 import PollQuestionCreate from "../components/PollQuestionCreate";
 import PollCreateOpenEnded from "./PollCreateOpenEnded";

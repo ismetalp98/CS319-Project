@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import "../csss/PollQuestionAnswer.css";
+import "../css/PollQuestionAnswer.css";
 import Button from "@material-ui/core/Button";
 
-// Instructor could display answers of poll and this is how they will be displayed
+// Instructor could display answers of poll and this is how they will be displayed when clicked to poll item
 class PollInstrAnswer extends Component {
   state = {};
   componentDidMount() {

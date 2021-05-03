@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
-import "../csss/PollCreatePage.css";
+import "../css/PollCreatePage.css";
 import AddIcon from "@material-ui/icons/Add";
 import MinusIcon from "@material-ui/icons/Remove";
 import Icon from "@material-ui/core/Icon";

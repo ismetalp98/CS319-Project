@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../csss/profilePage.css";
+import "../css/profilePage.css";
 import FaceIcon from "@material-ui/icons/Face";
 
 

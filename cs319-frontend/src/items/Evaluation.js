@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../csss/review.css";
+import "../css/review.css";
 
 class Evaluation extends Component {
     state = {};

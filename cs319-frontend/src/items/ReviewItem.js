@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { Component } from "react";
-import "../csss/items.css";
+import "../css/items.css";
 import Popup from 'reactjs-popup';
 
 

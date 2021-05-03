@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../csss/items.css";
+import "../css/items.css";
 import FaceIcon from "@material-ui/icons/Face";
 import Popup from 'reactjs-popup';
 import { Redirect } from "react-router-dom";

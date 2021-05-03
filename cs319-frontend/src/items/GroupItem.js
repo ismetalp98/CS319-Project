@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "../csss/items.css";
+import "../css/items.css";
 import { Link } from "react-router-dom";
 
 

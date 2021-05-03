@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Button from "@material-ui/core/Button";
-import "../csss/PollCreatePage.css";
+import "../css/PollCreatePage.css";
 import AddIcon from "@material-ui/icons/Add";
 import Icon from "@material-ui/core/Icon";
 import OptionList from "./PollOption";
