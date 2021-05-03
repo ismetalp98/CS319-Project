@@ -31,6 +31,19 @@ class HomePage extends Component {
     });
   };
 
+  getPeriod = e => {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://d7c59928777f.ngrok.io/api/instructor/evaluationPeriod");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send();
+    xhr.addEventListener("load", () => {
+      if (xhr.status === 200) {
+        var parsed = JSON.parse(xhr.response);
+        localStorage.setItem("currentPeriod", parsed.active)
+      }
+    });
+  };
+
   //get all the polls
   getPolls = e => {
     var pollid = 0;
@@ -89,6 +102,7 @@ class HomePage extends Component {
     this.getGroups();
     this.getPolls();
     this.getMyGroup();
+    this.getPeriod();
   }
   
   render() {

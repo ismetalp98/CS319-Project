@@ -23,6 +23,7 @@ class GroupPage extends Component {
   };
 
   componentWillMount() {
+    this.getPeriod();
     var xhrgroups = new XMLHttpRequest();
     xhrgroups.open("GET", "http://d7c59928777f.ngrok.io/api/group/getdeliverable/" + localStorage.getItem('selectedGroup'));
     xhrgroups.send();
@@ -89,6 +90,7 @@ class GroupPage extends Component {
           email={memberitem.email}
           myfriend={false}
           isInstructor={!this.props.instructor}
+          period = {localStorage.getItem("currentPeriod")}
         />)
         this.setState({ members: members });
       }
@@ -201,7 +203,18 @@ class GroupPage extends Component {
     xhr.addEventListener("load", () => {
     });
   }
-
+  getPeriod = e => {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "https://d7c59928777f.ngrok.io/api/instructor/evaluationPeriod");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send();
+    xhr.addEventListener("load", () => {
+      if (xhr.status === 200) {
+        var parsed = JSON.parse(xhr.response);
+        localStorage.setItem("currentPeriod", parsed.active)
+      }
+    });
+  };
   //  radio button handler
   handleChange = (event) => {
     this.setState({ valueR: event.target.value });
