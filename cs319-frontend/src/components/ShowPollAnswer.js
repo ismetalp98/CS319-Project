@@ -6,6 +6,7 @@ import QuestionAnswerItem from "../items/QuestionAnswerItem";
 class ShowPollAnswer extends Component {
   state = {};
 
+  //get all the questions
   getQuestions = e => {
     var pollIndex = localStorage.getItem("currentPollIndex");
     var pollQuestions;
@@ -30,6 +31,7 @@ class ShowPollAnswer extends Component {
       this.setState({ polls: polls });
     });
   };
+  
   componentDidMount() {
     this.getQuestions();
   }

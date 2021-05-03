@@ -8,6 +8,7 @@ import { withRouter } from "react-router-dom";
 class InstructorHome extends Component {
   state = {};
 
+  //get all the groups
   getGroups = e => {
     var groupid = 0;
     localStorage.setItem("selectedMember", localStorage.getItem('currentUserMail'));
@@ -26,6 +27,8 @@ class InstructorHome extends Component {
       this.setState({ groups: groups });
     });
   };
+
+  //get all the students
   getStudentList = e => {
     var studentid = 0;
     localStorage.setItem("selectedMember", localStorage.getItem('currentUserMail'));
@@ -46,6 +49,7 @@ class InstructorHome extends Component {
     });
   };
 
+  //get all the polls
   getPolls = e => {
     var pollid = 0;
     var xhrpolls = new XMLHttpRequest();
@@ -71,8 +75,9 @@ class InstructorHome extends Component {
     this.getGroups();
     this.getPolls();
     this.getStudentList();
-    localStorage.setItem('myGroupName', "none");
+    localStorage.setItem('myGroupName', "none"); //instructer has no group
   }
+
   render() {
     return (
       <div className="home_page">

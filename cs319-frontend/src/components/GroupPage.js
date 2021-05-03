@@ -13,6 +13,7 @@ import RemoveIcon from "@material-ui/icons/Remove";
 class GroupPage extends Component {
   state = { valueR: null };
 
+  //Get all deriverables for document review
   getDeliverables = (parsedDeliverables) => {
     var j = 0;
     const deliverableNames = parsedDeliverables.map(documentitem => <div>
@@ -22,7 +23,6 @@ class GroupPage extends Component {
   };
 
   componentWillMount() {
-    //members
     var xhrgroups = new XMLHttpRequest();
     xhrgroups.open("GET", "http://d7c59928777f.ngrok.io/api/group/getdeliverable/" + localStorage.getItem('selectedGroup'));
     xhrgroups.send();
@@ -32,7 +32,7 @@ class GroupPage extends Component {
       var parsedDeliverables = parsed.deliverables;
 
 
-      //Deliverables
+      // get Deliverables
       this.setState({ valueR: 6 });
       const deliverables = parsedDeliverables.map(documentitem => <DocumentItem
         key={documentitem.id}
@@ -42,10 +42,10 @@ class GroupPage extends Component {
 
       this.getDeliverables(parsedDeliverables);
 
-      //Reviews
+      // get Reviews
       var myMap = new Map();
-      for (var a of parsedDeliverables) {
-        myMap.set(a.name, a.reviews);
+      for (var currDeliverable of parsedDeliverables) {
+        myMap.set(currDeliverable.name, currDeliverable.reviews);
       }
       var i = 0;
       var reviews = [];
@@ -68,7 +68,7 @@ class GroupPage extends Component {
         }
       });
 
-      //Members
+      //get all Members if my group
       if (localStorage.getItem('myGroupName') === localStorage.getItem('selectedGroup')) {
         const members = parsedStudents.map(memberitem => <Member
           key={memberitem.studentid}
@@ -80,6 +80,7 @@ class GroupPage extends Component {
         />)
         this.setState({ members: members });
       }
+      //get all Members if not my group
       else {
         const members = parsedStudents.map(memberitem => <Member
           key={memberitem.studentid}
@@ -91,16 +92,14 @@ class GroupPage extends Component {
         />)
         this.setState({ members: members });
       }
-
-
-
-
+      //Set all the states
       this.setState({ parsedStudents: parsedStudents });
       this.setState({ deliverables: deliverables });
       this.setState({ reviews: reviews });
     });
   }
 
+  //save the document handler
   handleSaveDocument = e => {
     e.preventDefault();
     let name = document.getElementById("name").value;
@@ -127,7 +126,7 @@ class GroupPage extends Component {
   }
 
 
-
+  //join group handler
   handleJoinGroup = e => {
     e.preventDefault();
     let groupname = localStorage.getItem('selectedGroup');
@@ -150,11 +149,10 @@ class GroupPage extends Component {
 
     xhr.open("POST", "https://d7c59928777f.ngrok.io/api/group/addStudent");
     xhr.setRequestHeader("Content-Type", "application/json");
-    // send the request
     xhr.send(json);
   };
 
-
+  //leave the group
   handleLeaveGroup = e => {
     e.preventDefault();
     let studentEmail = localStorage.getItem('currentUserMail');
@@ -180,6 +178,7 @@ class GroupPage extends Component {
     xhr.send(json);
   }
 
+  //save review handler
   handleSaveReview = e => {
     e.preventDefault();
 
@@ -201,15 +200,15 @@ class GroupPage extends Component {
 
     xhr.addEventListener("load", () => {
     });
-
-
   }
 
+  //  radio button handler
   handleChange = (event) => {
     this.setState({ valueR: event.target.value });
   };
 
   render() {
+    //if group leaved or joined to it redirect
     if (this.state.joinedGroup || this.state.leavedGroup) {
       return <Redirect to={'/homePage'} />
     }

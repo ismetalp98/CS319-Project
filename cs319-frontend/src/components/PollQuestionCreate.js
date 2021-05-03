@@ -4,9 +4,10 @@ import "../css/PollCreateOpenEnded.css";
 import { Redirect } from "react-router-dom";
 
 
-
 class PollQuestionCreate extends Component {
   state = {};
+
+  //add question to poll
   handlePollQuestion = e => {
     e.preventDefault();
     let index = localStorage.getItem("currentPollIndex");
@@ -32,6 +33,7 @@ class PollQuestionCreate extends Component {
     xhr.send(json);
   };
 
+  //finish button handler
   handleFinishCreation = e => {
     e.preventDefault();
     this.setState({ questionCreationEnded: true });

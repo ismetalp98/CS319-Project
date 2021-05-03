@@ -4,11 +4,10 @@ import { Redirect } from "react-router-dom";
 import PollQuestionAnswer from "../items/PollQuestionAnswer";
 
 
-
-
 class PollAnswer extends Component {
   state = {};
 
+  //get all the questions in that poll
   getQuestions = e => {
     var pollIndex = localStorage.getItem("currentPollIndex");
     var pollQuestions;

@@ -10,6 +10,8 @@ var url = "https://d7c59928777f.ngrok.io"
 class InstructorLogin extends Component {
 
   state = {};
+
+  //login to group handler
   handleLogin = e => {
     e.preventDefault();
     let email = document.getElementById("email").value;
@@ -20,6 +22,7 @@ class InstructorLogin extends Component {
       xhr.addEventListener("load", () => {
         // update the state of the component with the result here
         var parsed = JSON.parse(xhr.response);
+        //check inputs
         if (parsed.password === pss) {
           toast.success("Logged in succesfully");
           this.setState({ loggedIn: true });
@@ -27,7 +30,6 @@ class InstructorLogin extends Component {
           localStorage.setItem('userLogedIn', true);
 
         } else {
-
           toast.error("Wrong password or username");
         }
       });

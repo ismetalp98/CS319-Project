@@ -7,17 +7,14 @@ class PollShowAnswer extends Component {
   componentDidMount() {
     this.setState({ "name": this.props.answer });
   }
-
   render() {
     return (
       <div>
         {this.state.name}
         <hr></hr>
       </div>
-
     );
   }
 }
-
 export default PollShowAnswer;
 

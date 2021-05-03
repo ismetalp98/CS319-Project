@@ -10,12 +10,16 @@ import Evaluation from "../items/Evaluation";
 
 class Member extends Component {
   state = { valueR: null };
+
+  //go to prfile btn handler
   handleProfile = e => {
     e.preventDefault();
     localStorage.setItem('selectedMember', this.props.email);
     this.setState({ goToProfile: true });
 
   };
+
+  //get all reviews
   handleReview = e => {
     var evalObject;
     var xhr = new XMLHttpRequest();
@@ -26,6 +30,7 @@ class Member extends Component {
       var parsed = JSON.parse(xhr.response);
       evalObject = parsed.otherEvaluation;
 
+      //get all reviews for seleccted member
       const reviews = evalObject.map(reviewObj => {
         return <Evaluation
           key={reviewObj.point}
@@ -42,8 +47,8 @@ class Member extends Component {
 
   };
 
+  //submit the review for selected member
   handleSubmit = e => {
-
     e.preventDefault();
     let review = document.getElementById("review").value;
     let senderemail = localStorage.getItem('currentUserMail');
@@ -72,6 +77,7 @@ class Member extends Component {
     });
   }
 
+  //radio buttons controller
   handleChange = (event) => {
     this.setState({ valueR: event.target.value });
   };

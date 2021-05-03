@@ -6,7 +6,6 @@ import Popup from 'reactjs-popup';
 
 // how a review will be displayed in group page and what will happen when clicked
 class ReviewItem extends Component {
-
   render() {
     return (
       <Popup
@@ -31,8 +30,6 @@ class ReviewItem extends Component {
               </ul>
             </div>
             <div className="actions">
-
-
             </div>
           </div>
         )}

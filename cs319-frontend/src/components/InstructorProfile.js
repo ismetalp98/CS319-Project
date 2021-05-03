@@ -8,16 +8,14 @@ class InstructorProfile extends Component {
 
   componentWillMount() {
     var xhruser = new XMLHttpRequest();
-
     xhruser.open("GET", "http://d7c59928777f.ngrok.io/api/instructor/" + localStorage.getItem('selectedMember'));
-
     xhruser.send();
     xhruser.addEventListener("load", () => {
       var parsed = JSON.parse(xhruser.response);
       this.setState({ firstname: parsed.name, lastname: parsed.surname, email: parsed.email });
-
     });
   }
+
   render() {
     return (
       <div className="profile_page">

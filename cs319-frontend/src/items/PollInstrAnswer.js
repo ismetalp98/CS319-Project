@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "../css/PollQuestionAnswer.css";
-import Button from "@material-ui/core/Button";
 
 // Instructor could display answers of poll and this is how they will be displayed when clicked to poll item
 class PollInstrAnswer extends Component {
@@ -12,9 +11,7 @@ class PollInstrAnswer extends Component {
   }
 
   getAnswer = e => {
-
     var xhr = new XMLHttpRequest();
-
     xhr.addEventListener("load", () => {
       if (xhr.status === 200) {
       }

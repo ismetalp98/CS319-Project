@@ -24,7 +24,6 @@ class PollItem extends Component {
     localStorage.setItem("currentPollIndex", this.props.id);
     this.setState({ redirect: true });
   }
-
   render() {
     if (this.state.redirect) {
       if (this.props.isInstructor) {
@@ -33,7 +32,6 @@ class PollItem extends Component {
       else {
         return <Redirect to={'/pollAnswer'} />
       }
-
     }
     return (
       <div className={this.state.name} onClick={this.set}>
@@ -45,6 +43,5 @@ class PollItem extends Component {
     );
   }
 }
-
 export default PollItem;
 

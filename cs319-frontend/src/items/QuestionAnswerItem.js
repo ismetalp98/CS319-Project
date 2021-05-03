@@ -12,9 +12,9 @@ class QuestionAnswerItem extends Component {
     this.setState({ "pollIndex": this.props.pollIndex });
   }
 
-  set = e => {
+  //get all the answers
+  getAnswers = e => {
     e.preventDefault();
-
     var xhr = new XMLHttpRequest();
     var pollQuestions;
     xhr.addEventListener("load", () => {
@@ -29,7 +29,6 @@ class QuestionAnswerItem extends Component {
                 answer={questionobj.answer}>
               </PollShowAnswer>
             })
-
             this.setState({ polls: polls });
           }
         }
@@ -45,11 +44,10 @@ class QuestionAnswerItem extends Component {
       <div>
         <Popup
           trigger={<div className="poll_item1">
-            <div className="poll_item_name" onClick={this.set}>
+            <div className="poll_item_name" onClick={this.getAnswers}>
               <h3 id="group_name"> {this.state.name}</h3>
             </div>
           </div>}
-
           modal
           nested
         >

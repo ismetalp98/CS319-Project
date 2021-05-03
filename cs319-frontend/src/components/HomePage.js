@@ -10,6 +10,7 @@ import { withRouter } from "react-router-dom";
 class HomePage extends Component {
   state = {};
 
+  //get all the groups
   getGroups = e => {
     var groupid = 0;
     localStorage.setItem("selectedMember", localStorage.getItem('currentUserMail'));
@@ -30,6 +31,7 @@ class HomePage extends Component {
     });
   };
 
+  //get all the polls
   getPolls = e => {
     var pollid = 0;
     var xhrpolls = new XMLHttpRequest();
@@ -51,6 +53,7 @@ class HomePage extends Component {
     });
   };
 
+  //get my group
   getMyGroup = e => {
     var xhruser = new XMLHttpRequest();
     xhruser.open("GET", "http://d7c59928777f.ngrok.io/api/student/" + localStorage.getItem('currentUserMail'));
@@ -71,8 +74,8 @@ class HomePage extends Component {
             key={groupid++}
             color={1}
             name={parsed.group.name}
-            project={'PeerReview'} 
-            notMyGroupObject={true}/>
+            project={'PeerReview'}
+            notMyGroupObject={true} />
           this.setState({ myGroup: myGroup });
           localStorage.setItem('myGroupName', parsed.group.name);
           localStorage.setItem('hasNoGroup', false);
@@ -87,6 +90,7 @@ class HomePage extends Component {
     this.getPolls();
     this.getMyGroup();
   }
+  
   render() {
     return (
       <div className="home_page">

@@ -3,7 +3,7 @@ import "../css/items.css";
 import { Link } from "react-router-dom";
 
 
-
+//single group item
 class GroupItem extends Component {
   state = {};
 
@@ -11,8 +11,8 @@ class GroupItem extends Component {
     e.preventDefault();
     localStorage.setItem('selectedGroup', this.props.name);
   };
-
-
+  
+  //arrange background color
   componentDidMount() {
     const name =
       this.props.color % 4 === 0
@@ -24,7 +24,6 @@ class GroupItem extends Component {
             : "poll_item1";
     this.setState({ "color": name });
   }
-
   render() {
     if ((localStorage.getItem('myGroupName') === this.props.name) && !this.props.notMyGroupObject) {
       return (<div></div>);

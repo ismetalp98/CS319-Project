@@ -11,12 +11,15 @@ var url = "https://d7c59928777f.ngrok.io"
 class Login extends Component {
 
   state = {};
+
+  //login handler
   handleLogin = e => {
     e.preventDefault();
     let email = document.getElementById("email").value;
     let pss = document.getElementById("pss").value;
     var xhr = new XMLHttpRequest();
 
+    //check inputs
     if (email.includes("@ug.bilkent.edu.tr") && pss.length >= 8) {
       xhr.addEventListener("load", () => {
         // update the state of the component with the result here
@@ -30,16 +33,13 @@ class Login extends Component {
           toast.error("Wrong password or username!");
         }
       });
-
       // open the request with the verb and the url
       xhr.open("GET", url + "/api/student/login/" + email);
       // send the request
       xhr.send();
-
     }
     else {
       toast.error("Your mail adress and password is not in proper format!");
-
     }
 
   };

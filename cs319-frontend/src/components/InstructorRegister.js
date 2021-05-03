@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 class InstructorRegister extends Component {
   state = {};
+
   handleLogin = e => {
     e.preventDefault();
     let firstname = document.getElementById("firstname").value;
@@ -18,7 +19,7 @@ class InstructorRegister extends Component {
     let pss2 = document.getElementById("pss2").value;
     let code = document.getElementById("instcode").value;
 
-
+    //check inputs
     if (email.includes("@bilkent.edu.tr") && pss.length >= 8 &&
       firstname.length > 1 &&
       lastname.length > 1) {
@@ -35,7 +36,6 @@ class InstructorRegister extends Component {
           "surname": lastname,
           "password": pss
         };
-
         var json = JSON.stringify(data);
         var xhr = new XMLHttpRequest();
 
@@ -56,15 +56,12 @@ class InstructorRegister extends Component {
         xhr.send(json);
       };
 
-
     } else {
-
       toast.error("Please fill empty fields.");
-
     }
   }
-  render() {
 
+  render() {
     if (this.state.registered) {
       return <Redirect to={'/InstructorLogin'} />
     }

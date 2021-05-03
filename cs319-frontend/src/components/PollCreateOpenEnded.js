@@ -7,6 +7,7 @@ class PollCreateOpenEnded extends Component {
   state = {};
   handlePollCreation = e => {
     e.preventDefault();
+    //this is question name
     let name = document.getElementById("question").value;
     var data = {
       "name": name
@@ -16,7 +17,7 @@ class PollCreateOpenEnded extends Component {
     var xhr = new XMLHttpRequest();
 
 
-    var index = -1;
+    var index = -1; //if not found
     xhr.addEventListener("load", () => {
       var parsed = JSON.parse(xhr.response);
       if (xhr.status === 200) {
@@ -29,9 +30,8 @@ class PollCreateOpenEnded extends Component {
     xhr.open("POST", "https://d7c59928777f.ngrok.io/api/poll/createPoll");
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(json);
-
-
   };
+  
   render() {
     if (this.state.pollCreated) {
       return <Redirect to={'/pollQuestionCreate'} />;

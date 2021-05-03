@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "../css/PollQuestionAnswer.css";
 import Button from "@material-ui/core/Button";
 
+
+//single poll question group
 class PollQuestionAnswer extends Component {
   state = {};
   componentDidMount() {
@@ -9,6 +11,7 @@ class PollQuestionAnswer extends Component {
     this.setState({ "index": this.props.index });
   }
 
+  //submit answer button handler
   handleAnswer = e => {
     let answer = document.getElementById(this.props.index).value;
 

@@ -8,7 +8,9 @@ import 'react-toastify/dist/ReactToastify.css';
 
 class Register extends Component {
   state = {};
-  handleLogin = e => {
+
+  //
+  handleRegister = e => {
     e.preventDefault();
     let firstname = document.getElementById("firstname").value;
     let lastname = document.getElementById("lastname").value;
@@ -24,7 +26,7 @@ class Register extends Component {
       "password": pss
     };
 
-
+    //check inputs
     if (email.includes("@ug.bilkent.edu.tr") && pss.length >= 8 &&
       firstname.length > 1 &&
       lastname.length > 1 &&
@@ -38,15 +40,11 @@ class Register extends Component {
 
         xhr.addEventListener("load", () => {
           // update the state of the component with the result here
-
-
           if (xhr.status === 200) {
             toast.success("Successfully Registered");
             this.setState({ registered: true });
           }
         });
-
-
         // open the request with the verb and the url
 
         xhr.open("POST", "https://d7c59928777f.ngrok.io/api/student/create/");
@@ -141,7 +139,7 @@ class Register extends Component {
                   </div>
                 </div>
 
-                <Button id="logBtn" variant="contained" color="primary" onClick={this.handleLogin}>
+                <Button id="logBtn" variant="contained" color="primary" onClick={this.handleRegister}>
                   Register
               </Button>
 

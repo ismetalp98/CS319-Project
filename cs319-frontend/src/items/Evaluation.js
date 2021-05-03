@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import "../css/review.css";
 
+
+//single evaluation item
 class Evaluation extends Component {
     state = {};
     componentDidMount() {
@@ -9,7 +11,6 @@ class Evaluation extends Component {
         this.setState({ "name": this.props.name });
         this.setState({ "surname": this.props.surname });
     }
-
     render() {
         return (
             <div className="review_texts">
@@ -18,7 +19,6 @@ class Evaluation extends Component {
                 <h5 id="review_content">"{this.state.evaluation}" </h5>
                 <hr></hr>
             </div>
-
         );
     }
 }
