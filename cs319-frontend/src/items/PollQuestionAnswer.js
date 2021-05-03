@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import "../csss/questionItem.css";
+import "../csss/PollQuestionAnswer.css";
 import Button from "@material-ui/core/Button";
 
-class QuestionItem extends Component {
+class PollQuestionAnswer extends Component {
   state = {};
   componentDidMount() {
     this.setState({ "name": this.props.question });
@@ -53,5 +53,5 @@ class QuestionItem extends Component {
   }
 }
 
-export default QuestionItem;
+export default PollQuestionAnswer;
 

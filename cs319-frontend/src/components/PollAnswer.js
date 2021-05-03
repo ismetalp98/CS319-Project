@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../csss/PollAnswer.css";
 import { Redirect } from "react-router-dom";
-import QuestionItem from "../items/QuestionItem";
+import PollQuestionAnswer from "../items/PollQuestionAnswer";
 
 
 
@@ -21,11 +21,11 @@ class PollAnswer extends Component {
       pollQuestions = parsed.questions;
 
       const polls = pollQuestions.map(questionobj => {
-        return <QuestionItem
+        return <PollQuestionAnswer
           key={questionobj.id}
           index={questionobj.id}
           question={questionobj.question}>
-        </QuestionItem>
+        </PollQuestionAnswer>
       })
       this.setState({ polls: polls });
     });

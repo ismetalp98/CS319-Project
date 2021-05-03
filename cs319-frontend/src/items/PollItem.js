@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import "../csss/items.css";
 import { Redirect } from 'react-router';
 
+// How polls will be displayed in home page and what will happen when clicked
 class PollItem extends Component {
   state = {};
+  // color variance
   componentDidMount() {
     const name =
       this.props.color % 4 === 0
@@ -15,6 +17,7 @@ class PollItem extends Component {
             : "poll_item1";
     this.setState({ "name": name });
   }
+  //if clicked set name and id of poll in localStorage
   set = e => {
     e.preventDefault();
     localStorage.setItem("currentPollName", this.props.name);

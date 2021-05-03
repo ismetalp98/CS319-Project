@@ -8,17 +8,18 @@ class ShowPollAnswer extends Component {
 
   getQuestions = e => {
     var pollIndex = localStorage.getItem("currentPollIndex");
-
     var pollQuestions;
+
+    //database get poll
     var xhrpolls = new XMLHttpRequest();
     xhrpolls.open("GET", "http://d7c59928777f.ngrok.io/api/poll/" + pollIndex);
     xhrpolls.send();
+
     xhrpolls.addEventListener("load", () => {
-      // update the state of the component with the result here
       var parsed = JSON.parse(xhrpolls.response);
       pollQuestions = parsed.questions;
-
-     const polls = pollQuestions.map(questionobj => {
+      // map every question as question answer item
+      const polls = pollQuestions.map(questionobj => {
         return <QuestionAnswerItem
           key={questionobj.id}
           index={questionobj.id}

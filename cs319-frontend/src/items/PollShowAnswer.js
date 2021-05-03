@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 import "../csss/items.css";
 
-class PollShowing extends Component {
+// how answer of a poll will be displayed
+class PollShowAnswer extends Component {
   state = {};
   componentDidMount() {
     this.setState({ "name": this.props.answer });
-  }
-
-  set = e => {
-    e.preventDefault();
   }
 
   render() {
@@ -22,5 +19,5 @@ class PollShowing extends Component {
   }
 }
 
-export default PollShowing;
+export default PollShowAnswer;
 

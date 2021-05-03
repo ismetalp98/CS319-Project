@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import "../csss/items.css";
 import Popup from 'reactjs-popup';
-import PollShowing from "../items/PollShowing";
+import PollShowAnswer from "./PollShowAnswer";
 
+// How a single question of poll will be displayed and what will happen if clicked
 class QuestionAnswerItem extends Component {
   state = {};
   componentDidMount() {
@@ -16,17 +17,17 @@ class QuestionAnswerItem extends Component {
 
     var xhr = new XMLHttpRequest();
     var pollQuestions;
-
     xhr.addEventListener("load", () => {
       if (xhr.status === 200) {
         var parsed = JSON.parse(xhr.response);
         pollQuestions = parsed.questions;
+        // map all questions in poll as poll show answer object which indicates how their answer will be displayed
         for (var current of pollQuestions) {
           if(current.id === this.state.index) {
           const polls = current.answers.map(questionobj => {
-            return <PollShowing
+            return <PollShowAnswer
               answer={questionobj.answer}>
-            </PollShowing>
+            </PollShowAnswer>
           })
           
           this.setState({ polls: polls });
