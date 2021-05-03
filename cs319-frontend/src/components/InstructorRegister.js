@@ -19,13 +19,13 @@ class InstructorRegister extends Component {
     let code = document.getElementById("instcode").value;
 
 
-    if (/*email.includes("@bilkent.edu.tr") && pss.length >= 8 &&
+    if (email.includes("@bilkent.edu.tr") && pss.length >= 8 &&
         firstname.length > 1 &&
-        lastname.length > 1*/true) {
+        lastname.length > 1) {
         if(pss !== pss2){
           toast.error("Passwords does not match.");
         }
-        else if(code !== 'code2023'){
+        else if(code !== 'CS319'){
           toast.error("Wrong intructor code.");
         }
         else{
@@ -107,8 +107,8 @@ class InstructorRegister extends Component {
                       id="instcode"
                       placeholder="Instructor Code"
                       autoComplete="off"
-                      type="text"
-                      title=""
+                      type="password"
+                      title="Required for instructor register"
                     />
                   </div>
                 </div>
