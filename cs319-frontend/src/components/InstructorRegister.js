@@ -25,7 +25,7 @@ class InstructorRegister extends Component {
         if(pss !== pss2){
           toast.error("Passwords does not match.");
         }
-        else if(code !== 'code2023'){
+        else if(code !== 'CS319'){
           toast.error("Wrong intructor code.");
         }
         else{
@@ -107,8 +107,8 @@ class InstructorRegister extends Component {
                       id="instcode"
                       placeholder="Instructor Code"
                       autoComplete="off"
-                      type="text"
-                      title=""
+                      type="password"
+                      title="Required for instructor register"
                     />
                   </div>
                 </div>
