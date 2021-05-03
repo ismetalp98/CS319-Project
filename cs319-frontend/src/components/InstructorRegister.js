@@ -16,11 +16,19 @@ class InstructorRegister extends Component {
     let email = document.getElementById("email").value;
     let pss = document.getElementById("pss").value;
     let pss2 = document.getElementById("pss2").value;
+    let code = document.getElementById("instcode").value;
+
+    console.log(code === 'code2023');
+
     if (/*email.includes("@bilkent.edu.tr") && pss.length >= 8 &&
         firstname.length > 1 &&
         lastname.length > 1*/true) {
+        console.log(code === 'code2023');
         if(pss !== pss2){
           toast.error("Passwords does not match.");
+        }
+        else if(code !== 'code2023'){
+          toast.error("Wrong intructor code.");
         }
         else{
           var data = {
@@ -93,6 +101,17 @@ class InstructorRegister extends Component {
                       autoComplete="off"
                       type="text"
                       title="At least 2 characters"
+                    />
+                  </div>
+                </div>
+                <div className="search_form_div">
+                  <div className="input">
+                    <input
+                      id="instcode"
+                      placeholder="Instructor Code"
+                      autoComplete="off"
+                      type="text"
+                      title=""
                     />
                   </div>
                 </div>
