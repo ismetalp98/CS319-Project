@@ -26,6 +26,9 @@ class GroupItem extends Component {
   }
 
   render() {
+    if ((localStorage.getItem('myGroupName') === this.props.name) && !this.props.notMyGroupObject) {
+      return (<div></div>);
+    }
     return (
       <div className={this.state.color} onClick={this.handleGroup}>
         <Link id="linkGroup" to="/groupPage" style={{ textDecoration: 'none' }}>

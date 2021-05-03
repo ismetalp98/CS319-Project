@@ -24,6 +24,7 @@ class HomePage extends Component {
         color={groupid}
         name={groupitem.name}
         project={'PeerReview'}
+        notMyGroupObject={false}
       />)
       this.setState({ groups: groups });
     });
@@ -70,7 +71,8 @@ class HomePage extends Component {
             key={groupid++}
             color={1}
             name={parsed.group.name}
-            project={'PeerReview'} />
+            project={'PeerReview'} 
+            notMyGroupObject={true}/>
           this.setState({ myGroup: myGroup });
           localStorage.setItem('myGroupName', parsed.group.name);
           localStorage.setItem('hasNoGroup', false);
