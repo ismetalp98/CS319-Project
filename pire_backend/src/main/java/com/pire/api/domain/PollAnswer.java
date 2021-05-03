@@ -8,6 +8,11 @@ import javax.validation.constraints.NotBlank;
 
 import lombok.Data;
 
+/**
+ * database object of poll answers
+ * @author atesel
+ *
+ */
 @Data
 @Entity
 @Table(schema = "poll", name = "poll_answer")

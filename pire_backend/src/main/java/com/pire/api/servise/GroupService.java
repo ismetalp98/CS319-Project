@@ -17,7 +17,11 @@ import com.pire.api.exception.NotFoundException;
 import com.pire.api.mapper.GroupMapper;
 import com.pire.api.repository.GroupRepository;
 import com.pire.api.repository.StudentRepository;
-
+/**
+ * Handle all database operation of group and return the return to the controller
+ * @author atesel
+ *
+ */
 @Service
 public class GroupService {
 
@@ -30,6 +34,11 @@ public class GroupService {
 	@Autowired
 	StudentRepository studentRepository;
 
+	/**
+	 * Create new group and save it to database
+	 * @param dto
+	 * @return
+	 */
 	public GroupView createGroup(CreateGroupDto dto) {
 		repository.findGroupByName(dto.getName()).ifPresent( d ->{
 			throw new AlreadyExsitException("Group name already exsist", "Group", "name");
@@ -44,6 +53,11 @@ public class GroupService {
 		return groupView;
 	}
 	
+	/**
+	 * add student to exsisting group and save it to datbase table
+	 * @param dto
+	 * @return
+	 */
 	public GroupView addStudent(AddStudentDto dto)
 	{
 		Group group = repository.findGroupByName(dto.getGroupname()).orElseThrow(() -> new NotFoundException("Grup not found"));
@@ -57,6 +71,11 @@ public class GroupService {
 		return groupView;
 	}
 	
+	/**
+	 * Return the deleverables and group informaiton
+	 * @param groupname
+	 * @return GroupAndDeleverableViewDto
+	 */
 	public GroupAndDeleverableViewDto getGropuAndDeliverable(String groupname)
 	{
 		Group group = repository.findGroupByName(groupname).orElseThrow(() -> new NotFoundException("Grup not found"));
@@ -64,6 +83,10 @@ public class GroupService {
 		return mapper.getGroupAndDeleverableViewDtoFromGroup(group);
 	}
 	
+	/**
+	 * Return all groups with only name
+	 * @return List<GroupListViewDto>
+	 */
 	public List<GroupListViewDto> getAll(){
 		List<Group> groups = repository.findAll();
 		

@@ -8,6 +8,11 @@ import javax.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * data base object which is releted with  instructor
+ * @author atesel
+ *
+ */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Entity

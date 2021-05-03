@@ -12,6 +12,11 @@ import javax.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * database object of pool
+ * @author atesel
+ *
+ */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Entity
@@ -28,6 +33,10 @@ public class Poll extends AbstractBaseObj{
 	)
 	private List<PollQuestion> questions = new ArrayList<>();
 
+	/**
+	 * add question to poll
+	 * @param question
+	 */
 	public void addQuestion(PollQuestion question) {
 		questions.add(question);
 		question.setPoll(this);

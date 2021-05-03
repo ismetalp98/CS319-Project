@@ -19,6 +19,11 @@ import com.pire.api.mapper.StudentMapper;
 import com.pire.api.repository.GroupRepository;
 import com.pire.api.repository.StudentRepository;
 
+/**
+ * Handle all databse operation of student and return the resund to the controller
+ * @author atesel
+ *
+ */
 @Service
 public class StudentService {
 	
@@ -31,6 +36,11 @@ public class StudentService {
 	@Autowired 
 	GroupRepository groupRepository;
 	
+	/**
+	 * create new stdent and save it to database
+	 * @param dto
+	 * @return StudentView
+	 */
 	public StudentView createStudent(CreateStudentDto  dto) {
 		repository.findByEmail(dto.getEmail()).ifPresent( d -> {
 			throw new AlreadyExsitException("Email already exsist", "Student", "Email");
@@ -42,7 +52,11 @@ public class StudentService {
 		
 		return mapper.getStudentViewFromStudent(student);
 	}
-	
+	/**
+	 * return user login information
+	 * @param email
+	 * @return StudentLoginDto
+	 */
 	public StudentLoginDto userLogin(String email) {
 		try {
 			
@@ -54,6 +68,11 @@ public class StudentService {
 		}
 	}
 	
+	/**
+	 * return student which is find by given email
+	 * @param email
+	 * @return StudentView
+	 */
 	public StudentView findByEmail(String email)
 	{
 		Student student = repository.findByEmail(email).orElseThrow(() -> new NotFoundException("Student not found."));
@@ -61,6 +80,10 @@ public class StudentService {
 		return mapper.getStudentViewFromStudent(student);
 	}
 	
+	/**
+	 * return all student in list view
+	 * @return List<StudentListView> 
+	 */
 	public List<StudentListView> getAllStudentList(){
 		List<Student> studentList = repository.findAll();
 		
@@ -69,12 +92,22 @@ public class StudentService {
 		return listView;
 	}
 	
+	/**
+	 * find student by emain and return the view of instructor
+	 * @param studentemail
+	 * @return StudentIntructorView
+	 */
 	public StudentIntructorView getStudentIntructorView(String studentemail) {
 		Student student = repository.findByEmail(studentemail).orElseThrow(() -> new NotFoundException("Student not found."));
 		
 		return mapper.getStudentIntructorViewFromStudent(student);
 	}
 	
+	/**
+	 * remvoe student from a group
+	 * @param dto
+	 * @return StudentView
+	 */ 
 	public StudentView leaveGroup(StudentLeaveGroupDto dto) {
 		Student student = repository.findByEmail(dto.getEmail()).orElseThrow(() -> new NotFoundException("Student not found."));
 		

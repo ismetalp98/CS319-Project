@@ -8,6 +8,11 @@ import javax.persistence.MappedSuperclass;
 
 import lombok.Data;
 
+/**
+ * base of database objects
+ * @author atesel
+ *
+ */
 @Data
 @MappedSuperclass
 public abstract class AbstractBaseObj {

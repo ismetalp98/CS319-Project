@@ -6,6 +6,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * Not found exception when the object with seach key is not found in database this exeption is returned
+ * @author atesel
+ *
+ */
 @Data
 @EqualsAndHashCode(callSuper=false)
 @ResponseStatus(value = HttpStatus.NOT_FOUND)

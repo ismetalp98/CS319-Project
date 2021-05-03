@@ -17,6 +17,11 @@ import com.pire.api.dto.poll.CreatePeerEvaluationDto;
 import com.pire.api.dto.poll.PeerEvaluationView;
 import com.pire.api.servise.PeerEvaluationService;
 
+/**
+ * This class responseable from answer http call about peer evaluation
+ * @author atesel
+ *
+ */
 @RestController
 @RequestMapping(path = "api/peerevaluation")
 public class PeerEvaluationController {
@@ -24,11 +29,21 @@ public class PeerEvaluationController {
 	@Autowired
 	PeerEvaluationService service;
 
+	/**
+	 * Answers http request of create new peer evaluation
+	 * @param dto
+	 * @return
+	 */
 	@PostMapping("/create")
 	public ResponseEntity<PeerEvaluationView> addPeerEvaluation(@RequestBody @Valid CreatePeerEvaluationDto dto) {
 		return ResponseEntity.ok(service.createPeerEvaluation(dto));
 	}
 
+	/**
+	 * Answers the http request of getting evalutions about given group name
+	 * @param groupname
+	 * @return
+	 */
 	@GetMapping("/getByGroupName/{groupname}")
 	public ResponseEntity<List<PeerEvaluationView>> getByGroupName(
 			@PathVariable(name = "groupname", required = true) String groupname) {

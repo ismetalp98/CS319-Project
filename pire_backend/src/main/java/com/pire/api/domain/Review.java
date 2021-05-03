@@ -8,6 +8,11 @@ import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
+/**
+ * database object of review
+ * @author atesel
+ *
+ */
 @Data
 @Entity
 @Table(schema = "review", name = "review")

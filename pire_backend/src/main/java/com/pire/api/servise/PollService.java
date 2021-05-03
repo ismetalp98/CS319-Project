@@ -25,6 +25,11 @@ import com.pire.api.repository.PollQuestionRepository;
 import com.pire.api.repository.PollRepository;
 import com.pire.api.repository.StudentRepository;
 
+/**
+ * Handle all databse operations of poll and return the resund to the controller
+ * @author atesel
+ *
+ */
 @Service
 public class PollService {
 
@@ -49,12 +54,22 @@ public class PollService {
 	@Autowired
 	StudentRepository studentRepository;
 	
+	/**
+	 * create new poll and save it to databse
+	 * @param dto
+	 * @return
+	 */
 	public PollView createPoll(CreatePollDto dto) {
 		Poll poll = pollMapper.getPollFromCreatePollDto(dto);
 		
 		return pollMapper.getPollViewFromPoll(pollRepository.save(poll));
 	}
 	
+	/**
+	 * create new poll question and save to database
+	 * @param dto
+	 * @return
+	 */
 	public PollQuestionView createPollQuestion(CreatePollQuestionDto dto) {
 		
 		Poll poll = pollRepository.findById(dto.getPollId()).orElseThrow(
@@ -70,7 +85,11 @@ public class PollService {
 		return pollQuestionMapper.getPollQuestionViewFromPollQuestion(pollQuestion);
 	}
 	
-	
+	/**
+	 * create a new poll answer and save it to database
+	 * @param dto
+	 * @return
+	 */
 	public PollAnswerView createPollAnswer(CreatePollAnswerDto dto) {
 		PollQuestion pollQuesiton = pollQuestionRepository.findById(dto.getPollQuestionId()).orElseThrow(
 				() -> new NotFoundException("Poll question not found")
@@ -91,6 +110,11 @@ public class PollService {
 		return pollAnswerMapper.getPollAnswerViewFrom(pollAnswer);
 	}
 	
+	/**
+	 * get poll answers and question by id
+	 * @param id
+	 * @return
+	 */
 	public PollView getPollById(Integer id) {
 		try {
 			Poll poll = pollRepository.findById(id).get();
@@ -100,6 +124,10 @@ public class PollService {
 		}
 	}
 	
+	/**
+	 * find all polls and return them as poll view 
+	 * @return List<PollView>
+	 */
 	public List<PollView> getAll(){
 		List<Poll> polls = pollRepository.findAll();
 		
@@ -108,6 +136,10 @@ public class PollService {
 		return pollViews;
 	}
 	
+	/**
+	 * get all polls as list view 
+	 * @return List<PollListView> 
+	 */
 	public List<PollListView> getAllList(){
 		List<Poll> polls = pollRepository.findAll();
 		

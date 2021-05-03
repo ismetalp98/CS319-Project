@@ -20,6 +20,11 @@ import com.pire.api.dto.account.GroupListViewDto;
 import com.pire.api.dto.account.GroupView;
 import com.pire.api.servise.GroupService;
 
+/**
+ * This answers the http requests which is releted to group
+ * @author atesel
+ *
+ */
 @RestController
 @RequestMapping(path = "api/group")
 public class GroupController {
@@ -27,16 +32,31 @@ public class GroupController {
 	@Autowired
 	GroupService service;
 	
+	/**
+	 * This answers the create new group http request
+	 * @param dto
+	 * @return
+	 */
 	@PostMapping("/create")
 	public ResponseEntity<GroupView> createGroup(@RequestBody @Valid CreateGroupDto dto){
 		return ResponseEntity.ok(service.createGroup(dto));
 	}
 	
+	/**
+	 * Answers the http request which is about adding student to a group
+	 * @param dto
+	 * @return
+	 */
 	@PostMapping("/addStudent")
 	public ResponseEntity<GroupView> addStudent(@RequestBody @Valid AddStudentDto dto){
 		return ResponseEntity.ok(service.addStudent(dto));
 	}
 	
+	/**
+	 * this answer the http request of the get group information
+	 * @param groupname
+	 * @return
+	 */
 	@GetMapping("/getdeliverable/{groupname}")
 	public ResponseEntity<GroupAndDeleverableViewDto> getGroupAndDeliverable(
 			@PathVariable(name = "groupname", required = true) String groupname)
@@ -44,6 +64,10 @@ public class GroupController {
 		return ResponseEntity.ok(service.getGropuAndDeliverable(groupname));
 	}
 	
+	/**
+	 * Answers the call of get all group name as list
+	 * @return
+	 */
 	@GetMapping("/getAll")
 	public ResponseEntity<List<GroupListViewDto> > getAll()
 	{

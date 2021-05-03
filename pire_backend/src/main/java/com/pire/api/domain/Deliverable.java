@@ -13,6 +13,11 @@ import javax.validation.constraints.NotBlank;
 
 import lombok.Data;
 
+/**
+ * Database object of deliverable
+ * @author atesel
+ *
+ */
 @Data
 @Entity
 @Table(schema = "review", name = "deliverable")
@@ -34,7 +39,10 @@ public class Deliverable extends AbstractBaseObj{
 	)
 	public List<Review> reviews = new ArrayList<>();
 	
-	
+	/**
+	 * add review to the deverable object
+	 * @param review
+	 */
 	public void addReview(Review review)
 	{
 		reviews.add(review);
