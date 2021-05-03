@@ -8,6 +8,7 @@ import InstructorRegister from "./components/InstructorRegister";
 import InstructorMain from "./components/InstructorMain";
 import InstructorProfile from "./components/InstructorProfile";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Header from "./components/Header";
 
 
 
@@ -40,6 +41,9 @@ class App extends Component {
             </Route>
             <Route exact path="/login">
               <Login />
+            </Route>
+            <Route exact path="/header">
+              <Header />
             </Route>
           </Switch>
         </Router>
