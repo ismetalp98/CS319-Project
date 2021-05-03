@@ -79,7 +79,10 @@ class Header extends Component {
   }
   render() {
     if (this.state.loggedOut) {
-      return <Redirect to={'/InstructorLogin'} />
+      if(this.state.instructor){
+        return <Redirect to={'/InstructorLogin'} />
+      }
+      return <Redirect to={'/login'} />
     }
     return (
       <header className="nav">
