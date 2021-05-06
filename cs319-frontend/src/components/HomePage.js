@@ -13,7 +13,6 @@ class HomePage extends Component {
   //get all the groups
   getGroups = e => {
     var groupid = 0;
-    localStorage.setItem("selectedMember", localStorage.getItem('currentUserMail'));
     var xhrgroups = new XMLHttpRequest();
     xhrgroups.open("GET", "http://d7c59928777f.ngrok.io/api/group/getAll");
     xhrgroups.send();
@@ -33,7 +32,7 @@ class HomePage extends Component {
 
   getPeriod = e => {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://d7c59928777f.ngrok.io/api/instructor/evaluationPeriod");
+    xhr.open("GET", "http://d7c59928777f.ngrok.io/api/instructor/evaluationPeriod");
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send();
     xhr.addEventListener("load", () => {
@@ -99,10 +98,14 @@ class HomePage extends Component {
   };
 
   componentDidMount() {
+    localStorage.setItem("selectedMember", localStorage.getItem('currentUserMail'));
     this.getGroups();
     this.getPolls();
     this.getMyGroup();
     this.getPeriod();
+  }
+  componentWillMount() {
+    localStorage.setItem("selectedMember", localStorage.getItem('currentUserMail'));
   }
   
   render() {

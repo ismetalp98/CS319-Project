@@ -7,7 +7,6 @@ class ProfilePage extends Component {
   state = {};
 
   componentWillMount() {
-
     //get current student
     var xhruser = new XMLHttpRequest();
     xhruser.open("GET", "http://d7c59928777f.ngrok.io/api/student/" + localStorage.getItem('selectedMember'));

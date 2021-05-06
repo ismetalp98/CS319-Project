@@ -41,7 +41,7 @@ class PollQuestionCreate extends Component {
 
   render() {
     if (this.state.questionCreationEnded) {
-      return <Redirect to={'/homePage'} />;
+      return <Redirect to={'/InstructorHome'} />;
     }
     return (
       <form className="PollCreateOpenEnded">

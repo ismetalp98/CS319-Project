@@ -14,7 +14,7 @@ class Register extends Component {
     e.preventDefault();
     let firstname = document.getElementById("firstname").value;
     let lastname = document.getElementById("lastname").value;
-    let email = document.getElementById("email").value;
+    let email = document.getElementById("email_register").value;
     let studentId = document.getElementById("studentId").value;
     let pss = document.getElementById("pss").value;
     let pss2 = document.getElementById("pss2").value;
@@ -42,12 +42,13 @@ class Register extends Component {
           // update the state of the component with the result here
           if (xhr.status === 200) {
             toast.success("Successfully Registered");
+            localStorage.setItem('currentUserMail', email);
             this.setState({ registered: true });
           }
         });
         // open the request with the verb and the url
 
-        xhr.open("POST", "https://d7c59928777f.ngrok.io/api/student/create/");
+        xhr.open("POST", "http://d7c59928777f.ngrok.io/api/student/create/");
         xhr.setRequestHeader("Content-Type", "application/json");
         // send the request
         xhr.send(json);
@@ -108,7 +109,7 @@ class Register extends Component {
                 <div className="search_form_div">
                   <div className="input">
                     <input
-                      id="email"
+                      id="email_register"
                       placeholder="E-mail"
                       autoComplete="off"
                       type="text"

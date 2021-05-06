@@ -17,7 +17,7 @@ class Header extends Component {
   };
   getPeriod = e => {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", "https://d7c59928777f.ngrok.io/api/instructor/evaluationPeriod");
+    xhr.open("GET", "http://d7c59928777f.ngrok.io/api/instructor/evaluationPeriod");
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send();
     xhr.addEventListener("load", () => {
@@ -43,7 +43,7 @@ class Header extends Component {
       localStorage.setItem("periodButton", "End");
     }
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://d7c59928777f.ngrok.io/api/instructor/reverseEvaluationPeriod");
+    xhr.open("POST", "http://d7c59928777f.ngrok.io/api/instructor/reverseEvaluationPeriod");
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send();
     xhr.addEventListener("load", () => {
@@ -62,13 +62,13 @@ class Header extends Component {
     };
     var json = JSON.stringify(data);
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://d7c59928777f.ngrok.io/api/group/create/");
+    xhr.open("POST", "http://d7c59928777f.ngrok.io/api/group/create/");
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.send(json);
     xhr.addEventListener("load", () => {
       if (xhr.status === 200) {
         xhr = new XMLHttpRequest();
-        xhr.open("POST", "https://d7c59928777f.ngrok.io/api/group/create/");
+        xhr.open("POST", "http://d7c59928777f.ngrok.io/api/group/create/");
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.send(json);
       }
